@@ -7,6 +7,8 @@ using namespace std;
 
 template<class T1, class T2>
 void swap(T1 &arr, T2 x, T2 y);
+template<class T>
+void heapify(T &arr, int size);
 template<class T1, class T2>
 void heapsort(T1 &arr, T2 n);
 template<class T1, class T2>
@@ -30,16 +32,16 @@ int main(void) {
 }
 
 template<class T1, class T2>
-void swap(T1 &arr, T2 x, T2 y) {
-    int tmp = arr[x];
+void swap(T1 &arr, int x, int y) {
+    T2 tmp = arr[x];
     arr[x] = arr[y];
     arr[y] = tmp;
 }
 
-template<class T1, class T2>
-void heapify(T1 &arr, T2 &count) {
+template<class T>
+void heapify(T &arr, int size) {
     int parent, child;
-    for (int i=1; i<count; i++) {
+    for (int i=1; i<size; i++) {
         child = i;
         while (child > 0) {
             parent = parent(child);
@@ -50,24 +52,24 @@ void heapify(T1 &arr, T2 &count) {
             else break;
         }
     }
-    //swap(arr, 0, --count); // 엥 이거 뭐냐?
+    //swap(arr, 0, --cursor); // 엥 이거 뭐냐?
 }
 
-template<class T1, class T2>
-void heapsort(T1 &arr, T2 n) {
-    int count = n;
-    int parent, child;
+template<class T>
+void heapsort(T &arr, int size) {
     /* 최초 힙트리 생성 */
-    heapify(arr, count);
+    heapify(arr, size);
+    int parent, child;
+    int cursor = size;
     /* 힙 정렬 수행 */
-    while (count > 1) {
+    while (cursor > 1) {
         parent = 0;
         /* 자식 노드 있는 곳까지만 보면 됨 */
-        while (parent <= count/2-1) {
+        while (parent <= cursor/2-1) {
             /* 첫 번째 자식 노드*/
             child = 2*parent+1;
             /* 자식 노드 중 큰 노드 선택 */
-            if (child+1 < count && arr[child] < arr[child+1]) {
+            if (child+1 < cursor && arr[child] < arr[child+1]) {
                 child++;
             }
             /* 부모 노드가 자식 노드보다 작으면 교체 */
@@ -78,7 +80,7 @@ void heapsort(T1 &arr, T2 n) {
             else break;
         }
         /* root와 마지막 교체, 사이즈 감소 */
-        swap(arr, 0, count---1);
+        swap(arr, 0, cursor---1);
     }
 }
 
