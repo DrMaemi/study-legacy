@@ -8,10 +8,8 @@ typedef pair<int, int> p;
 
 bool comparator(p loc1, p loc2) {
     if (loc1.x < loc2.x) return true;
-    else if (loc1.x > loc2.x) return false;
-    else if (loc1.y < loc2.y) return true;
-    else if (loc1.y > loc2.y) return false;
-    return true;
+    if (loc1.y < loc2.y) return true;
+    return false;
 }
 
 int main(void) {

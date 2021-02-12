@@ -1,21 +1,22 @@
 #include <iostream>
 #include <vector>
+#include <time.h>
 using namespace std;
 typedef vector<int> V;
 typedef long long ll;
 
-int numbers[] = {1, 3, 5, 7, 8};
-bool visited[5];
+int N, K;
+int numbers[1001];
+bool visited[1001];
 ll memo[1001][1001];
 vector<V> cases;
 
 void get_cases(int depth, int cursor, V v) {
-    if (depth == 3) {
-        if (v.size() == 3)
-            cases.push_back(v);
-        return;
+    if (depth == K) {
+        cases.push_back(v); return;
     }
-    for (int i=cursor; i<5; i++) {
+    if (N-cursor < K-depth) return;
+    for (int i=cursor; i<N; i++) {
         v.push_back(numbers[i]);
         get_cases(depth+1, i+1, v);
         v.pop_back();
@@ -40,12 +41,15 @@ ll coef(int N, int K) {
 }
 
 int main(void) {
-    cin.tie(NULL); cout.tie(NULL);
-    ios::sync_with_stdio(false);
+    cin >> N >> K;
+    for (int i=0; i<N; i++) cin >> numbers[i];
+    clock_t start = clock();
     vector<int> v;
     get_cases(0, 0, v);
     print_cases();
-    cout << "coefficient C(5, 3): " << coef(5, 3) << "\n";
-    cout << "real #cases: " << cases.size();
+    clock_t end = clock();
+    printf("coefficient C(%d, %d): %d\n", N, K, coef(N, K));
+    printf("real #cases: %d\n", cases.size());
+    printf("total time: %d", end-start);
     return 0;
 }
