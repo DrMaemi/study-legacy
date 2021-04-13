@@ -5,7 +5,12 @@
 [0. 시작하기 앞서](#0-시작하기-앞서)<br>
 [&nbsp; &nbsp; 0-1. 자바스크립트란?](#0-1-자바스크립트란?)<br>
 [&nbsp; &nbsp; 0-2. 자바스크립트의 특징](#0-2-자바스크립트의-특징)<br>
-[&nbsp; &nbsp; 0-3. 자바스크립트 엔진이란?](#0-3-자바스크립트-엔진이란?)
+[&nbsp; &nbsp; 0-3. 자바스크립트 엔진이란?](#0-3-자바스크립트-엔진이란?)<br>
+[1. 자바스크립트](#1-자바스크립트)<br>
+[&nbsp; &nbsp; 1-1. 기본 문법](#1-1-기본-문법)<br>
+[&nbsp; &nbsp; 1-2. 연산자](#1-2-연산자)<br>
+[&nbsp; &nbsp; 1-3. 데이터 타입](#1-3-데이터-타입)
+[&nbsp; &nbsp; 1-4. 조건문](#1-4-조건문)
 
 ---
 
@@ -130,3 +135,288 @@ hello !
 - SpiderMonkey - 최초의 자바스크립트 엔진. 지금은 모질라 파이어폭스에 사용된다.
 - Rhino - 모질라 재단에서 운영, 오픈소스이고 자바로 개발되었다.
 - JavaScriptCore, Chakra, Nashron, JerryScript 등등
+
+## 1. 자바스크립트
+### 1-1. 기본 문법
+<p>자바스크립트는 기본적으로 C/C++, java와 유사한 문법을 가진다.</p>
+
+- 세미콜론(;)으로 문장이 종료되어야 한다.
+- 변수명은 알파벳 혹은 '_'으로 시작해야 한다.
+- 대, 소문자를 구별한다.
+- 예약어는 변수명으로 사용할 수 없다.
+- 중괄호 {}를 이용해 구역을 나눈다.
+- C/C++과 같은 구조의 조건문, 반복문을 가진다.
+
+<p>*자바스크립트 예약어: break, case, catch, continue, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with</p>
+
+코드<br>
+```javascript
+var a = 1;
+b = 2;
+console.log("a:"+a);
+console.log("b:"+b);
+```
+결과<br>
+```
+a:1
+b:2
+```
+
+코드<br>
+```javascript
+var c = 3, d = 10;
+var str1 = "Hello", str2 = "World !", str3 = null;
+console.log("c:"+c);
+console.log("d:"+d);
+console.log(str1+" "+str2);
+console.log(str3);
+```
+결과<br>
+```
+c:3
+d:10
+Hello World !
+null
+```
+
+### 1-2. 연산자
+#### 산술 연산자
+<p>산술 연산자로 +, -, *, /, ++, --를 사용할 수 있다. 사용법은 C와 동일하다.</p>
+
+```javascript
+var a = 1, b = 2;
+console.log(a++, ++b);
+```
+```
+1 3
+```
+
+#### 문자열 연산자
+<p>문자열 연산자는 +가 있다. 두 문자열을 concat한다.</p>
+
+#### 할당 연산자
+<p>+=, -=, *=, /=가 있으며 사용법은 C와 동일하다.</p>
+
+#### 비교 연산자
+<p>>, >=, <, <=가 있으며 사용법은 C와 동일하다.</p>
+
+코드<br>
+```javascript
+var a = 2, b = 1, c = 6, d = 8;
+console.log(a > b);     // true
+console.log(b >= c);    // false
+console.log(c <= 10);   // true
+console.log(d < 8);     // true
+```
+결과<br>
+```
+true
+false
+true
+true
+```
+
+#### 논리 연산자
+<p>==, !=, &&, ||, !가 있으며 사용법은 C와 동일하다.</p>
+
+코드<br>
+```javascript
+var a = 2, b = 1, c = 6, d = 0;
+console.log(a == 1);            // false
+console.log(b != c);            // true
+console.log(!a, !b, !d);        // false false true
+console.log(true && false);     // false
+console.log(false || true);     // true
+console.log(!false);            // true
+```
+결과<br>
+```
+false
+true
+false false true
+false
+true
+true
+```
+
+#### 조건 연산자
+<p>(조건)? A: B 와 같은 형식으로 C와 마찬가지로 조건이 참일 때 A, 거짓일 때 B를 수행한다.</p>
+
+코드<br>
+```javascript
+var a = 2, b = 1;
+a > b? console.log("a is bigger than b"): console.log("a is smaller than b");
+```
+결과<br>
+```
+a is bigger than b
+```
+
+### 1-3. 데이터 타입
+<p>자바스크립트는 변수를 선언할 때 별도로 자료형을 명시하지 않는다. 'var' 키워드를 사용해서 변수를 선언할 때 자료형에 따라 다른 키워드를 사용해야 한다는 제약사항은 없다. 덕분에 데이터 활용에 있어 자유도가 높다.</p>
+<p>지금부터 소개할 자바스크립트의 기본 자료형 Number, String, Boolean  등은 기본적으로 내장형 객체라는 개념으로, '미리 만들어져 내장된 무언가'라고 생각하면 쉽다.</p>
+
+#### Number
+<p>수와 관련된 모든 자료형을 가진다. 진수 표기법과 소수점이 있는 실수, 지수를 사용할 수 있다.</p>
+
+코드<br>
+```javascript
+var int_data = 1, float_data = Number('1.0'), float_obj = new Number('1.0');
+typeof int_data;                        // "number"
+typeof float_data1;                     // number
+typeof float_data2;                     // "object"
+console.log(float_data, float_obj);     // 1 >Number {1}
+```
+결과<br>
+```
+"number"
+number
+"object"
+1 >Number {1}
+```
+코드<br>
+```javascript
+console.log((255).toString(10));    // 255
+console.log((255).toString(16));    // ff
+console.log((255).toString(8));     // 377
+console.log((255).toString(2));     // 11111111
+```
+결과<br>
+```
+255
+ff
+377
+11111111
+```
+
+#### String
+<p>String은 문자열 값을 가지는 자료형이다. 작성 시 큰따옴표(""), 작은따옴표('') 모두 사용 가능하다.</p>
+
+코드<br>
+```javascript
+var char1 = 'a', char2 = "b";
+console.log(char1, char2, char1+char2); // a b ab
+var str1 = "Double", str2 = 'single', str3 = new String("str obj");
+typeof str1;            // "string"
+typeof str2;            // "string"
+typeof str3;            // "object"
+str2[3];                // "g"
+console.log(str2[3]);   // g
+str1.length;                // 6
+console.log(str1.length);   // 6
+console.log(str1.toUpperCase());    // DOUBLE
+console.log(str1.toLowerCase());    // double
+console.log(str3.indexOf('b'));     // 5
+console.log(str3.indexOf(' '));     // 3
+str3.indexOf(' ');                  // 3
+```
+결과<br>
+```
+a b ab
+"string"
+"string"
+"object"
+"g"
+g
+6
+6
+DOUBLE
+double
+5
+3
+3
+```
+
+#### Boolean
+<p>Boolean은 참 또는 거짓을 구별하는 값으로 true, false 값을 가진다. true, false는 예약어로서 따옴표를 쓰지 않는다.</p>
+
+코드<br>
+```javascript
+var result = new Boolean();
+typeof result;          // "object"
+result;                 // >Boolean {false}
+console.log(result);    // >Boolean {false}
+result = true;
+typeof result;          // "boolean"
+result;                 // true
+console.log(result);    // true
+```
+결과<br>
+```
+"object"
+>Boolean {false}
+>Boolean {false}
+"boolean"
+true
+true
+```
+
+#### Array
+<p>Array는 배열 자료형이다. 배열 연산을 할 수 있는 다양한 메소드를 지원하는 객체이다.</p>
+
+코드<br>
+```javascript
+var arr1 = [1, 2, 3], arr2 = new Array(4, 5);
+arr2.push(3);
+console.log(arr2);                  // >(3) [4, 5, 3]
+typeof arr1;                        // "object"
+typeof arr2;                        // "object"
+var arr3 = new Array(3);
+arr3;                               // >(3) [undefined x 3]
+arr3[0];                            // undefined
+typeof arr3[0];                     // "undefined"
+arr1.toString();                    // "1, 2, 3"
+arr1.valueOf();                     // >(3) [1, 2, 3]
+arr1.length;                        // 3
+arr1.length = 5;
+arr1;                               // >(5) [1, 2, 3, undefined x 2]
+arr1[10];                           // undefined
+console.log(arr2.push("new1"));     // 4
+console.log(arr2.push("new2"));     // 5
+arr2;                               // >(5) [4, 5, 3, "new1", "new2"];
+arr2.pop();
+var str = arr2.pop();
+str;                                // "new1"
+arr2;                               // >(3) [4, 5, 3]
+arr3 = new Array(4, 2, 1, 3, 0);
+console.log(arr3.sort());           // >(5) [0, 1, 2, 3, 4]
+```
+
+### 1-4. 조건문
+<p>다른 프로그래밍 언어와 마찬가지로 조건문은 다양한 상황에 맞게 코드를 블록 단위로 작성하여 실행 흐름을 조절한다.</p>
+<!-- <p>반복문은 블록 단위의 코드를 특정 조건에서 반복하는 구문이다.</p> -->
+
+#### if - else
+<p>C와 동일한 문법과 로직을 지닌다.</p>
+
+코드<br>
+```javascript
+var a = 2, result;
+if (a > 2) { result = "a is greater than 2"; } // 중괄호{}를 이용해 블록처리
+else if (a < 2) result = "a is smaller than 2";
+else result = "a is equal to 2";
+console.log(result);
+```
+결과<br>
+```
+a is equal to 2
+```
+
+#### switch
+<p>C와 동일한 문법과 로직을 지닌다.</p>
+
+코드<br>
+```javascript
+var a = 1, result;
+switch (a) {
+    case 1: result = "it's 1"; console.log("hi there !"); break;
+    case 2: result = "it's 2"; break;
+    default: result = "it's bigger than 2";
+}
+console.log(result);
+```
+결과<br>
+```
+hi there !
+it's 1
+```
