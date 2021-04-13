@@ -143,5 +143,41 @@ node bin/www
 
 ### index.js
 <p>
-  index.js는 홈페이지를 처리하기 위한 것이다. 홈페이지를 렌더링해주기만 하면 되고, views/index.ejs 
+  index.js는 홈페이지를 처리하기 위한 것이다. index.js에서는 홈페이지를 렌더링해주기만 하면 되고, views/index.ejs 파일에 미리 정의해둔 변수를 매개 변수로 전달하면 ejs 엔진이 페이지를 그릴 때 해당 변수를 대입하여 보여준다.
 </p>
+<p>
+  참고로 ejs와 같은 탬플릿 엔진은 node.js에서 동적 페이지를 구현하기 위해 사용한다.
+</p>
+
+## 4. TO DO 목록 구조
+<p>
+  TO DO 목록을 저장하기 위한 todo_list.json 파일을 작성한다.
+</p>
+<p>
+  JSON(JavaScript Object Notation)은 경량의 DATA-교환 형식이다. 이 형식은 사람이 읽고 쓰기에 용이할 뿐더러 기계가 분석하고 생성할 때도 용이하다.
+</p>
+<p>
+  .json 파일은 이러한 JSON 형식의 문자열이 담긴 파일이다.
+</p>
+<p>
+  자바스크립트 객체를 JSON 형식 문자열로 만들기 위해서 JSON.stringify 함수 ``JSON.stringigy({}) --> '{}'``를 이용한다.
+</p>
+<p>
+  반대로 JSON 형식 문자열을 자바스크립트 객체로 만들기 위해서는 JSON.parse 함수 ``JSON.prase('{}') --> {}``를 이용한다.
+</p>
+<p>
+TO DO 목록이 갖춰야 할 정보는 다음과 같다.
+
+1. 할 일 내용
+2. 완료 여부: true - 완료, false - 미완료
+</p>
+<p>
+  따라서 TO DO 항목 한 개의 형식은 다음과 같다.
+</p>
+
+```javascript
+ToDo = {
+    contents: '할 일',
+    complete: true/false
+};
+```
