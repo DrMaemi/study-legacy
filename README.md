@@ -130,7 +130,7 @@ node bin/www
 <p>
   다음과 같은 화면이 나오면 성공.<br>
   <div align="center">
-    <figure><img src="./source/[그림 1].png" alt="그림1"></figure>
+    <figure><img src="./source/[그림_1].png" alt="그림1"></figure>
   </div>
 </p>
 
