@@ -119,13 +119,29 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 ```
 
+<p>
+  프로젝트 디렉토리에서 다음과 같이 커맨드 라인을 입력하여 http://localhost:3000 으로 서버를 실행한다.
+</p>
+
+```
+node bin/www
+```
+
+<p>
+  다음과 같은 화면이 나오면 성공.<br>
+  <div align="center">
+    <figure><img src="./source/[그림 1].png" alt="그림1"></figure>
+  </div>
+</p>
+
+
 ## 3. 라우팅 정의
 <p>
   라우팅 핸들러는 routes 디렉토리 하위에 정의한다.<br>
   이 예제에서는 index.js, todo.js 2가지 파일에 나누어 라우팅을 정의한다.
 </p>
 
-## index.js
+### index.js
 <p>
   index.js는 홈페이지를 처리하기 위한 것이다. 홈페이지를 렌더링해주기만 하면 되고, views/index.ejs 
 </p>
