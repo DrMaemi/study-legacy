@@ -1,5 +1,7 @@
 # 한 눈에 끝내는 javascript & Node.js
-[강좌 링크](https://swmaestro.goorm.io/learn/lecture/26925/%ED%95%9C-%EB%88%88%EC%97%90-%EB%81%9D%EB%82%B4%EB%8A%94-node-js)
+<div align="right">
+
+[강좌 링크](https://swmaestro.goorm.io/learn/lecture/26925/%ED%95%9C-%EB%88%88%EC%97%90-%EB%81%9D%EB%82%B4%EB%8A%94-node-js)</div>
 
 ## 목차
 <p>
@@ -10,12 +12,19 @@
 [&nbsp; &nbsp; 0-3. 자바스크립트 엔진이란?](#0-3-자바스크립트-엔진이란?)</p>
 <p>
 
-[1. 자바스크립트](#1-자바스크립트)<br>
+[1. 자바스크립트 기초](#1-자바스크립트-기초)<br>
 [&nbsp; &nbsp; 1-1. 기본 문법](#1-1-기본-문법)<br>
 [&nbsp; &nbsp; 1-2. 연산자](#1-2-연산자)<br>
 [&nbsp; &nbsp; 1-3. 데이터 타입](#1-3-데이터-타입)<br>
-[&nbsp; &nbsp; 1-4. 조건문](#1-4-조건문)</p>
+[&nbsp; &nbsp; 1-4. 조건문](#1-4-조건문)<br>
+[&nbsp; &nbsp; 1-5. 반복문](#1-5-반복문)<br>
+[&nbsp; &nbsp; 1-6. 함수](#1-6-함수)</p>
 
+<p>
+
+[2. 객체지향 자바스크립트](#2-객체지향-자바스크립트)<br>
+
+</p>
 ---
 
 ## 0. 시작하기 앞서
@@ -140,7 +149,7 @@ hello !
 - Rhino - 모질라 재단에서 운영, 오픈소스이고 자바로 개발되었다.
 - JavaScriptCore, Chakra, Nashron, JerryScript 등등
 
-## 1. 자바스크립트
+## 1. 자바스크립트 기초
 ### 1-1. 기본 문법
 <p>자바스크립트는 기본적으로 C/C++, java와 유사한 문법을 가진다.</p>
 
@@ -424,3 +433,180 @@ console.log(result);
 hi there !
 it's 1
 ```
+
+### 1-5. 반복문
+<p>조건문이 작성한 코드의 경로를 바꾸는 데 사용된다면, 반복문은 특정 코드 경로를 일정 횟수만큼 반복하는 데 사용된다.</p>
+
+#### for
+
+코드<br>
+```javascript
+var array = new Array();
+for (var i=0; i<10; i++) array.push(i);
+console.log(array.toString());
+```
+결과<br>
+```
+"0, 1, 2, 3, 4, 5, 6, 7, 8, 9"
+```
+
+<p>자바스크립트에는 for문의 다른 형태로 for-in 문이 있다. 배열의 원소들이나 객체를 쉽게 탐색할 수 있도록 해준다.</p>
+<p>실제 사용과 적용은 for문보다 제한적이다.</p>
+
+코드<br>
+```javascript
+var a = ['a', 'b', 'c', 'x', 'y', 'z'];
+var result;
+for (var i in a) result += 'index:'+i+', value:'+a[i]+'\n';
+console.log(result);
+```
+결과<br>
+```
+index:0, value:a
+index:1, value:b
+index:2, value:c
+index:3, value:x
+index:4, value:y
+index:5, value:z
+```
+
+#### while, do-while
+
+코드<br>
+```javascript
+var i = 0;
+while (i < 10) i++;
+console.log(i);
+```
+결과<br>
+```
+10
+```
+
+<p>do-while은 C와 마찬가지로, do 구문 뒤에 코드 블록이 위치하며 최소 한 번은 블록이 실행된다.</p>
+
+코드<br>
+```javascript
+var i = 0;
+do { i++; } while (i < 0)
+console.log(i);
+```
+결과<br>
+```
+1
+```
+
+### 1-6. 함수
+<p>function 이란 키워드를 사용하며 별도로 함수의 반환값에 대한 자료형은 명시하지 않는다.</p>
+<p>함수에 대한 정확한 이해는 어떤 프로그래밍 언어든 중요하지만 자바스크립트에서는 함수를 더욱 다양한 방법으로 사용하기 때문에 다른 언어보다 함수에 대한 이해가 훨씬 중요하다.</p>
+<p>자바스크립트의 함수는 다른 언어와 마찬가지로 **반환값을 하나**만 가질 수 있는데, 만약 여러 값을 반환하고 싶다면 **배열**이나 **객체**형태로 반환하면 된다.</p>
+
+#### 데이터로서의 함수
+<p>자바스크립트에서 함수의 중요한 개념 중 하나는 **함수가 하나의 데이터로서 취급**된다는 것이다. 함수 또한 하나의 객체이기 때문에 그렇다.</p>
+
+코드<br>
+```javascript
+function sum(a, b) { return a+b; }
+// 함수를 변수(메모리)에 할당할 수 있다
+var add = sum;
+typeof add;         // return "function"
+add(1, 2);          // return 3
+
+var student = { name: 'goorm', age: 20 }
+console.log(student.name);  // goorm
+delete student.name;        // return true
+console.log(student.name);  // undefined
+if (!delete student) console.log("It's false");
+if (delete not_exist) console.log("It's true");
+console.log(student.age);   // 20
+```
+결과<br>
+```
+goorm
+undefined
+20
+```
+
+#### 익명 함수(Anonymous Function)
+<p>자바스크립트에서는 무기명 또는 익명 함수라는 개념이 있다. C와 java에는 없는 독특한 개념이다. 앞서 함수가 데이터처럼 취급될 수 있다고 설명했는데, 그러한 특징 때문에 익명 함수와 같은 개념이 가능한 것이다.</p>
+<p>익명 함수는 단순히 설명하면 이름을 붙여주지 않아도 되는 함수이다. 일회용 혹은 이름이 필요 없는 변수를 사용할 때 효과적이다.</p>
+<p>보통 **함수 표현식, 콜백 함수, 즉시 실행 함수**를 익명 함수로 작성한다.</p>
+
+코드<br>
+```javascript
+var f = function(a) { return "This is anonymous function !"; };
+console.log(f());
+```
+결과<br>
+```
+This is anonymous function!
+```
+
+#### 콜백 함수(Callback Function)
+<p>함수가 데이터로서도 사용되고 이름을 가지지 않아도 사용 가능하기 때문에 발생한 개념이 콜백 함수이다.</p>
+<p>콜백 함수란 특정 이벤트가 발생하면 호출되는 함수이다. 이벤트 기반 구조를 가지는 자바스크립트에서는 콜백 함수의 개념이 아주 중요하게 사용되기 때문에 필히 익혀둬야 한다.</p>
+<p>함수의 인자로서 함수를 넘겨주는 방식으로 구현한다.</p>
+
+코드<br>
+```javascript
+function one() { return 1; }
+var two = function() { return 2; }
+function invoke_and_add(a, b) { return a()+b(); }
+console.log(invoke_and_add(one, two));
+```
+결과<br>
+```
+3
+```
+<p>위 소스 코드를 살펴보면 one()과 two() 함수 그 자체가 invoke_and_add() 함수의 인자로서 전달되어 연산이 수행된다.</p>
+<p>익명 함수를 이용해서 콜백 함수를 구현할 수 있다.</p>
+
+코드<br>
+```javascript
+function one() { return 1; }
+function invoke_and_add(a, b) { return a()+b(); }
+console.log(invoke_and_add(one, function() { return 2; }));
+```
+결과<br>
+```
+3
+```
+
+<!-- ## 2. 객체 지향 자바스크립트
+<p>자바스크립트는 객체 지향 언어이다. 자바스크립트는 기존 C++과 java가 지니는 객체 지향 특성과 조금 다르다. C++과 java는 **클래스 기반**의 언어이고, 자바스크립트는 **프로토타입 기반**의 언어이다.</p>
+<p>객체 지향 개념에 대해 간략히 정리하고 자바스크립트의 특징을 살펴본다.</p>
+
+#### 객체 지향의 특징
+<p>'**객체 지향**'은 다음과 같은 요소를 갖는다.</p>
+
+- 클래스
+- 객체
+- 메소드
+- 속성
+- 캡슐화
+- 집합
+- 재사용
+- 상속
+- 변형
+
+코드<br>
+```javascript
+var SoccerPlayer = function() { };
+SocccerPlayer.prototype = {
+  name: String,
+  age: Number,
+  height: Number,
+  weight: Number,
+  position: String,
+  team: String
+};
+var park_ji_sung = new SoccerPlayer();
+park_ji_sung.name = "Park Ji Sung";
+park_ji_sung.age = 31;
+park_ji_sung.height = 178;
+park_ji_sung.weight = 70;
+console.log(park_ji_sung);
+```
+결과<br>
+```
+``` -->
