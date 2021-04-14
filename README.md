@@ -572,7 +572,7 @@ console.log(invoke_and_add(one, function() { return 2; }));
 3
 ```
 
-<!-- ## 2. 객체 지향 자바스크립트
+## 2. 객체 지향 자바스크립트
 <p>자바스크립트는 객체 지향 언어이다. 자바스크립트는 기존 C++과 java가 지니는 객체 지향 특성과 조금 다르다. C++과 java는 **클래스 기반**의 언어이고, 자바스크립트는 **프로토타입 기반**의 언어이다.</p>
 <p>객체 지향 개념에 대해 간략히 정리하고 자바스크립트의 특징을 살펴본다.</p>
 
@@ -589,10 +589,11 @@ console.log(invoke_and_add(one, function() { return 2; }));
 - 상속
 - 변형
 
+#### 클래스
 코드<br>
 ```javascript
 var SoccerPlayer = function() { };
-SocccerPlayer.prototype = {
+SoccerPlayer.prototype = {
   name: String,
   age: Number,
   height: Number,
@@ -609,4 +610,43 @@ console.log(park_ji_sung);
 ```
 결과<br>
 ```
-``` -->
+{ name: 'Park Ji Sung', age: 31, height: 178, weight: 70 }
+```
+<p>박지성은 축구선수라는 클래스로 만들어진 하나의 인스턴스(객체)다.</p>
+
+#### 캡슐화
+<p>다른 표현으로 정보 은닉(Information Hiding)이라고 한다. 객체가 데이터를 속성에 저장하거나 저장한 데이터를 이용해 어떤 것을 수행하는 메소드를 포함하는 것을 말한다.</p>
+<p>캡슐화의 예로 스마트폰을 들 수 있다. 사용자는 스마트폰의 터치스크린, 버튼, 마이크 등의 인터페이스를 알 뿐 내부에서 어떤 동작을 하는지 어떻게 동작하는지에 대해서는 알 수 없다.</p>
+<p>객체 지향 건셉에서 다루는 캡슐화도 이와 동일하다. 우리가 써드 파티(third-party) 라이브러리를 이용해 객체를 생성하고 메소드를 호출할 때 내부 코드와 구현 로직에 대한 큰 관심은 없을 것이다. 심지어 컴파일되어 제공되는 라이브러리는 관심을 가지더라도 내부를 볼 수 없다.</p>
+<p>캡슐화는 속성과 메소드의 가시성에 대해서도 다룬다. 흔히 아는 public, private, protected와 같은 키워드를 사용하여 외부에서의 접근 권한을 다룬다.
+자바스크립트에서는 이런 키워드를 사용하진 않으나 객체의 프라이버시를 보호할 방법은 존재한다.</p>
+
+#### 집합
+<p>객체 지향 컨셉에서 여러 객체를 하나로 구성하는 것을 집합(Aggregation) 또는 구성(Composition)이라 한다. 이 컨셉은 해결하고자 하는 문제를 개발자가 쉽게 다룰 수 있을 만한 부분으로 나누어 해결할 수 있도록 해주는 강력한 방법이다. 집을 예로 들면, 집을 지을 때 바닥, 문, 기둥, 지붕 등의 객체들을 만든 후 하나로 합쳐 집을 만드는 것이 집합 컨셉을 이용한 것이다.</p>
+
+#### 상속
+<p>상속은 이미 작성된 코드를 재사용하는 아주 훌륭한 방법이다. 축구선수 박지성을 예로 들면, 인간이라는 클래스와 축구선수라는 클래스가 있을 때 축구선수는 인간을 상속받는다.</p>
+
+코드<br>
+```javascript
+function Man() {
+  this.name = "Anonymous";
+  this.gender = "Man";
+  this.Run = function () { return this.name+" is running!"; }
+  this.Sleep = function() { return this.name+" is sleeping!"; }
+}
+function SoccerPlayer () {
+  this.base = new Man(); // 상속
+  this.name = "Anonymous Soccer Player";
+  this.Run = function() { return this.base.Run(); }
+  this.Pass = function() { return this.name+" is passing to other player!"; }
+}
+
+SoccerPlayer.prototype = new Man(); // 이 코드가 없으면 gender가 undefined
+var player = new SoccerPlayer();
+console.log(player.name);       // Anonymous Soccer Player
+console.log(player.gender);     // Man
+console.log(player.Run());      // Anonymous is running!
+console.log(player.Pass());     // Anonymous Soccer Player is passing to other player!
+console.log(player.Sleep());    // Anonymous Soccer Player is sleeping!
+```
