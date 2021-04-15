@@ -806,3 +806,90 @@ Uncaught ReferenceError: c is not defined at <anonymous>:12:13
 </div>
 
 #### 정적 범위(Lexical scope)
+<p>정적 범위란 함수를 어디서 호출하는지가 아니라 어떤 스코프에 선언하였는지에 따라 결정된다는 것을 말한다.</p>
+
+코드<br>
+```javascript
+var text = 'global';
+function foo() { console.log(text); }
+function bar() { var text = 'bar'; foo(); }
+bar();
+```
+결과<br>
+```
+global
+```
+<p>bar 내부에서 foo가 실행될 때 foo 지역 스코프에서 text 변수를 탐색한 뒤, 없으면 전역 스코프에서 탐색한다. 따라서 global이 출력된다. bar 지역 스코프에 선언된 text 변수가 사용되지 않는다.</p>
+<p>C++과 같은 다른 프로그래밍 언어도 이와 같은 정적 범위 개념을 갖는다.</p>
+
+#### 호이스팅(Hoisting)
+<p>hoisting의 사전적 의미는 끌어 올리기라는 뜻이다. 호이스팅 또한 자바스크립트의 특징 중 하나인데, 함수 내부에서 변수를 선언할 때 어떤 위치에 있든 함수의 시작 위치로 끌어올리는 현상이다.</p>
+<p>단, 선언만 유효하고 값의 할당은 원 위치에서 수행한다.</p>
+
+코드<br>
+```javascript
+function foo() {
+  console.log(a);
+  var a = 100;
+  console.log(a);
+}
+foo();
+```
+결과<br>
+```
+undefined
+100
+```
+<p>다른 프로그래밍 언어에서 위 코드와 같은 로직을 수행하면 a가 선언되지 않아 첫 출력에서 에러가 발생한다. 그러나 자바스크립트는 호이스팅을 통해 변수 a의 선언이 함수 시작부분에서 이루어지기 때문에 에러 없이 undefined가 출력된다.</p>
+<p>위 코드는 다음과 같은 코드이다.</p>
+
+코드<br>
+```javascript
+function foo() {
+  var a;
+  console.log(a);
+  a = 100;
+  console.log(a);
+}
+foo();
+```
+
+<p>변수 뿐 아니라 함수 또한 호이스팅된다.</p>
+
+코드<br>
+```javascript
+foo();
+
+function foo() { console.log('출력'); }
+```
+결과<br>
+```
+출력
+```
+<p>하지만 다음과 같이 함수 표현식의 경우 오류가 발생한다.</p>
+
+코드<br>
+```javascript
+foo();
+
+var foo = function() { console.log('출력'); }
+```
+결과<br>
+```
+TypeError: foo is not a function
+```
+
+<p>위 코드는 사실 아래 코드와 같기 때문에 오류가 발생한다.</p>
+
+코드<br>
+```javascript
+var foo;
+foo();
+foo = function() { console.log('출력'); }
+```
+결과<br>
+```
+TypeError: foo is not a function
+```
+
+<p>호이스팅은 편리하나 코드가 의도치 않게 동작할 가능성이 있어 변수나 함수의 선언을 최상단에 하는 습관을 가지는 것이 좋다.</p>
