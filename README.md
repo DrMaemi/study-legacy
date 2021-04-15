@@ -28,6 +28,7 @@
 [&nbsp; &nbsp; 2-3. 캡슐화](#2-3-캡슐화)<br>
 [&nbsp; &nbsp; 2-4. 집합](#2-4-집합)<br>
 [&nbsp; &nbsp; 2-5. 상속](#2-5-상속)<br>
+[&nbsp; &nbsp; 2-6. 스코프와 호이스팅](#2-6-스코프와-호이스팅)<br>
 </p>
 
 ---
@@ -726,3 +727,82 @@ console.log(player.Run());      // Anonymous is running!
 console.log(player.Pass());     // Anonymous Soccer Player is passing to other player!
 console.log(player.Sleep());    // Anonymous Soccer Player is sleeping!
 ```
+
+### 2-6. 스코프와 호이스팅
+<p>자바스크립트에서 스코프와 클로저는 중요한 개념이다. 스코프와 클로저는 연결된 개념이고 다소 어려우므로 헷갈리기 쉬운데 이번 강의에서 확실히 익혀두도록 한다.</p>
+<p>또 다른 중요 개념인 호이스팅에 대해서도 다룬다.</p>
+
+#### 유효 범위(Scope)
+<p>스코프를 유효 범위라고 부르기도 하지만 스코프라는 말이 더 많이 쓰인다.</p>
+<p>자바스크립트에서 스코프란 작성된 코드를 둘러싼 환경으로, 어떤 변수들에 접근할 수 있는지를 정의한다. 변수가 어떤 범위에 속해있는지 정의하는 것과 같다.</p>
+<p>스코프는 전역(global)과 지역(local) 스코프로 정의할 수 있다. 다른 프로그래밍 언어의 전역변수와 지역변수랑 비슷한데, 자바스크립트는 대부분의 다른 언어가 가지는 Block-level scope(블록 단위 유효범위)가 아닌 Function-level scope(함수 단위 유효범위)를 가지며 이 점 때문에 차이가 발생한다.</p>
+
+코드<br>
+```javascript
+function foo() {
+  if (true) {
+    var a = 1;
+    console.log(a);
+  }
+  console.log(a);
+}
+foo();
+```
+결과<br>
+```
+1
+1
+```
+<p>위 상황에서 자바스크립트는 함수 레벨 스코프이기 때문에 중괄호 밖에서 a에 대한 참조가 가능하다.</p>
+<p>자바스크립트 ES6부터는 const, let 키워드를 이용해 블록 단위 유효범위 사용이 가능하다. 따라서 if문 안에 var 대신 const나 let으로 변수를 선언하면 다른 언어들처럼 참조하지 못한다.</p>
+<p>const와 let은 블록 단위 유효범위를 갖고 var는 전통 자바스크립트의 함수 범위 유효범위를 가진다는 점을 반드시 기억해둔다.</p>
+
+#### 전역 스코프(Global scope)와 지역 스코프(Local scope)
+<p>변수가 함수 바깥이나 중괄호{} 바깥에 선언됐다면 전역 스코프에 정의되었다고 한다. 함수 바깥에서도 해당 변수에 참조 가능하다.</p>
+<p>변수가 함수 내 범위에 선언됐다면 지역스코프에 정의되었다고 한다. 함수 바깥에서 해당 변수에 참조 불가능하다.</p>
+
+코드<br>
+```javascript
+var global_scope = 'global';
+var local_function = function() {
+  var local_scope = 'local';
+  console.log(global_scope);
+  console.log(local_scope);
+};
+console.log(local_scope); // error
+```
+결과<br>
+```
+Uncaught ReferenceError: local_scope is not defined at <anonymous>:7:13
+```
+<p>되도록 지역 스코프에 변수를 선언한다. 지역 스코프 변수는 협업 시 이유를 알 수 없는 에러나 변수 충돌의 원인이 된다.</p>
+
+#### 유효 범위 체인(Scope Chain)
+<p>함수 안에 함수가 있는 경우, 내부 함수는 외부 함수의 변수를 참조 가능하나 그 반대는 불가능하다.</p>
+
+코드<br>
+```javascript
+var a = 1;
+function outer() {
+  var b = 2;
+  console.log(a);     // 1
+  function inner() {
+    var c = 3;
+    console.log(a, b);
+  }
+  inner();            // 1 2
+}
+outer();
+console.log(c);       // error
+```
+결과<br>
+```
+1
+1 2
+Uncaught ReferenceError: c is not defined at <anonymous>:12:13
+```
+<div align="center">
+  <figure><img src="./git-resource/[그림 1]유효 범위 체인.png" alt="그림1"></figure>
+</div>
+
+#### 정적 범위(Lexical scope)
