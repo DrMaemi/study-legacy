@@ -16,7 +16,7 @@ exports.update = function(req, res, body) {
   res.end();
 };
 
-exports.update = function(req, res, body) {
+exports.remove = function(req, res, body) {
   res.writeHead(200, {"Content-Type": "text/plain"});
   res.write('removememo');
   res.end();
