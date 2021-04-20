@@ -19,7 +19,6 @@
 [&nbsp; &nbsp; 1-4. 조건문](#1-4-조건문)<br>
 [&nbsp; &nbsp; 1-5. 반복문](#1-5-반복문)<br>
 [&nbsp; &nbsp; 1-6. 함수](#1-6-함수)</p>
-
 <p>
 
 [2. 객체지향 자바스크립트](#2-객체지향-자바스크립트)<br>
@@ -29,14 +28,23 @@
 [&nbsp; &nbsp; 2-4. 집합](#2-4-집합)<br>
 [&nbsp; &nbsp; 2-5. 상속](#2-5-상속)<br>
 [&nbsp; &nbsp; 2-6. 스코프와 호이스팅](#2-6-스코프와-호이스팅)<br>
-[&nbsp; &nbsp; 2-7. 클로저](#2-7-클로저)<br>
+[&nbsp; &nbsp; 2-7. 클로저](#2-7-클로저)</p>
+<p>
 
-[3. Node.js 소개](#3-Nodejs-소개)
-[&nbsp; &nbsp; 3-1. 개요](#3-1-개요)
-[&nbsp; &nbsp; 3-2. 이벤트 기반 비동기 방식](#3-2-이벤트-기반-비동기-방식)
-[&nbsp; &nbsp; 3-3. 그 외 특징들](#3-3-그-외-특징들)
-[&nbsp; &nbsp; 3-4. 아키텍처](#3-4-아키텍처)
-</p>
+[3. Node.js 소개](#3-Nodejs-소개)<br>
+[&nbsp; &nbsp; 3-1. 개요](#3-1-개요)<br>
+[&nbsp; &nbsp; 3-2. 이벤트 기반 비동기 방식](#3-2-이벤트-기반-비동기-방식)<br>
+[&nbsp; &nbsp; 3-3. 그 외 특징들](#3-3-그-외-특징들)<br>
+[&nbsp; &nbsp; 3-4. 아키텍처](#3-4-아키텍처)</p>
+<p>
+
+[4. Node.js 설치](#4-Nodejs-설치)</p>
+<p>
+
+[5. Node.js 간단한 실습](#5-Nodejs-간단한-실습)<br>
+[&nbsp; &nbsp; 5-1. 웹 서버](#5-1-웹-서버)<br>
+[&nbsp; &nbsp; 5-2. 파일 입출력](#5-2-파일-입출력)<br>
+[&nbsp; &nbsp; 5-2. 비동기 이벤트](#5-3-비동기-이벤트)</p>
 
 ---
 
@@ -1104,3 +1112,107 @@ Node.js는 **서버사이드 자바스크립트**이며 구글의 자바스크�
 
 #### C-ares
 <p>동시에 복수 DNS 쿼리를 비동기 처리하기 위한 C 라이브러리다.</p>
+
+## 4. Node.js 설치
+<p>
+
+다음과 같은 세 가지 방법으로 Node.js를 설치할 수 있다.
+- 소스코드 다운 및 빌드, 패스 설정(우분투, 맥)
+- 패키지 매니저(우분투, 맥)
+- 공식 인스톨러(윈도우, 맥)</p>
+
+<div align="center">
+  <figure>
+    <img src="./git-resource/[그림 6]노드 설치.png" alt="그림6">
+  </figure>
+</div>
+
+<p>
+
+**소스 코드 다운 및 빌드** 방법은 필요 라이브러리를 설치하는 것이 우선이다. 이후 소스 코드 다운, gcc를 이용해 컴파일 및 빌드하고 어디서든 노드 명령어를 이용할 수 있게 환경 변수 경로를 설정한다.</p>
+
+<p>
+
+**패키지 매니저** 방법은 `apt-get` 명령어를 이용해 쉽게 소프트웨어를 설치 및 관리할 수 있는데, 우분투에서 기본적으로 제공하는 소프트웨어 저장소에 노드가 없으므로 노드 설치와 관련된 정보를 가진 저장소를 추가하고 이를 이용해 설치하는 방식이다. 맥과 윈도우의 경우 써드파티에서 만든 소프트웨어 패키지 매니저가 있는데 이를 이용해 우분투와 유사하게 설치 가능하다.</p>
+
+<p>
+
+**공식 인스톨러** 방법은 노드 [공식 홈페이지](https://nodejs.org/ko/download/)에서 인스톨러를 다운받아 실행해 설치하는 방법이다. 이렇게 설치한 경우 노드의 여러 버전 관리가 불가능해 불편하다. 이미 노드를 설치했다면 깔끔히 삭제하기도 번거롭다. 이런 문제 때문에 인스톨러 대신 노드를 버전별 설치/관리할 수 있는 NVM(Node Version Manager)를 이용하는 것이 좋다.</p>
+
+<p>노드에는 LTS 버전과 Current 버전이 있는데 차이는 다음과 같다.</p>
+
+<p>
+
+- **LTS 버전**
+  - 장기적으로 지원이 제공되는 안정적 버전
+  - 안정성과 보안성에 초점</p>
+<p>
+
+- **Current 버전**
+  - 잦은 업데이트
+  - 가장 최신 버전으로 불안정, 숨겨져 있는 버그 많음
+  - 추가 기능 개발과 기존 API 기능 개선 우선</p>
+
+#### REPL(Read Eval Print Loop)
+<p>노드가 설치되면 터미널과 같은 커맨드 라인 입력 인터페이스를 통해 REPL을 사용할 수 있다.</p>
+<p>REPL은 웹 브라우저의 자바스크립트 콘솔(F12를 눌러 이용 가능)과 유사하다. 하지만 HTML 페이지와 연결되지 않기 때문에 DOM이 존재하지 않는다.</p>
+<p>REPL을 이용해 간단한 코드를 작성하여 실행해보거나 테스트해볼 수 있다.</p>
+
+## 5. Node.js 간단한 실습
+### 5-1. 웹 서버
+<p>노드를 이용하면 다음과 같이 단 몇 줄만으로 웹 서버를 만들 수 있다.</p>
+
+hellonode1.js<br>
+```javascript
+// hellonode1.js
+var server = require('http');
+
+server.createServer(function(req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end("Hello node.js !\n");
+}).listen(3000, 'localhost');
+
+console.log("Server is running at http://localhost:3000/');
+```
+서버 구동<br>
+```
+node hellonode1.js
+```
+
+### 5-2. 파일 입출력
+hello.txt<br>
+```
+Hello !
+```
+
+main.js<br>
+```javascript
+var fs = require("fs");
+
+fs.readFile('./hello.txt', encoding='utf-8', function(err, data) {
+  if (err) throw err;
+  console.log(data+" Node.js !");
+});
+```
+
+### 5-3. 비동기 이벤트
+<p>노드에서 비동기 이벤트를 생성하고 관리하도록 기능을 제공하는 events 모듈을 사용해본다.</p>
+
+main.js<br>
+```javascript
+var EventEmitter = require('events').EventEmitter;
+// 이벤트 객체 생성
+var evt = new EventEmitter();
+
+// 'helloNode'라는 이벤트가 발생하면
+evt.on('helloNode', function(str) {
+  // 해당 이벤트를 통해 전달된 인자를 입력받아 콘솔로 출력
+  console.log("Hello! "+str);
+});
+
+// 자바스크립트 기본 메소드. 밀리 세컨드 단위로 특정 함수를 콜백으로 실행
+setTimeout(function() {
+  // 'helloNode' 이벤트 발생, 'Node.js' 문자열을 인자로 전달
+  evt.emit('helloNode', 'Node.js');
+}, 3000);
+```
