@@ -45,6 +45,14 @@
 [&nbsp; &nbsp; 5-1. 웹 서버](#5-1-웹-서버)<br>
 [&nbsp; &nbsp; 5-2. 파일 입출력](#5-2-파일-입출력)<br>
 [&nbsp; &nbsp; 5-2. 비동기 이벤트](#5-3-비동기-이벤트)</p>
+<p>
+
+[6. Node.js 기본 모듈과 기초](#6-Nodejs-기본-모듈과-기초)<br>
+[&nbsp; &nbsp; 6-1. 노드의 모듈화 개념](#6-1-노드의-모듈화-개념)<br>
+[&nbsp; &nbsp; 6-2. 전역 객체](#6-2-전역-객체)<br>
+[&nbsp; &nbsp; 6-3. 모듈의 종류](#6-3-모듈의-종류)<br>
+[&nbsp; &nbsp; 6-4. 기본 모듈들 사용법](#6-4-기본-모듈들-사용법)
+</p>
 
 ---
 
@@ -1078,7 +1086,7 @@ Node.js는 **서버사이드 자바스크립트**이며 구글의 자바스크�
 ### 3-3. 그 외 특징들
 - 자바스크립트 기반
 - NPM을 통한 다양한 확장 모듈들
-<p>NPM에 대해서는 5장에서 자세히 다룬다.</p>
+<p>NPM에 대해서는 7장에서 자세히 다룬다.</p>
 
 ### 3-4. 아키텍처
 
@@ -1215,4 +1223,228 @@ setTimeout(function() {
   // 'helloNode' 이벤트 발생, 'Node.js' 문자열을 인자로 전달
   evt.emit('helloNode', 'Node.js');
 }, 3000);
+```
+
+## 6. Node.js 기본 모듈과 기초
+<p>노드에서 모듈이라는 개념은 노드로 개발한 어플리케이션을 이루는 기본 조각이라 할 수 있다.</p>
+<p>일반적으로 노드로 개발된 어플리케이션은 객체 지향 개념이 아주 잘 녹아 있는 자바스크립트를 기반으로 하며, 파일과 1:1 맵핑이 되는 다양한 모듈로 구성된다.</p>
+
+### 6-1. 노드의 모듈화 개념
+<p>노드는 확장성을 위해 모듈 구조를 이용하여 어플리케이션을 구성하도록 한다. 모듈 단위로 구성된다는 것은 객체 지향 컨셉으로 어플리케이션이 구성된다는 것을 의미한다. 모듈화가 가능한 이유는 노드가 CommonJS 스펙을 대부분 준수하기 때문이다.</p>
+<p>기본적으로 노드의 모듈은 자바스크립트 파일 하나와 1:1 맵핑되며 이러한 형태는 다음 장에서 설명할 NPM으로 할 수 있는 노드 확장 모듈의 개발을 편리하게 해준다.</p>
+
+### 6-2. 전역 객체
+<p>전역 객체는 어디에서나 사용할 수 있는 객체를 말한다. client 사이드 자바스크립트에서 window나 document와 같은 객체를 전역 객체라 말할 수 있다. 예를 들어 우리가 alert()이라는 함수를 사용할 때 단순히 alert('메세지')만 입력하더라도 사실 window라는 객체의 window.alert() 함수를 사용하는 것이다.</p>
+<p>마찬가지로 서버 사이드에서 동작하는 노드의 경우 "global"이라는 전역 객체가 존재하는데, 우리가 앞으로 모듈을 불러올 때 사용할 require()를 비롯한 setTimeout(), console.log() 등을 포함하고 있다.</p>
+
+```javascript
+// 다음 두 개는 같은 기능을 수행하는 코드이다.
+require('./module');
+global.require('./module');
+```
+
+### 6-3. 모듈의 종류
+<p>노드에서는 모듈의 종류를 크게 다음과 같은 기준으로 나눈다.</p>
+<p>
+
+- 노드 설치 시 기본적으로 설치되는 모듈: **기본 모듈** / **확장 모듈**
+- 자바스크립트로 작성됐는지, C/C++등의 다른 언어로 작성 후 빌드됐는지: **일반 모듈** / **네이티브 모듈**
+- 현재 어플리케이션만을 위해서 설치됐는지: **로컬 모듈** / **글로벌 모듈**
+</p>
+
+<div align="center">
+  <figure>
+    <img src="./git-resource/[그림 7]모듈 종류.png" alt="그림7">
+  </figure>
+</div>
+
+<p>모듈의 종류를 알고 있는 것이 개발에 큰 영향을 미치진 않지만 모듈을 로딩하고 체계적으로 NPM을 배포하기 위해서 각 모듈의 특징 정도는 알아두는 것이 좋다.</p>
+
+#### 기본 모듈 / 확장 모듈
+<p>기본 모듈은 파일 입출력, 이벤트 관리, HTTP 프로토콜 관리 등에 관한 내용으로 노드의 비동기 입출력 처리를 위한 기본적 기능들을 제공하는 모듈이다.</p>
+<p>확장 모듈은 노드의 기능을 확장하기 위한 것으로 좀 더 쉬운 HTTP 서버 생성, 기본 파일 입출력에서 제공하지 않는 기능 추가 등 노드를 확장하고 더 편리하게 사용하기 위한 모듈이다.</p>
+<p>확장 모듈은 나중에 소개할 Express와 같은 모듈들처럼 하나의 프레임워크로서 제공되기도 하며, mongodb를 사용하기 위한 mongoose, mongolian처럼 다른 기술을 쉽게 접목하여 사용할 수 있도록 도와준다.</p>
+
+#### 일반 모듈 / 네이티브(기본) 모듈
+<p>개발 방법에 따라 나눌 수 있는 종류다. 노드의 네이티브 모듈은 C/C++로 개발된 경우가 대부분이다.</p>
+<p>확장 모듈 또한 네이티브 모듈로 개발할 수 있다. .node라는 확장자를 가졌으면 네이티브 모듈로 컴파일된 것이다.</p>
+<p>일반 모듈은 노드의 모듈 인터페이스를 통해 간단히 자바스크립트로 개발된 모듈이다.</p>
+
+#### 글로벌 모듈 / 로컬 모듈
+<p>모듈을 설치할 때 해당 어플리케이션에서만 사용하기 위해 설치한 경우 로컬 모듈이다. 글로벌 모듈로 설치하려면 설치 시 옵션 -g 을 이용한다.</p>
+
+#### 복합 모듈
+<p>내부 모듈이나 데이터 파일, 템플릿, 테스트 코드 등을 포함하는 모듈을 말한다. 다양한 파일을 포함하기 때문에 모듈을 구성하는 단위가 폴더이며 내부에 폴더를 가질 수 있다.</p>
+<p>require() 메소드가 이런 폴더 단위의 모듈을 인식하려면 index.js 파일이나 pakage.json 파일 중 하나가 반드시 있어야 한다.</p>
+
+#### 모듈 식별자(상대적 식별자, 절대적 식별자, 최상위 레벨 식별자)
+<p>노드의 모듈 이름으로는 확장자 없는 전체 경로를 사용한다. 앞서 설명한 것처럼 모듈은 파일과 일대일로 대응하기 때문에 .js나 .node라는 확장자를 가지지만 모듈을 불러들일 때는 파일 이름만 사용한다.</p>
+
+#### 상대적 식별자
+<p>현재 위치를 기준으로 상대 경로에 있는 모듈을 찾는 식별자이다. ./를 생략하면 상대 경로로 인식하지 않으니 주의한다.</p>
+
+```javascript
+require('./sample_module');
+```
+
+#### 절대적 식별자
+<p>절대 경로에 있는 모듈을 찾는 식별자이다.</p>
+
+```javascript
+require('/usr/local/node_modules/sample_module/');
+```
+
+#### 최상위 레벨 식별자
+<p>모듈 이름만을 입력하면 최상위 레벨 식별자로 인식하고 설치된 전체 확장 모듈과 기본 모듈 중 해당 모듈 이름을 검색하여 로드한다.</p>
+
+```javascript
+require('sample_module');
+```
+
+<p>
+
+여기서 중요한 점은 sample_module이라는 **모듈 식별자를 찾는 순서**이다. 만약 해당 모듈이 기본 모듈에서 찾을 수 없는 모듈이라면 상위 디렉토리를 차례대로 탐색한다. 예를 들면 다음과 같은 순서로 탐색한다.</p>
+
+```
+/home/goorm/example_project/node_modules/sample_module.js
+/home/goorm//node_modules/sample_module.js
+/home/node_modules/sample_module.js
+/node_modules/sample_module.js
+```
+
+#### require() 메소드와 module.exports
+<p>모듈 개념에서 require() 메소드와 module.exports는 매우 중요하다.</p>
+<p>client 사이드 자바스크립트와 비교해보자면, 웹 브라우저에서는 html의 script 태그로 필요한 자바스크립트를 연결하고 호출하게 되어있다.</p>
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <script type="text/javascript" src="goorm1.js"></script>
+  </body>
+</html>
+```
+
+<p>이렇게 html 스크립트를 통해 명시된 자바스크립트 파일들은 웹 브라우저에 의해 로딩되며 서로 참조하거나 호출할 수 있다. 하지만 노드는 html을 사용하지 않으므로 서로 다른 자바스크립트 파일들이 서로 참조하고 호출하는 방법이 필요하다.</p>
+<p>
+
+require() 메소드는 모듈 식별자인 module.exports를 이용해 모듈이 제공하는 함수나 객체 등을 반환한다. **불러온 모듈의 모든 의존성 모듈도 같이 로드한다.**</p>
+
+<p>노드에서 하나의 자바스크립트 파일은 하나의 모듈이 될 수 있다. 이 때 자바스크립트 파일 내부의 함수나 변수를 module.exports에 할당하면 외부에서 접근 가능하다.</p>
+
+### 6-4. 기본 모듈들 사용법
+
+#### 전역 객체: Global
+##### console
+</p>
+
+[API 문서](https://nodejs.org/api/console.html)</p>
+<p>
+
+- console.log(): 콘솔에 로그 메시지 출력
+- console.time(label): 시간 측정 시작
+- console.timeEnd(label): 시간 측정 종료
+</p>
+
+##### process
+<p>
+
+[API 문서](https://nodejs.org/api/process.html)</p>
+<p>process 객체는 자바스크립트에는 없는 Node.js만의 객체이다.</p>
+
+<p>
+
+**속성**</p>
+<p>
+
+- process.argv: 프로그램의 매개변수 정보
+- process.env: 컴퓨터 환경과 관련된 정보
+- process.version: Node.js의 버전
+- process.versions: Node.js 프로세스에서 사용하는 모듈들의 버전
+- process.arch: 프로세서의 아키텍처
+- process.platform: 플랫폼 정보
+</p>
+
+<p>
+
+**메소드**</p>
+<p>
+
+- process.exit(): 프로그램 종료
+- process.memoryUsage(): 메모리 사용 정보
+- proces.uptime(): 현재 프로그램이 실행된 시간
+</p>
+
+예제<br>
+```javascript
+console.log("process env property: ", process.env);
+console.log("uptime method: ", process.uptime());
+```
+
+#### Exports 객체
+<p>작성한 자바스크립트 파일을 모듈화시키고 외부에서 접근토록 만들어준다.</p>
+
+calculator.js<br>
+```javascript
+exports.double = function(r) { return r*r; };
+exports.plus = function(r) { return r+r; };
+```
+main.js<br>
+```javascript
+var calculator = require('./calculator');
+console.log('double:', calculator.double(3));
+console.log('plus:', calculator.plus(3));
+```
+결과<br>
+```
+> node main.js
+double: 9
+plus: 6 
+```
+
+#### OS 모듈
+<p>
+
+[API 문서](https://nodejs.org/api/os.html)</p>
+<p>실제 개발에서 많이 사용되는 모듈은 아니지만 운영체제와 시스템의 정보를 가져올 수 있는 모듈이다.</p>
+<p>CPU, 메모리, 디스크 용량에 대한 정보를 확인할 때 사용한다.</p>
+<p>
+
+
+<p>
+
+**주요 메소드**
+- os.tmpdir(): 임시 저장 폴더 위치
+- os.endianness(): CPU의 endianness(BE or LE)
+- os.hostname(): 호스트(컴퓨터) 이름
+- os.type(): 운영체제 이름
+- os.platform(): 운영체제 플랫폼
+- os.arch(): 운영체제 아키텍처
+- os.release(): 운영체제 버전
+- os.uptime(): 운영체제가 실행된 시간
+- os.loadavg(): 로드 에버리지 정보를 담은 배열
+- os.totalmem(): 시스템의 총 메모리
+- os.freemem(): 시스템의 가용 메모리
+- os.cpus(): CPU의 정보를 담은 객체. 세부 정보를 반환
+- os.networkInterfaces(): 네트워크 인터페이스 정보를 담은 배열</p>
+
+<p>
+
+**OS 객체의 유일한 속성**
+- os.EOL: 운영체제의 개행문자(\n과 같은)</p>
+
+예제<br>
+```javascript
+var os = require('os');
+
+console.log(os.tmpdir());
+console.log(os.type());
+
+var cpus = os.cpus();
+
+for(var i = 0; i < cpus.length; i++) {
+	console.log("CPU[" + (i+1) + "]");
+	console.log("model: " + cpus[i].model);
+	console.log("speed: " + cpus[i].speed);
+}
 ```
