@@ -1334,8 +1334,8 @@ require() 메소드는 모듈 식별자인 module.exports를 이용해 모듈이
 
 ### 6-4. 기본 모듈들 사용법
 
-#### 전역 객체: Global
-##### console
+#### (1) 전역 객체: Global
+#### (1)-(1) console
 </p>
 
 [API 문서](https://nodejs.org/api/console.html)</p>
@@ -1346,7 +1346,7 @@ require() 메소드는 모듈 식별자인 module.exports를 이용해 모듈이
 - console.timeEnd(label): 시간 측정 종료
 </p>
 
-##### process
+#### (1)-(2) process
 <p>
 
 [API 문서](https://nodejs.org/api/process.html)</p>
@@ -1381,7 +1381,7 @@ console.log("process env property: ", process.env);
 console.log("uptime method: ", process.uptime());
 ```
 
-#### Exports 객체
+#### (2) Exports 객체
 <p>작성한 자바스크립트 파일을 모듈화시키고 외부에서 접근토록 만들어준다.</p>
 
 calculator.js<br>
@@ -1402,7 +1402,7 @@ double: 9
 plus: 6 
 ```
 
-#### OS 모듈
+#### (3) OS 모듈
 <p>
 
 [API 문서](https://nodejs.org/api/os.html)</p>
