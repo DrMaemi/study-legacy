@@ -1,6 +1,38 @@
 # git-study
 협업 시 반드시 알아야할 깃 사용법
 
+#### 브랜치 생성
+```
+git branch test
+```
+
+#### 생성한 branch로 이동
+```
+git checkout test
+```
+
+#### branch 삭제
+```
+git branch -d test
+```
+
+### 생성한 branch를 원격 저장소에 push
+```
+git checkout test
+git push
+```
+
+#### test 브랜치의 commit을 master 브랜치에 반영
+<p>test 브랜치의 head가 master 브랜치의 head로 병합됨을 의미</p>
+
+
+```
+git checkout test
+git add .
+git commit -m 'comment'
+```
+이후 Merge
+
 #### A 브랜치의 HEAD를 B 브랜치의 HEAD로 병합(Merge)
 ```
 git checkout A
