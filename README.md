@@ -1,6 +1,18 @@
 # git-study
 협업 시 반드시 알아야할 깃 사용법
 
+#### 원격 저장소의 브랜치 정보 로컬에서 보기
+```
+git remote update
+git branch -r
+```
+
+#### 원격 저장소의 브랜치 가져오기
+만약 /feature/created-branch 브랜치를 가져오고 싶다면
+```
+git checkout -t origin/feature/created-branch
+```
+
 #### 브랜치 생성
 ```
 git branch test
