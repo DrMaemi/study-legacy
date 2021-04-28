@@ -55,3 +55,13 @@ git merge B
 ```
 git reset --hard
 ```
+
+#### 로컬 브랜치 삭제
+```
+git branch -d local-branch
+```
+
+#### 원격 브랜치 삭제
+```
+git push origin --delete remote-branch
+```
