@@ -23,11 +23,6 @@ git branch test
 git checkout test
 ```
 
-#### branch 삭제
-```
-git branch -d test
-```
-
 ### 생성한 branch를 원격 저장소에 push
 ```
 git checkout test
