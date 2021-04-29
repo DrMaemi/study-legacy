@@ -46,6 +46,14 @@ git checkout A
 git merge B
 ```
 
+#### merge 시 conflict 발생할 때, branch A가 무조건 이기는 방법
+```
+git checkout A
+git merge -s ours master        // -s ours: ours라는 strategy를 사용. ours는 깃에서 제공?
+git checkout master
+git merge A                     // 기존 master 내용이 branch A의 내용으로 수정된다.
+```
+
 #### 직전 HEAD의 commit 상황으로 로컬 파일들 전부 변경
 ```
 git reset --hard
@@ -66,3 +74,4 @@ git push origin --delete remote-branch
 git remote show origin      // origin 저장소의 stale한 remote branch들이 보임
 git remote update --prune   // delete all stale remote branch
 ```
+
