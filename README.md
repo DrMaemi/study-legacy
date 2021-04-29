@@ -63,6 +63,6 @@ git push origin --delete remote-branch
 
 #### 삭제한 원격 브랜치가 계속 보인다면
 ```
-git status                  // stale한 remote branch들이 보임
+git remote show origin      // origin 저장소의 stale한 remote branch들이 보임
 git remote update --prune   // delete all stale remote branch
 ```
