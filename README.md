@@ -54,6 +54,12 @@ git checkout master
 git merge A                     // 기존 master 내용이 branch A의 내용으로 수정된다.
 ```
 
+#### merge 시 conflict 발생할 때, branch A의 특정 파일 B가 무조건 이기는 방법
+```
+git checkout A
+
+```
+
 #### 직전 HEAD의 commit 상황으로 로컬 파일들 전부 변경
 ```
 git reset --hard
