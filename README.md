@@ -1,2 +1,2 @@
 # ML-AI-study
-my awesome machine-learning and deep-learning codes !
+<p>오픈소스로 존재하는 다양한 ML / AI 프레임워크와 간단한 예제를 다룬다.</p>
