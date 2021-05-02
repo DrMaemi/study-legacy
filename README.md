@@ -81,3 +81,13 @@ git remote show origin      // origin 저장소의 stale한 remote branch들이 
 git remote update --prune   // delete all stale remote branch
 ```
 
+#### 깃 최근 commit 취소하기
+가장 최근 commit 취소
+```
+git reset HEAD^
+```
+
+가장 최근 commit 3개 취소
+```
+git reset HEAD~3
+```
