@@ -457,6 +457,99 @@ for(var i = 0; i < cpus.length; i++) {
 }
 ```
 
+### 6-5. 확장모듈 관리
+```
+npm update [모듈명] // 로컬
+npm update [모듈명] -g // 글로벌
+```
+설치된 모든 모듈을 최신 버전으로 업데이트하고 싶을 땐<br>
+```
+npm update
+```
+
+삭제는 uninstall 명령을 이용한다.<br>
+```
+npm uninstall [모듈명]
+npm uninstall [모듈명] -g
+```
+
+### 6-6. package.json
+<p>노드로 확장 모듈을 작성하면 npm을 통해 중앙 저장소로 배포할 수 있다. package.json 파일은 배포한 모듈 정보를 담고자 만들어졌지만, 노드로 작성하는 어플리케이션도 package.json 파일을 사용하여 관리할 수 있다.</p>
+<p>
+
+직접 작성할 수도 있고, `npm init` 명령을 통해서 자동으로 생성할 수도 있다. 해당 어플리케이션을 위해 사용한 확장 모듈에 대한 정보는 `npm install -save`를 통해 자동으로 모듈에 대한 정보를 추가할 수 있다.</p>
+
+<p>다음은 package.json 파일의 내용과 설명이다.</p>
+
+```json
+{
+	"name" : "test",
+	"description" : "javascript's test programming.",
+	"keywords" : ["util", "f", "server", "client", "browser"],
+	"author" : "Goorm",
+	"contributors" : [],
+	"dependencies" : [],
+	"repository" : {"type": "git", "url" : "git://gitbub.com/documentcloud/test.git" },
+	"main" : "test.js",
+	"version" : "1.1.6"
+}
+```
+<br>
+
+**name**<br>
+<p>프로젝트 이름으로, 가장 중요하다. 중앙 저장소에 배포할 때 version과 함께 필수 항목이다.</p>
+<p>url로 사용되고, 설치할 때 디렉토리 이름이 되기 때문에 url이나 디렉토리에서 쓸 수 없는 이름을 사용하면 안된다.</p>
+<p>또한, 이름에 node나 js가 들어가면 안된다. 214자보다 짧아야 하며, .이나 _로 시작할 수 없다. 대문자를 포함해서는 안된다. require() 함수의 인수로 사용되기 때문에 짧고 알기 쉽게 짓는 것이 좋다.</p><br>
+
+**version**<br>
+<p>프로젝트 버전을 정의한다. 3단계 버전을 사용하며, -로 태그 이름을 적을 수 있다.</p><br>
+
+**description**<br>
+<p>프로젝트 설명으로, 문자열로 기술한다.</p>
+<p>npm search로 검색된 리스트에 표시되기 때문에 사람들이 패키지를 찾아내고 이해하는 데 도움이 되도록 한다.</p><br>
+
+**keywords**<br>
+<p>프로젝트를 검색할 때 참조되는 키워드다.</p>
+<p>description과 마찬가지로 npm search로 검색된 리스트에 표시된다.</p><br>
+
+**homepage**<br>
+<p>프로젝트 홈페이지 주소이다.</p>
+<p>url 항목과는 다르며, url을 설정하면 예상치 못한 동작이 수행될 수 있으므로 주의한다.</p><br>
+
+**author**<br>
+<p>프로젝트 작성자 정보로, 한 사람만을 지정한다. JSON 형식으로 name, email, url 옵션을 포함한다.</p><br>
+
+**contributors**<br>
+<p>프로젝트에 참여한 공헌자 정보로, 여러 사람을 배열로 지정할 수 있다.</p><br>
+
+**repository**<br>
+<p>프로젝트의 소스 코드를 저장한 저장소의 정보이다.</p>
+<p>소스 코드에 참여하고자 하는 사람들에게 도움이 될 수 있다. 프로젝트의 홈페이지 url을 명시해서는 안된다.</p><br>
+
+**scripts**<br>
+<p>프로젝트에서 자주 실행해야 하는 명령어를 scripts로 작성해두면 npm 명령어로 실행 가능하다.</p><br>
+
+**config**<br>
+<p>소스코드에서 config 필드에 있는 값을 환경 변수처럼 사용할 수 있다.</p><br>
+
+**private**<br>
+<p>이 값을 true로 작성하면 중앙 저장소로 저장하지 않는다.</p><br>
+
+**dependencies**<br>
+<p>프로젝트 의존성 관리를 위한 부분이다. 이 프로젝트가 어떤 확장 모듈을 요구하는지 정리할 수 있다.</p>
+<p>어플리케이션을 설치할 때 이 내용을 참조해서 필요한 확장 모듈을 자동으로 설치한다. 따라서 개발한 어플리케이션이 특정 확장 모듈을 사용한다면 이 곳에 반드시 명시해야 한다.</p>
+<p>
+
+또한, `npm install` 명령은 이 곳에 포함된 모든 확장 모듈들을 설치하게 되어있다.</p><br>
+
+**devDependencies**<br>
+<p>개발할 때만 의존하는 확장 모듈을 관리한다.</p><br>
+
+**engine**<br>
+<p>실행 가능한 노드 버전의 범위를 결정한다.</p>
+
+
+
 ## A. 추가 스터디
 ### asnyc - await
 <p>async와 await는 자바스크립트의 비동기 처리 패턴 중 가장 최근에 나온 문법이다.</p>
