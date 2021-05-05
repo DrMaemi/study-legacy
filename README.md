@@ -138,3 +138,27 @@ Mongo
     <div align="center"><figcation>[MongoDB 접속]</figcation></div>
   </figure>
 </div></p>
+
+## 2. 기본 사용법
+### 2.1. 데이터베이스 생성
+<p>
+
+`use [DB 명]`으로 원하는 이름의 DB를 생성할 수 있다.</p>
+
+### 2.2. 컬렉션 생성
+<p>
+
+`use [원하는 DB 명]`으로 switch한 후, `db.[원하는 컬렉션 명].insert({...})`과 같이 컬렉션을 생성할 수 있다.</p>
+
+터미널<br>
+```
+show dbs
+use testdb
+show tables
+db.test_collection.insert({
+    "name": "name 1"
+    "sex": "male"
+    "age": "22"
+})
+show tables
+```
