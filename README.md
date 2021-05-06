@@ -1,8 +1,9 @@
-```javascript
-// 모듈 가져오기
-var express = require('express')
-  , routes = require('./routes')
-  , todo = require('./routes/todo')
-  , http = require('http')
-  , path = require('path');
-```
+# Mark-Down study
+
+## 같은 문서 내 헤더로 링크 걸기
+
+- [보여줄 텍스트](#링크할 헤더) 형식으로 기입
+- 스페이스바(띄어쓰기)는 '-'로 대체
+- '.', '-', ':'는 무시한다(제거)
+- 대문자는 소문자로 바꿔 쓴다
+- 어떤 헤더는 '#'는 한 번만 쓴다
