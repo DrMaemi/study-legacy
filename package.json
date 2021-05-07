@@ -1,0 +1,26 @@
+{
+  "name": "navermap-study",
+  "version": "1.0.0",
+  "description": "study how to use navermap-api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrMaemi/navermap-study.git"
+  },
+  "keywords": [
+    "navermap-api"
+  ],
+  "author": "drmaemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrMaemi/navermap-study/issues"
+  },
+  "homepage": "https://github.com/DrMaemi/navermap-study#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
