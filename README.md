@@ -1,6 +1,19 @@
 # git-study
 협업 시 반드시 알아야할 깃 사용법
 
+#### git init으로 프로젝트 시작하기
+<p>깃 원격 저장소에 먼저 저장소를 만든 후 git clone으로 로컬 개발을 진행하는 것이 아닌, 로컬에서 먼저 프로젝트를 시작한 경우.</p>
+<p>
+
+로컬에서 `git init`으로 로컬 저장소 시작.</p>
+
+<p>
+
+[깃허브](https://github.com)에 접속해서 본인 계정으로 저장소를 만들고, 로컬 작업 디렉토리에서 `git remote set-url origin [해당 원격 저장소 url]` 커맨드 입력</p>
+
+<p>git add, commit, push</p>
+
+
 #### 원격 저장소의 브랜치 정보 로컬에서 보기
 ```
 git remote update
