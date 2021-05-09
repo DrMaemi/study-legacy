@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DrMaemi/react-node-practice.git"
+    "url": "git+https://github.com/DrMaemi/react-node-boilerplate.git"
   },
   "author": "drmaemi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DrMaemi/react-node-practice/issues"
+    "url": "https://github.com/DrMaemi/react-node-boilerplate/issues"
   },
   "homepage": "https://github.com/DrMaemi/react-node-practice#readme",
   "dependencies": {
