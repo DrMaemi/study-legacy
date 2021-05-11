@@ -19,24 +19,41 @@ conda activate root
 conda remove --name [가상환경명] --all
 ```
 
-### 주피터 노트북에 가상환경 연동
+### 1.2. 패키지 설치하기
+```
+conda activate [가상환경 명]
+conda install [패키지 명]
+```
+
+### 1.3. 설치된 패키지 삭제하기
+```
+conda uninstall [패키지 명]
+```
+
+### 1.4. 가상환경 복제
+기존에 세팅해둔 가상환경에서 약간의 변경 후 사용하고 싶을 때 사용한다.
+```
+conda create --name [새로운 가상환경 명] --clone [기존 가상환경 명]
+```
+
+## 2. 주피터 노트북 - 가상환경 연동
 <p><div align="center">
   <figure>
-    <img src="./resources/가상환경-1.png" alt="가상환경-1">
+    <img src="./resources/2/1.png" alt="가상환경-1">
     <div align="center"><figcation>파이썬 파일 생성</figcation></div>
   </figure>
 </div></p>
 
 <p><div align="center">
   <figure>
-    <img src="./resources/가상환경-2.png" alt="가상환경-2">
+    <img src="./resources/2/2.png" alt="가상환경-2">
     <div align="center"><figcation>가상환경 커널이 아직 존재하지 않는다</figcation></div>
   </figure>
 </div></p>
 
 <p><div align="center">
   <figure>
-    <img src="./resources/가상환경-3.png" alt="가상환경-3">
+    <img src="./resources/2/3.png" alt="가상환경-3">
     <div align="center"><figcation>testenv라는 가상환경이 존재</figcation></div>
   </figure>
 </div></p>
@@ -58,31 +75,20 @@ python -m ipykernel install --user --name testenv --display-name testenv
 
 <p><div align="center">
   <figure>
-    <img src="./resources/가상환경-4.png" alt="가상환경-4">
+    <img src="./resources/2/4.png" alt="가상환경-4">
     <div align="center"><figcation>결과</figcation></div>
   </figure>
 </div></p>
 
 <p><div align="center">
   <figure>
-    <img src="./resources/가상환경-5.png" alt="가상환경-5">
+    <img src="./resources/2/5.png" alt="가상환경-5">
     <div align="center"><figcation>새로고침 후 확인</figcation></div>
   </figure>
 </div></p>
 
-### 1.2. 패키지 설치하기
-```
-conda activate [가상환경 명]
-conda install [패키지 명]
-```
-
-### 1.3. 설치된 패키지 삭제하기
-```
-conda uninstall [패키지 명]
-```
-
-### 1.4. 가상환경 복제
-기존에 세팅해둔 가상환경에서 약간의 변경 후 사용하고 싶을 때 사용한다.
-```
-conda create --name [새로운 가상환경 명] --clone [기존 가상환경 명]
-```
+## 3. VS Code - 가상환경 연동
+### 3.1. command pallet
+<p>[Ctrl] + [Shift] + [P]를 입력하면 command pallet가 나타난다.</p>
+<p>나타난 창에 'Python: Select Interpreter'을 입력하면, 원하는 파이썬 버전의 가상환경을 선택할 수 있다.</p>
+<p>만약 Select Interpreter를 검색했음에도 나타나지 않는다면, VS Code의 Python extension을 설치해야 한다.</p>
