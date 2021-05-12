@@ -9,10 +9,14 @@
 
 <p>
 
-[깃허브](https://github.com)에 접속해서 본인 계정으로 저장소를 만들고, 로컬 작업 디렉토리에서 `git remote set-url origin [해당 원격 저장소 url]` 커맨드 입력</p>
+[깃허브](https://github.com)에 접속해서 본인 계정으로 저장소를 만들고, 로컬 작업 디렉토리에서 `git remote add origin [해당 원격 저장소 url]` 커맨드 입력</p>
 
 <p>git add, commit, push</p>
 
+#### 저장소 복제
+<p>
+
+git clone으로 저장소 받고 `git remote set-url origin [새로 생성한 원격 저장소 url]`</p>
 
 #### 원격 저장소의 브랜치 정보 로컬에서 보기
 ```
