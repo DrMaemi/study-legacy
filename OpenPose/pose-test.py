@@ -21,7 +21,8 @@ weightsFile = "./models/pose_iter_160000.caffemodel"
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # 이미지 읽어오기
-image = cv2.imread("./resources/cctv.jpg")
+imageName = "example.jpg"
+image = cv2.imread("./resources/{}".format(imageName))
 
 # frame.shape = 불러온 이미지에서 height, width, color 받아옴
 imageHeight, imageWidth, _ = image.shape
@@ -80,6 +81,6 @@ for pair in POSE_PAIRS:
 
 
 cv2.imshow("Output-Keypoints",imageCopy)
-cv2.imwrite("result",imageCopy)
+cv2.imwrite("./results/{}".format(imageName),imageCopy)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

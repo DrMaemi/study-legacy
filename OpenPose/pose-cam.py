@@ -30,8 +30,8 @@ net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 # 영상을 가져오기 위해 웹캠과 연결
 cap = cv2.VideoCapture(0)
 
-inputHeight = 368
-inputWidth = 368
+inputHeight = 416
+inputWidth = 416
 inputScale = 1.0/255
 threshold = 0.1
 
@@ -45,22 +45,24 @@ while cv2.waitKey(1) < 0:
         cv2.waitKey()
         break
 
-    frameWidth = frame.shape[1]
-    frameHeight = frame.shape[0]
+    # frameWidth = frame.shape[1]
+    # frameHeight = frame.shape[0]
+    h, w, c = frame.shape
 
     # network에 넣기위해 전처리
     inpBlob = cv2.dnn.blobFromImage(
         frame, # 입력 이미지
         inputScale, # 픽셀값 범위를 0 ~ 1 사이 값으로 정규화. 성능 향상
-        (frameWidth, frameHeight), # CNN에서 요구하는 크기로 이미지 크기 조정
+        (w, h), # CNN에서 요구하는 크기로 이미지 크기 조정
         (0, 0, 0), # 입력 영상에서 뺄 mean subtraction 값. 현재는 0으로 설정해서 빼지 않음
-        swapRB=False, # OpenCV의 BFR 순서를 RGB로 바꾸기 위해 설정하는 옵션. False로 바꾸지 않음.
+        # swapRB=False, # OpenCV의 BFR 순서를 RGB로 바꾸기 위해 설정하는 옵션. False로 바꾸지 않음.
+        True,
         crop=False)
     # inp.shape를 출력하면 (1, 3, 368, 368)
 
     # blob 영상을 출력. 앞의 mean subtraction 값을 바꾸면 이미지가 변화함
     imgb = cv2.dnn.imagesFromBlob(inpBlob)
-    cv2.imshow('inp', (imgb[0]*255.0).astype(np.uin8))
+    cv2.imshow('inp', (imgb[0]*255.0).astype(np.uint8))
 
     # network에 넣어주기
     net.setInput(inpBlob)
@@ -83,15 +85,15 @@ while cv2.waitKey(1) < 0:
         minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
 
         # 원본 영상에 맞게 좌표 조정
-        x = int(frameWidth * point[0]) / output.shape[3]
-        y = int(frameHeight * point[1]) / output.shape[2]
+        x = int((w * point[0]) / output.shape[3])
+        y = int((h * point[1]) / output.shape[2])
 
         # 키포인트 검출한 결과가 0.1보다 크면(검출한곳이 위 BODY_PARTS랑 맞는 부위면) points에 추가, 검출했는데 부위가 없으면 None으로
         # threshold 값이 커지면 관절이 덜 검출. 오인식 가능성 낮아짐.
         # threshold 값이 낮아지면 관절 검출을 많이 하지만 오인식 가능성 커짐.
         if prob > threshold :
             cv2.circle(frame, (x, y), 3, (0, 255, 255), thickness=-1, lineType=cv2.FILLED)       # circle(그릴곳, 원의 중심, 반지름, 색)
-            cv2.putText(frame, "{}".format(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, lineType=cv2.LINE_AA)
+            cv2.putText(frame, "{}".format(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1, lineType=cv2.LINE_AA)
             points.append((x, y))
         else :
             points.append(None)
@@ -109,7 +111,7 @@ while cv2.waitKey(1) < 0:
 
     # 추론하는 데 걸린 시간을 화면에 출력
     t, _ = net.getPerfProfile()
-    freq = cv2.getTickFrequenct() / 1000
+    freq = cv2.getTickFrequency() / 1000
     cv2.putText(frame, '%2.fms' % (t / freq), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
 
     cv2.imshow("OpenPose using OpenCV", frame)
