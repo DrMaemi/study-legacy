@@ -1,4 +1,3 @@
 images
-*.weights
-OpenPose/models
+OpenPose/models/*
 .vscode

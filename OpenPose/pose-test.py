@@ -9,20 +9,26 @@ POSE_PAIRS = [ ["Head", "Neck"], ["Neck", "RShoulder"], ["RShoulder", "RElbow"],
                 ["LElbow", "LWrist"], ["Neck", "Chest"], ["Chest", "RHip"], ["RHip", "RKnee"],
                 ["RKnee", "RAnkle"], ["Chest", "LHip"], ["LHip", "LKnee"], ["LKnee", "LAnkle"] ]
 
-# 각 파일 path
-# protoFile = "./models/pose_deploy.prototxt"
-# protoFile = "./models/pose_deploy_linevec.prototxt"
-protoFile = "./models/pose_deploy_linevec_faster_4_stages.prototxt"
+### 각 파일 path ###
+# protoFile = "./models/proto/pose_deploy.prototxt"
+# weightsFile = "./models/weight/pose_iter_584000.caffemodel"
 
-weightsFile = "./models/pose_iter_160000.caffemodel"
-# weightsFile = "./models/pose_iter_584000.caffemodel"
- 
+# COCO model
+protoFile = "./models/proto/pose_deploy_linevec.prototxt"
+weightsFile = "./models/weight/pose_iter_440000.caffemodel"
+
+# MPI model
+# protoFile = "./models/proto/pose_deploy_linevec_faster_4_stages.prototxt"
+# weightsFile = "./models/weight/pose_iter_160000.caffemodel"
+
+
+
 # 위의 path에 있는 network 불러오기
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # 이미지 읽어오기
-imageName = "example.jpg"
-image = cv2.imread("./resources/{}".format(imageName))
+imageName = "escalator.jpg"
+image = cv2.imread("./resources/input/{}".format(imageName))
 
 # frame.shape = 불러온 이미지에서 height, width, color 받아옴
 imageHeight, imageWidth, _ = image.shape
