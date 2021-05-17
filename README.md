@@ -37,3 +37,21 @@ Web Server running: YES
 docker rm -f $(docker ps -aq)
 docker rmi -f $(docker images -aq)
 ```
+
+### 도커 이미지 생성
+```
+docker build -t [원하는 이미지 이름] [dockerfile 경로]
+```
+예시<br>
+```
+docker build -t test/vol .
+```
+
+### 도커 이미지를 프로세스로 실행
+```
+docker run -it --name [원하는 프로세스 이름] [실행시키고자 하는 이미지 이름] [실행 후 원하는 커맨드]
+```
+예시<br>
+```
+docker run -it --name c2 test/vol /bin/bash
+```
