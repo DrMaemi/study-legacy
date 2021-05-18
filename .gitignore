@@ -1,3 +1,4 @@
 images
 OpenPose/models/*
 .vscode
+*.weights
