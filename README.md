@@ -18,6 +18,28 @@
 
 git clone으로 저장소 받고 `git remote set-url origin [새로 생성한 원격 저장소 url]`</p>
 
+#### git remote 삭제
+<p>
+
+`git remote` 혹은 `git remote -v`를 터미널에 입력해 먼저 연동된 깃 원격 저장소를 확인한다.</p>
+
+```
+$ git remote
+javascript
+origin
+python
+```
+
+<p>다음과 같이 저장소 연동을 끊는다.</p>
+
+```
+git remote remove <name>
+```
+예시<br>
+```
+git remote remove javascript
+```
+
 #### 원격 저장소의 브랜치 정보 로컬에서 보기
 ```
 git remote update
@@ -107,4 +129,72 @@ git reset HEAD^
 가장 최근 commit 3개 취소
 ```
 git reset HEAD~3
+```
+
+#### Subtree
+<p>가장 처음, 빈 저장소에서 다른 저장소들을 합하려면 initial commit이 존재해야 한다. 그렇지 않으면 오류 발생.</p>
+<p>이후, 다음과 같은 순서로 subtree를 설정한다.</p>
+
+<p>
+
+**1. (필요시)원격 저장소의 url을 추가한다.**</p>
+
+```
+git remote add <이름> <원격 저장소 url>
+```
+예시<br>
+```
+git remote add javascript https://github.com/drmaemi/javascript
+```
+
+
+<p>
+
+**2. subtree 추가**</p>
+
+```
+git subtree add --prefix <원하는 폴더> <원격 저장소 이름> <브랜치>
+```
+예시<br>
+```
+git subtree add --prefix javascript javascript master
+```
+주의) <원하는 폴더>는 미리 만들어져있으면 안된다.
+
+<p>
+
+**3. 푸쉬**</p>
+
+```
+git push
+```
+
+<p>
+
+**3. (필요시) 연동된 git remote들을 제거, 깃허브에서 하위 저장소들을 전부 삭제한다.**</p>
+
+<br>
+
+##### Subtree 관리
+Subtree 관리는 두 가지 방법이 있다.
+1. Parent 저장소에서 Child 저장소를 관리. Parent 입장에서 Subtree는 평범한 폴더일 뿐
+2. Child 저장소를 직접 관리. 이 경우 git subtree push, git subtree pull 명령어를 사용해야 한다.
+   
+<br>
+Parent 저장소에서 Child 관리
+
+```
+git add <child path>
+git commit -m '<commit message>'
+git push origin <branch>
+```
+<br>
+Child 저장소 직접 관리
+
+```
+# push
+git subtree push --prefix <child path> <remote name> <child branch>
+
+# pull
+git subtree pull --prefix <child path> <remote name> <child branch>
 ```
