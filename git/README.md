@@ -1,39 +1,93 @@
-# git-study
+# Git
 협업 시 반드시 알아야할 깃 사용법
+<br><br>
 
-#### git init으로 프로젝트 시작하기
+## 목차
+<p>
+
+[1. Git 설치](#1-Git-설치)<br>
+&nbsp; &nbsp; [1.1. 윈도우](#11-윈도우)<br>
+</p>
+<p>
+
+[2. 프로젝트 시작](#2-프로젝트-시작)<br>
+&nbsp; &nbsp; [2.1. git clone](#21-git-clone)<br>
+&nbsp; &nbsp; [2.2. git init](#22-git-init)
+</p>
+<p>
+
+[3. 사용법](#3-사용법)<br>
+&nbsp; &nbsp; [3.1. 저장소 복제](#31-저장소-복제)<br>
+&nbsp; &nbsp; [3.2. git remote](#32-git-remote)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; [3.2.1. 확인](#321-확인)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; [3.2.2. 등록](#322-등록)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; [3.2.3. 삭제](#323-삭제)
+</p>
+<br><br>
+
+
+## 1. Git 설치
+### 1.1. 윈도우
+<p>
+
+[Git 다운로드 링크](https://git-scm.com/downloads)
+</p>
+<p>
+
+`git --version`으로 버전이 정상적으로 나오면 설치 성공.
+</p>
+<br><br>
+
+## 2. 프로젝트 시작
+### 2.2. git clone
+<p>
+
+깃 원격 저장소에 먼저 저장소를 만든 후 `git clone <원격 저장소 url>`을 터미널에 입력해 프로젝트 파일 다운.
+</p>
+
+### 2.1. git init
 <p>깃 원격 저장소에 먼저 저장소를 만든 후 git clone으로 로컬 개발을 진행하는 것이 아닌, 로컬에서 먼저 프로젝트를 시작한 경우.</p>
 <p>
 
-로컬에서 `git init`으로 로컬 저장소 시작.</p>
+로컬에서 `git init`으로 로컬 저장소 시작.
+</p>
 
 <p>
 
 [깃허브](https://github.com)에 접속해서 본인 계정으로 저장소를 만들고, 로컬 작업 디렉토리에서 `git remote add origin [해당 원격 저장소 url]` 커맨드 입력</p>
 
 <p>git add, commit, push</p>
+<br><br>
 
-#### 저장소 복제
+## 3. 사용법
+### 3.1. 저장소 복제
 <p>
 
-git clone으로 저장소 받고 `git remote set-url origin [새로 생성한 원격 저장소 url]`</p>
-
-#### git remote 삭제
+git clone으로 기존 저장소를 받는다.
+</p>
+<p>다음, 깃 원격 저장소에 새로운 저장소를 생성한다.</p>
+<p>clone한 기존 저장소에서 터미널에 다음과 같이 입력한다.</p>
 <p>
 
-`git remote` 혹은 `git remote -v`를 터미널에 입력해 먼저 연동된 깃 원격 저장소를 확인한다.</p>
+`git remote set-url origin [새로 생성한 원격 저장소 url]`
+</p>
 
+### 3.2. git remote
+#### 3.2.1. 확인
+`$ git remote`, `$ git remove show`, `$ git remote -v`
+
+#### 3.2.2. 등록
 ```
-$ git remote
-javascript
-origin
-python
+$ git remote add <이름> <원격 저장소 url>
+```
+예시<br>
+```
+$ git remote add javascript https://github.com/DrMaemi/javascript.git
 ```
 
-<p>다음과 같이 저장소 연동을 끊는다.</p>
-
+#### 3.2.3. 삭제
 ```
-git remote remove <name>
+git remote remove <이름>
 ```
 예시<br>
 ```
@@ -45,6 +99,8 @@ git remote remove javascript
 git remote update
 git branch -r
 ```
+
+<br><br><br><br>
 
 #### 원격 저장소의 브랜치 가져오기
 만약 /feature/created-branch 브랜치를 가져오고 싶다면
@@ -137,7 +193,7 @@ git reset HEAD~3
 
 <p>
 
-**1. (필요시)원격 저장소의 url을 추가한다.**</p>
+**1. 원격 저장소의 url을 추가한다.**</p>
 
 ```
 git remote add <이름> <원격 저장소 url>
@@ -171,7 +227,7 @@ git push
 
 <p>
 
-**3. (필요시) 연동된 git remote들을 제거, 깃허브에서 하위 저장소들을 전부 삭제한다.**</p>
+**3. 연동된 git remote들을 제거, 깃허브에서 하위 저장소들을 전부 삭제한다.**</p>
 
 <br>
 
