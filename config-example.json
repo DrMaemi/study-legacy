@@ -1,0 +1,10 @@
+{
+    "mysql": {
+        "user": "root",
+        "password": "1234",
+        "host": "localhost",
+        "port": "3306",
+        "database": "hackathon",
+        "url": "mysql+mysqlconnector://{}:{}@{}:{}/{}?charset=utf8"
+    }
+}
