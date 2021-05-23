@@ -12,6 +12,7 @@ sudo apt-get install vim
 
 
 ```
-touch ~/.vimrc
-cat vimrc_config.txt > ~/.vimrc
+$ touch ~/.vimrc
+$ cat vimrc_config.txt > ~/.vimrc
+$ cat vimrc_config.txt > /root/.vimrc
 ```
