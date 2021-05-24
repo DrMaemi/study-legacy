@@ -1,0 +1,146 @@
+유저 생성
+sudo useradd user2
+
+유저 변환
+su user2
+
+sudo addgroup soma
+sudo usermod -aG soma user1
+sudo usermod -aG soma user2
+
+s: stickey?
+chmod g+s .
+
+
+리눅스 텍스트 편집기
+1. vim
+sudo apt install vim
+vimtutor - 20~30분 튜터링 하면 좋음
+vi test1.sh
+
+2. nano
+nano test1.sh
+
+3. vs code - extension: remote SSH 설치
+
+
+#!/bin/sh의 의미?
+
+. test.sh = source test.sh
+
+-----------------------------------------
+
+리눅스 디렉토리 구조
+
+패키지 관리
+apt remove
+apt purge
+apt autoremove
+apt get
+ppa?
+
+apt-get는 예전에 쓰던 명령어임. 
+
+
+systemctl -> 시스템 커맨드를 통해 나만의 서비스 만들기
+
+systemctl은 우분투 14버전까지 initV 라고 불림. 해당 시스템을 활용해 서비스들을
+관리했음.
+
+
+service --status-all
+service stop nginx
+위와 같은 커맨드가 기존 initV의 유산임.
+제대로 쓰려면
+systemctl nginx stop
+
+start/stop - 현재의 데몬/서비스 상태를 제어
+enable/disable - 시스템이 부팅될 때의 데몬/서비스 상태를 제어
+
+데몬(daemon)이란?
+사용자가 직접적으로 제어하지 않고, 백그라운드에서 돌며 여러 작업을 하는 프로그램
+
+서비스(service)란?
+주로 서버/클라이언트 모델에서 비롯됨, 사용자의 요청에 응답하는 프로그램
+주로 데몬 형태로 구동된다.
+
+
+cd /lib/systemd/system
+cat nginx
+
+sudo vim /root/.vimrc 여기에도 vimrc_config.txt를 cat 리다이렉션 해야..
+
+
+su
+vi my-startup.service
+systemctl status my-startup.service
+
+[Service]
+Restart=always
+
+
+.service 파일을 수정하면 다음 커맨드를 입력해 서비스 재시작
+$ sudo systemctl daemon-reload
+
+------------------------------------------------
+
+[스케쥴링]
+cat /etc/crontab
+
+시스템 백업, 업데이트, 커널 보안 패치 등 여러 작업이 주기적으로 실행됨
+모든 작업이 동시에 실행되면 리소스 부하가 심하기 때문에 잘 나눠놨음
+
+cron 종류가 세 가지 있음
+- 시스템 공통용
+- 사용자마다 고유의 cron tab
+- 루트 사용자용 crontab
+
+사용자 고유 crontab
+crontab -e
+
+journalctl -u 서비스명
+journalctl -p 우선순위
+
+
+[리눅스의 log level]
+
+EMREG(0)
+ALERT(1)
+CRIT(2)
+ERR(3)
+WARNING(4)
+NOTICE(5)
+INFO(6)
+DEBUF(7)
+
+crontab으로 매 시간마다 내 hdd의 전체 용량을 체크하고, 70%이상 쓰면?
+-> du로 어느 디렉토리가 많이 썼는지. -> slack 채널
+
+-------------------------------------------
+
+cd /etc/nginx/
+
+ls -al sites-available
+하면 default만 존재
+
+sites-enable
+etc
+
+
+EBS / LVM
+
+클라우드 / 가상머신에서 hdd를 확장하는 방법?
+
+
+부팅 시마다 자동 마운트
+sudo vi /etc/fstab
+
+
+aws 클라우드 - 디스크 추가?
+볼륨 확장하기
+$ sudo resize2fs /dev/xvdf
+
+
+이후.. 모니터링
+htop -d 1
+ps.??

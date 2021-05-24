@@ -1,6 +1,6 @@
 # 우분투 설치 방법
 
-참조 - [녹두장군 블로그](https://mainia.tistory.com/2379)
+
 <br><br>
 
 ## 목차
@@ -12,11 +12,20 @@
 
 [2. AWS EC2](#2-AWS-EC2)
 </p>
+<p>
+
+[3. WSL 2](#3-wsl-2)
+</p>
 
 
 <br><br>
 
 ## 1. Virtual Box
+<p>
+
+참조 - [녹두장군 블로그](https://mainia.tistory.com/2379)
+</p>
+<br>
 <p>
 
 [Virtual Box 다운로드 링크](https://www.virtualbox.org/wiki/Downloads)에서 `Windows hosts` 링크로 다운받는다.
@@ -161,6 +170,46 @@
   </figure>
 </div>
 <br>
+<br><br>
 
 ## 2. AWS EC2
 작성 중
+
+<br><br>
+
+## 3. WSL 2
+<p>
+
+WSL의 주요 변경 사항
+</p>
+<p>
+
+- 경량 Hiper-V 가상머신 기반으로 아키텍처 변경, 이에 따라 리눅스 시스템 콜 호환성 향상 + 기존에 돌아가지 않던 nmap 이나 lsof를 포함한 대부분의 리눅스 앱 구동 가능
+- Pro 버전이 필요했던 WSL 1과 달리 Home 버전에서도 실행
+- 리눅스의 file IO가 압도적으로 빨라짐
+</p>
+
+<p>
+
+요구사항<br>
+Windows 10 2004 버전 업데이트<br>
+Windows Terminal 설치(Microsoft Store)<br>
+WSL Ubuntu 설치(Microsoft Store)
+</p>
+
+<p>Windows Terminal을 관리자 권한으로 실행 후 다음과 같은 순서로 명령어 입력</p>
+
+<p>
+
+WSL 활성화<br>
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+</p>
+<p>
+
+WSL 2가 사용하는 VM platform 옵션 활성화
+```
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+</p>

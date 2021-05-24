@@ -9,6 +9,16 @@
 </p>
 
 ## 초기 su 로그인 오류
+<p>
+
 ```
-$ su passwd root
+$ sudo passwd root
 ```
+</p>
+<p>
+
+다른 유저의 비밀번호도 변경 가능하다.
+```
+$ sudo passwd user1
+```
+</p>
