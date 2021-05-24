@@ -291,3 +291,12 @@ git subtree push --prefix <child path> <remote name> <child branch>
 # pull
 git subtree pull --prefix <child path> <remote name> <child branch>
 ```
+
+<br><br>
+
+#### git log
+<p>깃 로그를 깔끔하게 볼 수 있는 명령어</p>
+<p>
+
+git log --graph --pretty=oneline --all/
+</p>
