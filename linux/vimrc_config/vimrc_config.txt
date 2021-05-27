@@ -1,0 +1,27 @@
+set number
+set ai
+set si
+set cindent
+set shiftwidth=4
+set tabstop=4
+set ignorecase
+set hlsearch
+set expandtab
+set background=dark
+set nocompatible
+set fileencodings=utf-8,euc-kr
+set bs=indent,eol,start
+set history=1000
+set ruler
+set nobackup
+set title
+set showmatch
+set nowrap
+set wmnu
+
+syntax on
+set showcmd
+set laststatus=2
+set statusline=%F\ %y%m%r\ %=Line:\ %l/%L\ [%p%%]\ Col:%c\ Buf:%n
+set mouse=a
+hi LineNr ctermfg=cyan

@@ -1,0 +1,296 @@
+--[사용자 접속 로그]--
+last
+last <id>
+
+ls -al /var/log/?tmp
+
+sudo lastb
+
+--[시스템 로그]--
+syslog →  대표 로그. /var/log/syslog, /var/log/message
+
+.log → 최신 ㅗㄹ그
+.log.1 → 로테이션 직전. ascii-text
+.log.2.gz → 압축 로크. zcat으로 볼 수 있음
+
+cat으로 로그 파일 살펴보기
+zcat으로 압축로그파일 살펴보기
+
+zcat * | less → 파이프를 통해서 paging 처리
+zcat * | grep -i "error"
+
+개발자들은 항상 로그를 쌓아야 한다.
+logrotate → /etc/logrotate.d
+
+로깅을 해주는 라이브러리들을 이용하면 좋다. log4j 같은.
+
+--[시스템 유틸리티]--
+ps
+top → 갱신은 기본값으로 2초마다. 스페이스를 누르면 즉석 갱신.
+물음표를 입력하면 도움말
+
+man top
+top -d 1 -U user2
+
+htop → top으로 표현되는 것을 이쁘게. ncurse 도구로 개발됨.
+htop -d 10 → 10x100ms = 1초마다 갱신. 기본값은 100ms마다.
+
+htop에서 RES(그 프로세스가 '실제'='물리' 메모리를 얼마나 많이 쓰고 있는지)가
+높은 프로세스를 주목해야 함.
+
+--[메모리 체계]--
+VIRT, RSS
+32비트 기준 각 프로세스는 4GB의 메모리 공간을 가질 수 있음(이론 상)
+
+cat /proc/meminfo
+
+sudo apt install sysstat
+mpstat
+mpstat 1 100 → 1초마다 mpstat, 100번 반복?
+
+vmstat
+oistat
+
+sar -P ALL 1 → 모니터링 끝판왕
+
+------------------------------------------------
+
+[프로세스 관련]
+pstree
+
+ps a
+ps axf
+
+foreground
+background
+
+
+tail -F /var/log/auth.log → forground로 실행하기
+tail -F /var/log/auth.log & → background로 실행하기
+
+foreground로 실행했더라도 Ctrl+Z로 실행을 멈춘 뒤,
+bg
+를 입력해서 해당 프로세스를 background로 실행할 수 있음
+
+bg %1 → 1번 프로세스를 background로 실행? 1번 프로세스란 게 뭐지
+
+strace -p <보고싶은 프로세스 id> → 해당 id의 프로세스 감시. 해당 프로세스의 시스템 콜을 감시하는 것으로, 어떤 프로세스가 멈춰있다면 왜, 어디서 멈췄는지 확인할 수 있음
+
+bash 터미널에서
+python3 -m http.server
+로 서버를 실행시킨 뒤, bash 터미널을 종료하면 서버도 같이 죽음.
+이는 해당 서버가 해당 bash 프로세스에서 비롯된 것이기 때문.
+
+이를 방지하기 위해 nohup을 씀.
+nohup python3 -m http.server &
+
+[네트워크 관련]
+netstat -antp
+netstat -a(all) n(no resolve) t(tcp) p(process)
+
+[tmux의 기초가 된 screen]
+nohup -> screen -> tmux
+screen이란? → bash에서 윈도우(그냥 bash 창)를 관리하기 위한 도구
+screen은 하나의 터미널이 하나의 스크린. window나 pane을 열 수 있음.
+
+screen -S(session을 만들어줘) soma1
+→ soma1이라는 윈도우 세션을 만들어줌
+
+vi ~/.screenrc
+다음과 같이 내용 작성 후 저장
+
+defscrollback 5000
+termcapinfo xterm* ti@:te@
+startup_message off
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n*%t%{-}%+w %= %c ${USER}@%H"
+bindkey -k k1 select 0
+bindkey -k k2 select 1
+bindkey -k k3 select 2
+
+nohup과 screen의 차이는, nohup은 프로세스 단위로 관리. screen은 세션 단위로
+관리
+
+screen에 접속하고 난 뒤, 명령어는 모두 Ctrl+A로 시작
+Ctrl+A	c 윈도우 생성
+	창 번호(0, 1, 2, ...)
+	d detach 함
+
+요즘엔 screen보다 진보한 tmux를 사용함
+
+sudo apt install tmux
+
+tmux는 모든 명령어가 Ctrl+B로 시작한다.
+
+Ctrl+B	% 창을 horizontal로 divide
+Ctrl+B	"  창을 vertical로 divide
+Ctrl+B	화살표 창 이동
+
+-------------------------------------------
+
+[쉘 프로그래밍 이쁘게]
+
+관련 라이브러리
+curse → 유닉스때부터 있던
+ncurse → GNU 버전으로
+
+c에서 ncurses.h를 include하기 위해.
+sudo apt install libncurses-dev
+
+sudo apt-get update
+sudo apt install gcc
+gcc -o soma-dev1 soma-dev1.c -lncurses
+
+
+화면제어
+키보드/마우스 제어
+
+/***8 soma-dev.c ***/
+#include <ncurses.h>
+#include <unistd.h>
+
+int keyboard() {
+    int row = 10, col = 10;
+    initscr();
+    noecho(); // 입력을 자동으로 화면에 출력하지 않도록 합니다.
+    curs_set(FALSE); // cursor를 보이지 않게 합니다.
+    mvprintw(row, col, "HERE");
+    keypad(stdscr, TRUE);
+    while(1) {
+        int input = getch();
+        clear();
+        switch(input) {
+            case KEY_UP:
+            mvprintw(--row, col, "HERE"); // real moving in your screen
+            continue;
+            case KEY_DOWN:
+            mvprintw(++row, col, "HERE");
+            continue;
+            case KEY_LEFT:
+            mvprintw(row, --col, "HERE");
+            continue;
+            case KEY_RIGHT:
+            mvprintw(row, ++col, "HERE");
+            continue;
+        }
+        if (input == 'q') break;
+    }
+    endwin();
+    return 0;
+}
+
+int main() {
+    keyboard();
+}
+
+/*** soma-dev1.py ***/
+import curses
+from curses.textpad import Textbox, rectangle
+
+def main(screen):
+    screen.addstr(0, 0, "Enter text (hit Ctrl+G to send) : ")
+    edit_win = curses.newwin(5, 30, 2, 1)
+    rectangle(screen, 1, 0, 1+5+1, 1+30+1)
+    screen.refresh()
+    box = Textbox(edit_win)
+    box.edit()
+    message = box.gather()
+    return message
+
+msg = curses.wrapper(main)
+print(msg)
+
+
+-- 유니코드 한글과 겹쳐서 글자가 깨짐.. 유니코드 한글을 사용하지 않도록 설정한다. --
+export NCURSES_NO_UTF8_ACS=1
+
+
+
+dialog 얘는 라이브러리 설치를 해야한다. sudo apt install dialog
+whiptail
+
+----------------------
+
+[쉘 프로그래밍 응용]
+stdin 0
+stdout 1
+stderr 2
+
+스크립트에서 2 > &1 이런 거에서 쓰이는 의미
+
+
+#!/bin/bash
+function usage() {
+    echo -e "\nUsage: $0 MODULE0 MODULE1 MOULDE2 ..."
+    echo -e "eg) $0 AWS GCP AZURE"
+    echo -e "    $0 help - usage"
+    echo -e "    $0 clean - cleanup"
+}
+function select_module() {
+    whiptail --title "My SOMA Project" \
+        --checklist "SELECT Your Cloud" 16 60 7 \
+        "AWS" "Amazon Web Service" ON \
+        "GCP" "Google Cloud Platform" OFF \
+        "AZURE" "Microsoft Azure" OFF \
+        3>&1 1>&2 2>&3
+}
+####
+# MAIN Function
+####
+if [ "$1" == "help" ]; then
+    usage
+    exit 0
+elif [ "$1" == "clean" ]; then
+    rm -rf my_proj 2>/dev/null
+    echo "Clean-up Done"
+    exit 0
+fi
+
+MY_MODULE=$(select_module | sed "s/\"//g")
+echo "MY MODULE: ${MY_MODULE}"
+if [[ "${MY_MODULE}" =~ "AWS" ]]; then
+    echo "AWS create account"
+fi
+if [[ "${MY_MODULE}" =~ "GCP" ]]; then
+    echo "GCP create account"
+fi
+if [[ "${MY_MODULE}" =~ "AZURE" ]]; then
+    echo "Azure create account"
+fi
+
+
+----------------------
+[패키지 시스템]
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+dpkg -i google-chrome
+dpkg -r
+
+
+mkdir <패키지를 만들 패키지 명>
+cd xxx
+
+예시
+mkdir -p usr/local/bin
+mv hello-soma.sh usr/local/bin
+
+mkdir DEBIAN
+vi control
+... 설명 작성?
+
+이후 soma_2.0.0-1 폴더를 포함하고 있는 상위 디렉토리에서,
+dpkg-deb --build soma_2.0.0-1
+
+이후 설치는
+sudo dpkg -i soma_2.0.0-1.deb
+
+커맨드를 입력하면 usr/bin/local에 설치된다.
+
+설치된 패키지의 리스트를 보는 방법은
+dpkg -l
+dpkg -l | grep soma
+
+패키지 삭제는
+sudo dpkg -r hello-soma
