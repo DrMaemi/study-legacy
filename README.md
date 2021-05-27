@@ -1,4 +1,4 @@
-# ML-AI-study
+# Machine Learning, Artificla Intelligence
 <p>오픈소스로 존재하는 다양한 ML / AI 프레임워크와 간단한 예제를 다룬다.</p>
 
 ### 주피터 노트북 단축키
