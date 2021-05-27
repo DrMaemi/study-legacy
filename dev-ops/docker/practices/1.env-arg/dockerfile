@@ -1,0 +1,7 @@
+FROM busybox
+COPY test.sh /home/drmaemi/github-repos/docker-study/practices/1.env-arg/test.sh
+ENV DIR=/home/drmaemi/github-repos/docker-study/practices/1.env-arg
+ARG DIR=/home/drmaemi/github-repos/docker-study/practices/1.env-arg
+
+RUN echo $(DIR)
+CMD $(DIR)/test.sh
