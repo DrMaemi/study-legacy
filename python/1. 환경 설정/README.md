@@ -1,5 +1,28 @@
-## 1. 파이썬 가상환경 설정
-### 1.1. 아나콘다 가상환경
+# 파이썬 환경 설정
+
+<br>
+
+## 목차
+<p>
+
+[1. 아나콘다](#1-아나콘다)<br>
+&nbsp; &nbsp; [1.1. 가상환경 생성](#11-가상환경-생성)<br>
+&nbsp; &nbsp; [1.2. 패키지 설치](#12-패키지-설치)<br>
+&nbsp; &nbsp; [1.3. 설치된 패키지 삭제](#13-설치된-패키지-삭제)
+</p>
+<p>
+
+[2. 주피터 노트북 - 가상 환경 연동](#2-주피터-노트북---가상-환경-연동)
+</p>
+<p>
+
+[3. VS Code - 가상환경 연동](3-vs-code---가상환경-연동)
+</p>
+
+<br><br>
+
+## 1. 아나콘다
+### 1.1. 가상환경 생성
 다음과 같이 가상환경을 생성할 수 있다.
 ```
 conda create --name(-n) [가상환경명] [설치할패키지]
@@ -19,16 +42,31 @@ conda activate root
 conda remove --name [가상환경명] --all
 ```
 
-### 1.2. 패키지 설치하기
+<br><br>
+
+### 1.2. 패키지 설치
 ```
 conda activate [가상환경 명]
 conda install [패키지 명]
+pip install [패키지 명]
 ```
 
-### 1.3. 설치된 패키지 삭제하기
+<p>
+
+다음과 같이 패키지 버전을 명시하여 설치할 수 있다.<br>
+```
+pip install numpy==1.19.4
+```
+</p>
+
+<br><br>
+
+### 1.3. 설치된 패키지 삭제
 ```
 conda uninstall [패키지 명]
 ```
+
+<br><br>
 
 ### 1.4. 가상환경 복제
 기존에 세팅해둔 가상환경에서 약간의 변경 후 사용하고 싶을 때 사용한다.
@@ -36,7 +74,9 @@ conda uninstall [패키지 명]
 conda create --name [새로운 가상환경 명] --clone [기존 가상환경 명]
 ```
 
-## 2. 주피터 노트북 - 가상환경 연동
+<br><br>
+
+## 2. 주피터 노트북 - 가상 환경 연동
 <p><div align="center">
   <figure>
     <img src="./resources/2/1.png" alt="가상환경-1">
@@ -87,8 +127,9 @@ python -m ipykernel install --user --name testenv --display-name testenv
   </figure>
 </div></p>
 
+<br><br>
+
 ## 3. VS Code - 가상환경 연동
-### 3.1. command pallet
 <p>[Ctrl] + [Shift] + [P]를 입력하면 command pallet가 나타난다.</p>
 <p>나타난 창에 'Python: Select Interpreter'을 입력하면, 원하는 파이썬 버전의 가상환경을 선택할 수 있다.</p>
 <p>만약 Select Interpreter를 검색했음에도 나타나지 않는다면, VS Code의 Python extension을 설치해야 한다.</p>
