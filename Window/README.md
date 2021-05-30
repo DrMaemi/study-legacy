@@ -7,7 +7,11 @@
 ## 목차
 <p>
 
-[윈도우 시스템 완전 종료](https://github.com/drmaemi/tree/main/window/윈도우%20시스템%20완전%20종료)
+[윈도우 시스템 완전 종료](https://github.com/drmaemi/Study/tree/main/Window/윈도우%20시스템%20완전%20종료)
+</p>
+<p>
+
+[외장 하드에서 개발](https://github.com/drmaemi/Study/tree/main/Window/외장%20하드에서%20개발)
 </p>
 
 <br><br>
