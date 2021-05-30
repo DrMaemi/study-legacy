@@ -1,2 +1,0 @@
-FROM ubuntu
-VOLUME ["/home/drmaemi/github-repos/docker-study/practices/3.volume/data/", "/data/"]
