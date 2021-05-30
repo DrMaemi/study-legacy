@@ -1,23 +1,28 @@
 # Tools
+<p>본 저장소에서 다루지 않는 기타 프레임워크나 IDE들에 대해서 다룬다.</p>
 
-<br>
+<br><br>
 
 ## 목차
 <p>
 
-[CUDA](https://github.com/DrMaemi/study/tree/main/tools/CUDA)<br>
+[CUDA](https://github.com/DrMaemi/Study/tree/main/Tools/CUDA)<br>
 </p>
 <p>
 
-[jupyter-notebook](https://github.com/DrMaemi/study/tree/main/tools/jupyter-notebook)<br>
+[Jupyter-Notebook](https://github.com/DrMaemi/Study/tree/main/Tools/Jupyter-Notebook)<br>
 </p>
 <p>
 
-[google-drive]((https://github.com/DrMaemi/study/tree/main/tools/google-drive))
+[Google-Drive]((https://github.com/DrMaemi/Study/tree/main/Tools/Google-Drive))
 </p>
 <p>
 
-[vim]((https://github.com/DrMaemi/study/tree/main/tools/vim))
+[vim]((https://github.com/DrMaemi/Study/tree/main/Tools/vim))
+</p>
+<p>
+
+[VS-Code]((https://github.com/DrMaemi/Study/tree/main/Tools/VS-Code))
 </p>
 
 <br><br>
