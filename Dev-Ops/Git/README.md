@@ -35,8 +35,12 @@
 </p>
 <p>
 
-[5. 브랜치 심화](#5-브랜치-심화)
+[5. 브랜치 심화](#5-브랜치-심화)<br>
+&nbsp; &nbsp; [5.1. A 브랜치의 HEAD를 B 브랜치의 HEAD로 병합(Merge)](#51-a-브랜치의-head를-b-브랜치의-head로-병합(merge))<br>
+&nbsp; &nbsp; [5.2. Merge 시 conflict 발생할 때, branch A가 무조건 이기는 방법](#52-merge-시-conflict-발생할-때-branch-a가-무조건-이기는-방법)<br>
+&nbsp; &nbsp; [5.3. Merge 시 conflict 발생할 때, branch A의 특정 파일 F가 무조건 이기는 방법](#53-merge-시-conflict-발생할-때-branch-a의-특정-파일-f가-무조건-이기는-방법)<br>
 </p>
+
 <br><br>
 
 
@@ -50,6 +54,7 @@
 
 `git --version`으로 버전이 정상적으로 나오면 설치 성공.
 </p>
+
 <br><br>
 
 ## 2. 프로젝트 시작
@@ -58,6 +63,8 @@
 
 깃 원격 저장소에 먼저 저장소를 만든 후 `git clone <원격 저장소 url>`을 터미널에 입력해 프로젝트 파일 다운.
 </p>
+
+<br><br>
 
 ### 2.1. git init
 <p>깃 원격 저장소에 먼저 저장소를 만든 후 git clone으로 로컬 개발을 진행하는 것이 아닌, 로컬에서 먼저 프로젝트를 시작한 경우.</p>
@@ -71,6 +78,7 @@
 [깃허브](https://github.com)에 접속해서 본인 계정으로 저장소를 만들고, 로컬 작업 디렉토리에서 `git remote add origin [해당 원격 저장소 url]` 커맨드 입력</p>
 
 <p>git add, commit, push</p>
+
 <br><br>
 
 ## 3. 저장소
@@ -86,9 +94,13 @@ git clone으로 기존 저장소를 받는다.
 `git remote set-url origin [새로 생성한 원격 저장소 url]`
 </p>
 
+<br><br>
+
 ### 3.2. git remote
 #### 3.2.1. 확인
 `$ git remote`, `$ git remove show`, `$ git remote -v`
+
+<br>
 
 #### 3.2.2. 등록
 ```
@@ -99,6 +111,8 @@ $ git remote add <이름> <원격 저장소 url>
 $ git remote add javascript https://github.com/DrMaemi/javascript.git
 ```
 
+<br>
+
 #### 3.2.3. 삭제
 ```
 git remote remove <이름>
@@ -108,6 +122,8 @@ git remote remove <이름>
 git remote remove javascript
 ```
 
+<br><br>
+
 ## 4. 브랜치
 ### 4.1. 원격 저장소의 브랜치 정보 보기
 ```
@@ -115,21 +131,29 @@ git remote update
 git branch -r
 ```
 
+<br><br>
+
 ### 4.2. 원격 저장소의 브랜치 가져오기
 만약 /feature/created-branch 브랜치를 가져오고 싶다면
 ```
 git checkout -t origin/feature/created-branch
 ```
 
+<br><br>
+
 ### 4.3. 브랜치 생성
 ```
 git branch test
 ```
 
+<br><br>
+
 ### 4.4. 생성한 브랜치로 이동
 ```
 git checkout test
 ```
+
+<br><br>
 
 ### 4.5. 생성한 브랜치를 원격 저장소에 push
 ```
@@ -137,9 +161,11 @@ git checkout test
 git push
 ```
 
+<br><br>
+
 ### 4.6. test 브랜치의 commit을 master 브랜치에 반영
 <p>test 브랜치의 head가 master 브랜치의 head로 병합됨을 의미</p>
-
+<p>
 
 ```
 git checkout test
@@ -147,27 +173,51 @@ git add .
 git commit -m 'comment'
 ```
 이후 Merge
+</p>
+
+<br><br>
 
 ## 5. 브랜치 심화
 ### 5.1. A 브랜치의 HEAD를 B 브랜치의 HEAD로 병합(Merge)
+<p>
+
 ```
 git checkout A
 git merge B
 ```
+</p>
 
-#### merge 시 conflict 발생할 때, branch A가 무조건 이기는 방법
+<br><br>
+
+### 5.2. Merge 시 conflict 발생할 때, branch A가 무조건 이기는 방법
+<p>
+
 ```
 git checkout A
 git merge -s ours master        // -s ours: ours라는 strategy를 사용. ours는 깃에서 제공?
 git checkout master
 git merge A                     // 기존 master 내용이 branch A의 내용으로 수정된다.
 ```
+</p>
 
-#### merge 시 conflict 발생할 때, branch A의 특정 파일 B가 무조건 이기는 방법
+<br><br>
+
+### 5.3. Merge 시 conflict 발생할 때, branch A의 특정 파일 F가 무조건 이기는 방법
+<p>
+
 ```
 git checkout A
-
 ```
+작성 중
+</p>
+
+<br><br>
+
+### 5.4. Default 브랜치 변경
+<p></p>
+
+
+<br><br>
 
 #### 직전 HEAD의 commit 상황으로 로컬 파일들 전부 변경
 ```
