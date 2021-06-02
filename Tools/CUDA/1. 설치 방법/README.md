@@ -44,8 +44,34 @@
 <br><br>
 
 ### 1.3. CUDA 다운로드
-<p>확인이 모두 끝났다면 자신의 GPU에 맞는 CUDA를 다운로드 받는다.</p>
+<p>확인이 모두 끝났다면 자신의 GPU에 맞는 CUDA Toolkit을 다운로드 받는다.</p>
 <p>
 
-[CUDA 다운로드 링크](https://developer.nvidia.com/cuda-toolkit-archive)
+[CUDA Toolkit 다운로드 링크](https://developer.nvidia.com/cuda-toolkit-archive)
+</p>
+
+<p>그 다음 NVIDIA DEVELOPER 웹 사이트에 회원가입을 해야 cuDNN SDK를 다운받을 수 있다.</p>
+<p>
+
+[cuDNN 다운로드 링크](https://developer.nvidia.com/cudnn)
+</p>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/2.png" alt="그림2">
+        <div align="center"><figcation>cuDNN SDK 다운</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<br>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/3.png" alt="그림3">
+        <div align="center"><figcation>본인 CUDA Toolkit 버전에 맞게 다운</figcation></div>
+    </figure>
+  </div>
 </p>
