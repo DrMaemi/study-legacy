@@ -13,7 +13,7 @@
 
 <p>
 
-[1. Tutorial]()
+[1. Tutorial](https://github.com/DrMaemi/Study/tree/master/AI/PyTorch/tutorial)
 </p>
 
 <br><br>
