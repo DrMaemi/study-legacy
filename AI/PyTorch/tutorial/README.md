@@ -1,7 +1,7 @@
 # PyTorch Tutorial
 <p>
 
-[링크]()
+[링크](https://tutorials.pytorch.kr/beginner/basics/intro.html)
 </p>
 
 <br>
