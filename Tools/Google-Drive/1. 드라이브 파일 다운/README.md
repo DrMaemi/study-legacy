@@ -1,6 +1,6 @@
 # 드라이브 파일 다운
 
-참조 - [soonbee.log](https://velog.io/@soonbee/%EA%B5%AC%EA%B8%80-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C%EC%97%90-%EC%9E%88%EB%8A%94-%ED%8C%8C%EC%9D%BC%EC%9D%84-%ED%84%B0%EB%AF%B8%EB%84%90%EC%97%90%EC%84%9C-curlwget%EC%9C%BC%EB%A1%9C-%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0)
+참조 - [soonbee.log](https://velog.io/@soonbee/구글-드라이브에-있는-파일을-터미널에서-curlwget으로-다운받기)
 <br><br>
 
 ## 목차
