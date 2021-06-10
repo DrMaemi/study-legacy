@@ -7,6 +7,10 @@
 ## 목차
 <p>
 
+[동영상 자르기](https://github.com/drmaemi/Study/tree/main/Window/동영상%20자르기)
+</p>
+<p>
+
 [윈도우 시스템 완전 종료](https://github.com/drmaemi/Study/tree/main/Window/윈도우%20시스템%20완전%20종료)
 </p>
 <p>
