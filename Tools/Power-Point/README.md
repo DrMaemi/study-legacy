@@ -14,6 +14,10 @@
 </p>
 <p>
 
+[상하·좌우·90도 회전](#상하·좌우·90도-회전)
+</p>
+<p>
+
 [차트 및 그래프](#차트-및-그래프)
 </p>
 <p>
@@ -50,6 +54,17 @@
 
 <br><br>
 
+## 상하·좌우·90도 회전
+<p>
+  <div align='center'>
+    <figure>
+        <img src="./resources/대칭.png" alt="대칭">
+    </figure>
+  </div>
+</p>
+
+<br><br>
+
 ## 차트 및 그래프
 <p>
 
@@ -62,31 +77,31 @@
 <p>
 
 1. **삽입** > **차트** 클릭
-  <p align='center'>
+  <div align='center'>
     <figure>
         <img src="./resources/1.png" alt="그림1">
     </figure>
-  </p>
+  </div>
 </p>
 
 <p>
 
 2. 차트 종류 클릭하고 원하는 차트 두 번 클릭
-  <p align='center'>
+  <div align='center'>
     <figure>
         <img src="./resources/2.png" alt="그림2">
     </figure>
-  </p>
+  </div>
 </p>
 
 <p>
 
 3. 워크시트가 나타나면 스프레드시트의 개체 틀 데이터를 고유의 정보로 바꿈
-  <p align='center'>
+  <div align='center'>
     <figure>
         <img src="./resources/3.png" alt="그림3">
     </figure>
-  </p>
+  </div>
 </p>
 
 <p>
