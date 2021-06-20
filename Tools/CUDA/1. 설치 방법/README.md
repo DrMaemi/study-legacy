@@ -12,7 +12,7 @@
 </p>
 <p>
 
-
+[2. WSL 2](#2-wsl-2)
 </p>
 
 <br><br>
@@ -78,4 +78,24 @@
         <div align="center"><figcation>본인 CUDA Toolkit 버전에 맞게 다운</figcation></div>
     </figure>
   </div>
+</p>
+
+<br><br>
+
+## 2. WSL 2
+<p>
+
+참조
+</p>
+<p>
+
+- [클로이의 작은 다락방](https://sincerechloe.tistory.com/65)
+- [Using PyTorch with CUDA on WSL2](https://christianjmills.com/Using-PyTorch-with-CUDA-on-WSL2/)
+</p>
+
+<br>
+
+<p>
+
+
 </p>
