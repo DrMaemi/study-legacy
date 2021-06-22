@@ -95,7 +95,27 @@
 
 <br>
 
+### 2.1. NVIDIA Driver for CUDA on WSL
 <p>
 
+[다운로드 링크](https://developer.nvidia.com/cuda/wsl/download)
+</p>
 
+<br>
+
+### 2.2. Anaconda 설치
+<p>
+
+```
+$ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+$ chmod +x Anaconda3-2020.11-Linux-x86_64.sh
+./Anaconda3-2020.11-Linux-x86_64.sh
+```
+</p>
+<p>
+
+아나콘다 interpreter를 사용하기 위해 bash 재시작
+```
+exec bash
+```
 </p>
