@@ -14,7 +14,9 @@
 </p>
 <p>
 
-[3. WSL 2](#3-wsl-2)
+[3. WSL 2](#3-wsl-2)<br>
+&nbsp; &nbsp; [3.1. 설치](#3-wsl-2)<br>
+&nbsp; &nbsp; [3.2. 삭제](#3-wsl-2)
 </p>
 
 
@@ -189,27 +191,44 @@ WSL의 주요 변경 사항
 - 리눅스의 file IO가 압도적으로 빨라짐
 </p>
 
+### 3.1. 설치
 <p>
 
-요구사항<br>
-Windows 10 2004 버전 업데이트<br>
-Windows Terminal 설치(Microsoft Store)<br>
-WSL Ubuntu 설치(Microsoft Store)
+참조 - [Windows 10에 Linux용 Windows 하위 시스템 설치 가이드](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)
 </p>
+<p>위 링크에서 '수동 설치 단계' 항목 참고</p>
 
-<p>Windows Terminal을 관리자 권한으로 실행 후 다음과 같은 순서로 명령어 입력</p>
+<br>
 
+### 3.2. 삭제
 <p>
 
-WSL 활성화<br>
-```
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
+1. Windows PowerShell 관리자 권한으로 실행
 </p>
 <p>
 
-WSL 2가 사용하는 VM platform 옵션 활성화
+2. 기존 설치된 WSL Ubuntu 조회
+```PowerShell
+PS C:\WINDOWS\system> wslconfig.exe /l
+Linux용 Windows 하위 시스템 배포:
+Ubuntu-18.04(기본값)
 ```
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</p>
+<p>
+
+3. 설치된 WSL 삭제
+```PowerShell
+PS C:\WINDOWS\system> wslconfig.exe /u Ubuntu-18.04
+등록 취소 중...
+```
+</p>
+<p>
+
+삭제 후 제대로 삭제되었나 조회
+```PowerShell
+PS C:\WINDOWS\system32> wslconfig.exe /l
+Linux용 Windows 하위 시스템에 배포가 설치되어 있지 않습니다.
+아래의 Microsoft Store에서 배포를 설치할 수 있습니다.
+https://aka.ms/wslstore
 ```
 </p>
