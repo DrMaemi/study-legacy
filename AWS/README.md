@@ -3,6 +3,16 @@
 
 Amazon Web Services
 </p>
+<p>
+<div align="center">
+  <figure>
+      <img src="./resources/AWS 아키텍처 전체.png" alt="AWS 아키텍처 전체">
+      <div align="center"><figcation>이 그림을 이해하고 설명할 수 있다면..</figcation></div>
+  </figure>
+</div>
+</p>
+
+<br>
 
 ## 1. 클라우드란 무엇인가? AWS란 무엇인가?
 <p>클라우드의 특성 세 가지</p>
