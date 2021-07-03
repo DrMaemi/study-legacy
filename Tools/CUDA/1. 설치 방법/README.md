@@ -9,6 +9,10 @@
 [1. 윈도우](#1-윈도우)<br>
 &nbsp; &nbsp; [1.1. CUDA 점수 확인](#11-CUDA-점수-확인)<br>
 &nbsp; &nbsp; [1.2. NVIDIA 그래픽 드라이버 버전 확인](#12-NVIDIA-그래픽-드라이버-버전-확인)<br>
+&nbsp; &nbsp; [1.3. CUDA Toolkit 다운로드](#13-cuda-toolkit-다운로드)<br>
+&nbsp; &nbsp; [1.4. cuDNN 다운로드](#14-cudnn-다운로드)<br>
+&nbsp; &nbsp; [1.5. cuDNN 라이브러리 DLL 등록](#15-cudnn-라이브러리-dll-등록)<br>
+&nbsp; &nbsp; [1.6. 환경변수 확인](#16-환경변수-확인)
 </p>
 <p>
 
@@ -33,7 +37,7 @@
 [GPU 호환 CUDA 점수 확인 링크](https://developer.nvidia.com/cuda-gpus)
 </p>
 
-<br><br>
+<br>
 
 ### 1.2. NVIDIA 그래픽 드라이버 버전 확인
 <p>CUDA 설치 시 NVIDIA 그래픽 드라이버도 같이 설치한다. 충돌을 방지하고자 한다면 CUDA를 설치하기 전에 그래픽 드라이버를 삭제한 후 CUDA를 설치하는 것이 좋다.</p>
@@ -51,14 +55,18 @@
 
 <p>내 엔비디아 그래픽 드라이버 버전도 확인한다. 엔비디아 제어판 > 좌측 하단의 시스템 정보 클릭 순으로 확인할 수 있다.</p>
 
-<br><br>
+<br>
 
-### 1.3. CUDA 다운로드
+### 1.3. CUDA Toolkit 다운로드
 <p>확인이 모두 끝났다면 자신의 GPU에 맞는 CUDA Toolkit을 다운로드 받는다.</p>
 <p>
 
 [CUDA Toolkit 다운로드 링크](https://developer.nvidia.com/cuda-toolkit-archive)
 </p>
+
+<br>
+
+### 1.4. cuDNN 다운로드
 
 <p>그 다음 NVIDIA DEVELOPER 웹 사이트에 회원가입을 해야 cuDNN SDK를 다운받을 수 있다.</p>
 <p>
@@ -80,8 +88,59 @@
 <p>
   <div align="center">
     <figure>
-        <img src="./resources/3.png" alt="그림3">
+        <img src="./resources/cuDNN 다운로드.png" alt="cuDNN 다운로드">
         <div align="center"><figcation>본인 CUDA Toolkit 버전에 맞게 다운</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<br>
+
+### 1.5. cuDNN 라이브러리 DLL 등록
+<p>다운받은 cuDNN 라이브러리 내부 폴더들을 다운받은 CUDA Toolkit 경로 하에 복사하여 붙여넣는다.</p>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/복사할 cuDNN 폴더 세 개.png" alt="복사할 cuDNN 폴더 세 개">
+        <div align="center"><figcation>cuDNN 폴더 세 개 복사 후</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/cuDNN 라이브러리 DLL 등록.png" alt="cuDNN 라이브러리 DLL 등록">
+        <div align="center"><figcation>CUDA Toolkit 내부 붙여넣기</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<br>
+
+### 1.6. 환경변수 확인
+<p>CUDA Toolkit, cuDNN 설치 완료 후 환경변수가 제대로 설정되었는지 확인한다.</p>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/CUDA 환경 변수 생성 확인.png" alt="CUDA 환경 변수 생성 확인">
+        <div align="center"><figcation>CUDA 환경 변수 생성 확인</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<p>
+
+제대로 설정됐다면 CMD에 `nvcc --version` 입력 시 다음과 같이 동작함을 확인한다.
+</p>
+
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/nvcc --version.png" alt="nvcc --version 동작 확인">
+        <div align="center"><figcation>nvcc --version 동작 확인</figcation></div>
     </figure>
   </div>
 </p>
