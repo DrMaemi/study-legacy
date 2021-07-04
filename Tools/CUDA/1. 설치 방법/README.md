@@ -196,19 +196,20 @@ WSL 2 설치를 끝냈다고 가정하고 설명한다. 만약 WSL 2 설치가 �
 <br>
 
 ### 2.3. CUDA Toolkit 다운로드
+<p>터미널</p>
 <p>
 
 ```console
-$ apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
 ```
 ```console
-$ sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
+sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
 ```
 ```console
-$ apt-get update
+apt-get update
 ```
 ```console
-$ apt-get install -y cuda-toolkit-11-0
+apt-get install -y cuda-toolkit-11-2
 ```
 </p>
 
@@ -219,13 +220,9 @@ $ apt-get install -y cuda-toolkit-11-0
 <p>
 
 ```console
-$ cd /usr/local/cuda/samples/4_Finance/BlackScholes
-```
-```console
-$ make
-```
-```console
-$ ./BlackScholes
+cd /usr/local/cuda/samples/4_Finance/BlackScholes
+make
+./BlackScholes
 ```
 </p>
 <p>
@@ -253,34 +250,34 @@ Gigaoptions per second    : 6.086897
 <p>
 
 ```console
-$ curl https://get.docker.com | sh
+curl https://get.docker.com | sh
 ```
 ```console
-$ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 ```
 ```console
-$ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
 ```
 ```console
-$ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 ```
 ```console
-$ curl -s -L https://nvidia.github.io/libnvidia-container/experimental/$distribution/libnvidia-container-experimental.list | sudo tee /etc/apt/sources.list.d/libnvidia-container-experimental.list
+curl -s -L https://nvidia.github.io/libnvidia-container/experimental/$distribution/libnvidia-container-experimental.list | sudo tee /etc/apt/sources.list.d/libnvidia-container-experimental.list
 ```
 ```console
-$ sudo apt-get update
+sudo apt-get update
 ```
 ```console
-$ sudo apt-get install -y nvidia-docker2
+sudo apt-get install -y nvidia-docker2
 ```
 ```console
-$ sudo service docker stop
+sudo service docker stop
 ```
 ```console
-$ sudo service docker start
+sudo service docker start
 ```
 ```console
-$ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
+docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 ```
 </p>
 <p>
@@ -320,13 +317,13 @@ GPU Device 0: "GeForce GTX 1070" with compute capability 6.1
 <p>
 
 ```console
-$ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 ```
 ```console
-$ chmod +x Anaconda3-2020.11-Linux-x86_64.sh
+chmod +x Anaconda3-2020.11-Linux-x86_64.sh
 ```
 ```console
-$ ./Anaconda3-2020.11-Linux-x86_64.sh
+./Anaconda3-2020.11-Linux-x86_64.sh
 ```
 </p>
 <p>이후 bash shell 다시 시작, Anaconda 가상환경 설정</p>
