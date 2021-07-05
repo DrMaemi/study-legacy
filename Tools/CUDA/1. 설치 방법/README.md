@@ -20,7 +20,9 @@
 &nbsp; &nbsp; [2.1. 윈도우 참가자 프로그램 등록 및 업데이트](#21-윈도우-참가자-프로그램-등록-및-업데이트)<br>
 &nbsp; &nbsp; [2.2. NVIDIA 드라이버 설치 for CUDA on WSL](#22-nvidia-드라이버-설치-for-cuda-on-wsl)<br>
 &nbsp; &nbsp; [2.3. CUDA Toolkit 다운로드](#23-cuda-toolkit-다운로드)<br>
-&nbsp; &nbsp; [2.4. CUDA 샘플 컨테이너 구동](#24-cuda-샘플-컨테이너-구동)
+&nbsp; &nbsp; [2.4. CUDA 샘플 컨테이너 구동](#24-cuda-샘플-컨테이너-구동)<br>
+&nbsp; &nbsp; [2.5. 환경변수 설정](25-환경변수-설정)<br>
+&nbsp; &nbsp; [2.A. Anaconda 설치](2a-anaconda-설치)
 </p>
 
 <br><br>
@@ -313,7 +315,33 @@ GPU Device 0: "GeForce GTX 1070" with compute capability 6.1
 
 <br>
 
-### 2.5. Anaconda 설치
+### 2.5. 환경변수 설정
+<p>
+
+```bash
+export PATH=/usr/local/cuda-11.2/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.2/lib64:$LD_LIBRARY_PATH
+```
+</p>
+<p>
+
+이후 다음과 같이 CUDA 버전을 확인할 수 있다.
+```
+nvcc --version
+```
+결과
+```
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2021 NVIDIA Corporation
+Built on Sun_Feb_14_21:12:58_PST_2021
+Cuda compilation tools, release 11.2, V11.2.152
+Build cuda_11.2.r11.2/compiler.29618528_0
+```
+</p>
+
+<br>
+
+### 2.A. Anaconda 설치
 <p>
 
 ```console
