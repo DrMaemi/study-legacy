@@ -109,7 +109,10 @@ git clone으로 기존 저장소를 받는다.
 <p>clone한 기존 저장소에서 터미널에 다음과 같이 입력한다.</p>
 <p>
 
-`git remote set-url origin [새로 생성한 원격 저장소 url]`
+```
+git remote set-url origin [새로 생성한 원격 저장소 url]
+git push
+```
 </p>
 
 <br>
