@@ -28,7 +28,7 @@
 <p>
 
 [3. Linux - Ubuntu 20.04](#3-linux---ubuntu-2004)<br>
-&nbsp; &nbsp; [3.1. NVIDIA 드라이버 설치](#31-nvidia-0드라이버-설치)<br>
+&nbsp; &nbsp; [3.1. NVIDIA 드라이버 설치](#31-nvidia-드라이버-설치)<br>
 &nbsp; &nbsp; [3.2. CUDA Toolkit 다운로드](#32-cuda-toolkit-다운로드)<br>
 &nbsp; &nbsp; [3.3. cuDNN 다운로드 및 등록](#33-cudnn-다운로드-및-등록)<br>
 &nbsp; &nbsp; [3.4. 설치 확인](#34-설치-확인)
@@ -353,13 +353,13 @@ Build cuda_11.2.r11.2/compiler.29618528_0
 ### 2.A. Anaconda 설치
 <p>
 
-```console
+```bash
 wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 ```
-```console
+```bash
 chmod +x Anaconda3-2020.11-Linux-x86_64.sh
 ```
-```console
+```bash
 ./Anaconda3-2020.11-Linux-x86_64.sh
 ```
 </p>
@@ -372,7 +372,7 @@ chmod +x Anaconda3-2020.11-Linux-x86_64.sh
 <p>
 
 **그래픽 카드 및 설치 가능한 드라이버 확인(안해도 됨)**
-```
+```bash
 ubuntu-drivers devices
 ```
 </p>
@@ -380,7 +380,7 @@ ubuntu-drivers devices
 <p>
 
 **장치에 맞는 드라이버 자동 설치**
-```
+```bash
 sudo ubuntu-drivers autoinstall
 ```
 </p>
@@ -388,7 +388,7 @@ sudo ubuntu-drivers autoinstall
 <p>
 
 **설치 확인**
-```
+```bash
 nvidia-smi
 ```
 </p>
@@ -441,7 +441,7 @@ nvidia-smi
 <p>
 
 **런타임 라이브러리**
-```
+```bash
 sudo dpkg -i libcudnn8_x.x.x-1+cudax.x_amd64.deb
 ```
 </p>
@@ -451,7 +451,7 @@ sudo dpkg -i libcudnn8_x.x.x-1+cudax.x_amd64.deb
 <p>
 
 **개발자 라이브러리**
-```
+```bash
 sudo dpkg -i libcudnn8-dev_8.x.x.x-1+cudax.x_amd64.deb
 ```
 </p>
@@ -461,7 +461,7 @@ sudo dpkg -i libcudnn8-dev_8.x.x.x-1+cudax.x_amd64.deb
 <p>
 
 **샘플 라이브러리**
-```
+```bash
 sudo dpkg -i libcudnn8-samples_8.x.x.x-1+cudax.x_amd64.deb
 ```
 </p>
