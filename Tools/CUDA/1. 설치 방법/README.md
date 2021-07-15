@@ -25,6 +25,15 @@
 &nbsp; &nbsp; [2.A. Anaconda 설치](2a-anaconda-설치)
 </p>
 
+<p>
+
+[3. Linux - Ubuntu 20.04](#3-linux---ubuntu-2004)<br>
+&nbsp; &nbsp; [3.1. NVIDIA 드라이버 설치](#31-nvidia-0드라이버-설치)<br>
+&nbsp; &nbsp; [3.2. CUDA Toolkit 다운로드](#32-cuda-toolkit-다운로드)<br>
+&nbsp; &nbsp; [3.3. cuDNN 다운로드 및 등록](#33-cudnn-다운로드-및-등록)<br>
+&nbsp; &nbsp; [3.4. 설치 확인](#34-설치-확인)
+</p>
+
 <br><br>
 
 ## 1. 윈도우
@@ -355,3 +364,127 @@ chmod +x Anaconda3-2020.11-Linux-x86_64.sh
 ```
 </p>
 <p>이후 bash shell 다시 시작, Anaconda 가상환경 설정</p>
+
+<br><br>
+
+## 3. Linux - Ubuntu 20.04
+### 3.1. NVIDIA 드라이버 설치
+<p>
+
+**그래픽 카드 및 설치 가능한 드라이버 확인(안해도 됨)**
+```
+ubuntu-drivers devices
+```
+</p>
+<br>
+<p>
+
+**장치에 맞는 드라이버 자동 설치**
+```
+sudo ubuntu-drivers autoinstall
+```
+</p>
+<br>
+<p>
+
+**설치 확인**
+```
+nvidia-smi
+```
+</p>
+<p>
+  <div align="center">
+    <figure>
+        <img src="./resources/nvidia-smi.png" alt="nvidia-smi 결과">
+        <div align="center"><figcation>nvidia-smi 결과</figcation></div>
+    </figure>
+  </div>
+</p>
+
+<br>
+
+### 3.2. CUDA Toolkit 다운로드
+<p>
+
+참조 - [NVIDIA CUDA Toolkit Installation guide - Ubuntu](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu-installation)
+</p>
+<p>
+
+위 `nvidia-smi`에서 확인한, 자신에게 맞는 CUDA Toolkit 버전을 다운받아야 한다. 필자는 11.2 버전이다.
+</p>
+<p>
+
+**이 부분은 WSL 2의 [2.3. CUDA Toolkit 다운로드](#23-cuda-toolkit-다운로드) 과정을 동일하게 수행해도 된다. 단, Ubuntu의 버전과 CUDA Toolkit 버전에 주의하여, 스크립트 수정을 해야할 수 있다.**
+</p>
+<p>
+
+환경변수 설정도 해줄 것. 이 또한 WSL 2 설치 과정과 같다.
+</p>
+
+<br>
+
+### 3.3. cuDNN 다운로드 및 등록
+<p>
+
+참조 - [NVIDIA cuDNN Installation - Debian](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux-deb)
+</p>
+<p>
+
+우분투 리눅스에서 cuDNN을 설치하는 방법은 다양한데, 본문에서는 그 중 가장 쉬운 Debian Installation 방법으로 설명한다.
+</p>
+<p>
+
+먼저, 엔비디아 cuDNN 아카이브에서 자신의 CUDA Toolkit 버전, distro(우분투 버전), architecture(x86_64와 같은)에 맞는 cuDNN 파일 세 개(Runtime, Developer, Sample)를 다운받는다.<br>
+[NVIDIA cuDNN Archive](https://developer.nvidia.com/rdp/cudnn-archive)
+</p>
+<p>다운받은 파일들을 통해 패키지를 다운받는다. 만약 개발 환경이 임베디드라면 amd 대신 arm으로 패키지를 다운받는다.</p>
+<p>
+
+**런타임 라이브러리**
+```
+sudo dpkg -i libcudnn8_x.x.x-1+cudax.x_amd64.deb
+```
+</p>
+
+<br>
+
+<p>
+
+**개발자 라이브러리**
+```
+sudo dpkg -i libcudnn8-dev_8.x.x.x-1+cudax.x_amd64.deb
+```
+</p>
+
+<br>
+
+<p>
+
+**샘플 라이브러리**
+```
+sudo dpkg -i libcudnn8-samples_8.x.x.x-1+cudax.x_amd64.deb
+```
+</p>
+
+<br>
+
+### 3.4. 설치 확인
+<p>
+
+```
+cp -r /usr/src/cudnn_samples_v8 ~
+```
+```
+cd ~/cudnn_samples_v8/mnistCUDNN
+```
+```
+make clean && make
+```
+```
+./mnistCUDNN
+```
+</p>
+<p>
+
+만약 정상 설치됐다면 `Test passed!` 문구를 마지막에 확인할 수 있다.
+</p>
