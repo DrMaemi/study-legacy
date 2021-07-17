@@ -16,4 +16,16 @@
 [1. Tutorial](https://github.com/DrMaemi/Study/tree/master/AI/PyTorch/tutorial)
 </p>
 
+## 환경 구성
+<p>
+
+참조 - [Pytorch: Start Locally](https://pytorch.org/get-started/locally/)
+</p>
+<p>
+
+```
+conda install pytorch=1.7.1 torchvision=0.8.2 cudatoolkit=11 -c pytorch -c conda-forge -y
+```
+</p>
+
 <br><br>
