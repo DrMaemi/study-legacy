@@ -4,8 +4,14 @@ before_script:
   - python --version
 
 stages:
+  - static_analysis
   - unit_test
   
+flake:
+  stage: static_analysis
+  script:
+    - flake8
+
 test:
   stage: unit_test
   script:
