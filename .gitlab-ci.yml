@@ -10,6 +10,7 @@ stages:
 flake:
   stage: static_analysis
   script:
+    - pip install flake8
     - flake8
 
 test:
