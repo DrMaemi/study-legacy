@@ -1,6 +1,12 @@
 image: python:3.6-stretch
 before_script:
   - python --version
+build:
+  script:
+    - echo "Building..."
 test:
   script:
-    - echo "Testing"
+    - echo "Testing..."
+deploy:
+  script:
+    - echo "Deploying..."
