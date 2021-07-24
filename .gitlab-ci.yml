@@ -9,4 +9,4 @@ stages:
 test:
   stage: unit_test
   script:
-    - python -m unit_test -v test_hello
+    - python -m unittest -v test_hello
