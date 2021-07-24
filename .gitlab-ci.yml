@@ -4,16 +4,28 @@ before_script:
   - python --version
 
 stages:
-  - static_analysis
-  - unit_test
+  - build
+  - static_analysis_and_unit_test
+  - deploy
+
+docker:
+  stage: build
+  script:
+    - echo "Building..."
   
 flake:
-  stage: static_analysis
+  stage: static_analysis_and_unit_test
   script:
     - pip install flake8
     - flake8
 
 test:
-  stage: unit_test
+  stage: static_analysis_and_unit_test
   script:
-    - python -m unittest -v test_hello
+    - python -m unittest
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+  
