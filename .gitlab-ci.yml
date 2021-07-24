@@ -1,0 +1,6 @@
+image: python:3.6-stretch
+before_script:
+  - python --version
+test:
+  script:
+    - echo "Testing"
