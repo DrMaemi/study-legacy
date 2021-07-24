@@ -1,0 +1,32 @@
+image: python:3.6-stretch
+
+before_script:
+  - python --version
+
+stages:
+  - build
+  - static_analysis_and_unit_test
+  - deploy
+
+docker:
+  stage: build
+  script:
+    - echo "Building..."
+  
+flake:
+  stage: static_analysis_and_unit_test
+  allow_failure: true
+  script:
+    - pip install flake8
+    - flake8
+
+test:
+  stage: static_analysis_and_unit_test
+  script:
+    - python -m unittest
+
+aws_deploy:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+    - echo "aws ecs update-image ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_ID}"
