@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+    <div class="container">
+        <br>
+        <h3 class="content">음식 분류 애플리케이션</h3>
+
+        <p class="content">
+            음식을 분류: 이 앱은 전이학습으로 만든 모델을 활용합니다.
+            이미지를 업로드 하면, 모델에서 인식하고, 그 결과를 알려줍니다.
+        </p>
+        <br>
+        <img src="{{ url_for('static',filename='images/concept.png') }}" alt="" width="600" height="230">
+        <br>
+        <div align="center">
+            <a class="btn btn-outline-primary" href="{{ url_for('classification') }}">한 번 해봅시다</a>
+        </div>
+       
+    </div>
+
+
+{% endblock  %}
