@@ -1,0 +1,6 @@
+*.zip
+10_food_classes*
+__MACOSX
+model
+my_model
+tensorflow_hub
