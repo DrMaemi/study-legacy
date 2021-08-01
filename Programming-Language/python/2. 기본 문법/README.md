@@ -1,3 +1,24 @@
+## 문자열 파싱
+<p>
+
+기본적으로 파이썬 문자열 내장 함수 split()을 사용할 수 있다.
+```python
+data = "This is sample"
+
+parsed = data.split() # default - 공백(' ')을 기준으로 파싱
+print(type(parsed)) # <class 'list'>
+print(parsed) # ['This', 'is', 'sample]
+```
+</p>
+<p>
+
+응용
+```python
+data = "This is sample"
+parsed = data.split("i", "m", "l") # 오류 반환, split()은 두 개 이상의 인자를 가질 수 없다
+```
+</p>
+
 ## Try-Except-Finally
 <p>
 
