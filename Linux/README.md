@@ -125,4 +125,7 @@ bindkey -k k3 select 2
 <p>
 
 **screen 생성**
+```
+screen -S <원하는 이름>
+```
 </p>
