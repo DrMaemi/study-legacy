@@ -22,7 +22,87 @@
 </p>
 
 ## 1. 텍스트 파일 입출력
-<p>작성 중</p>
+<p>
+
+test.txt 파일
+```
+Hello World !
+I am Python
+I like Python
+```
+</p>
+
+<br>
+
+<p>
+
+- **readline()**
+```python
+# 파일 열기
+f = open('test.txt', 'r', encoding='utf-8')
+
+line_num = 1
+
+# readline(): 한 줄 읽기. 반환 값은 읽은 한 줄. 커서는 다음 줄을 가리킴
+# 파일 끝에서 더 이상 읽을 내용이 없다면 빈 문자열을 반환
+line = f.readline()
+# line = 'Hello World !\n'
+
+while line:
+    print(f"[{line_num}번 째 줄]{line}", end="")
+    line = f.readline()
+    line_num += 1
+
+print("\n파일 끝.")
+print("type(line): {}".format(type(line)))
+print("line: {}".format(line))
+# 파일 닫기
+f.close()
+```
+</p>
+<p>
+
+결과
+```
+$ python readline.py
+[1번 째 줄]Hello World !
+[2번 째 줄]I am Python
+[3번 째 줄]I like Python
+파일 끝.
+type(line): <class 'str'>
+line:
+```
+</p>
+
+<br>
+
+<p>
+
+- readlines()
+```python
+# 파일 열기
+from os import linesep
+
+
+f = open('test.txt', 'r', encoding='utf-8')
+
+line_num = 1
+
+lines = f.readlines()
+# lines = ['Hello World !\n', 'I am Python\n', 'I like Python']
+
+for i, line in enumerate(lines):
+    print(f"[{i+1}번 째 줄]{line}", end="")
+
+print("\n파일 끝.")
+print("type(line): {}".format(type(line)))
+print("line: {}".format(line))
+# 파일 닫기
+f.close()
+```
+</p>
+
+<br><br>
 
 ## 2. JSON 파일 입출력
 <p>json 라이브러리를 이용해 .json 파일을 입출력할 수 있다.</p>
