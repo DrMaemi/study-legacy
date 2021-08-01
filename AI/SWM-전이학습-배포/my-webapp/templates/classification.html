@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+    <div class="container">
+    <h3>음식 분류</h3>
+    </div>
+
+    <div class="container">
+        <br>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <label for="upload">분류를 확인할 이미지</label>
+            <input type="file" id="upload" name="image" required="true">
+            <input type="submit" value="업로드하고 분류">
+        </form>
+
+    </div>
+
+    {% if fileupload  %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="predict">
+                <img src="{{ url_for('static',filename='uploads/')}}{{ img_name }}" alt="" width="{{ w }}" height="300">
+            </div>
+            <div class="col-md-6" id="predict">
+                <img src="{{ url_for('static',filename='result/')}}{{ img_name }}" alt="" width="{{ w }}" height="300">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #predict{
+            border: solid;
+            color:#002f4d;
+            text-align: center;
+        }
+    </style>
+
+
+    {% endif %}
+
+{% endblock %}
