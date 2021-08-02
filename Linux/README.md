@@ -6,8 +6,8 @@
 <p>
 
 - [초기 su 로그인 오류](#초기-su-로그인-오류)
-- [tar, gz, zip 압축·해제](#-tar-gz-zip-압축·해제)
-- [screen](#-screen)
+- [tar, gz, zip 압축·해제](#tar-gz-zip-압축·해제)
+- [screen](#screen)
 </p>
 
 ## 초기 su 로그인 오류
