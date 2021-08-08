@@ -12,3 +12,13 @@ pip install tensorflow-gpu==1.15.0
 conda install pytorch=1.12.0 torchvision=0.4.0 cudatoolkit=10.0 cudnn=7 -c pytorch -c conda-forge -y
 ```
 </p>
+
+<p>
+
+**Cython & Cython-bbox를 윈도우에 설치하는 방법**
+```
+conda activate <가상환경 명>
+pip install cython
+pip install -e git+https://github.com/samson-wang/cython_bbox.git#egg=cython-bbox
+```
+</p
