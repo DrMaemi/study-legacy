@@ -31,7 +31,8 @@
 &nbsp; &nbsp; [4.3. 브랜치 생성](#43-브랜치-생성)<br>
 &nbsp; &nbsp; [4.4. 생성한 브랜치로 이동](#44-생성한-브랜치로-이동)<br>
 &nbsp; &nbsp; [4.5. 생성한 브랜치를 원격 저장소에 push](#45-생성한-브랜치를-원격-저장소에-push)<br>
-&nbsp; &nbsp; [4.6. test 브랜치의 commit을 master 브랜치에 반영](#46-test-브랜치의-commit을-master-브랜치에-반영)
+&nbsp; &nbsp; [4.6. 브랜치 삭제](#46-브랜치-삭제)<br>
+&nbsp; &nbsp; [4.7. test 브랜치의 commit을 master 브랜치에 반영](#47-test-브랜치의-commit을-master-브랜치에-반영)
 </p>
 <p>
 
@@ -220,7 +221,9 @@ git remote update --prune   // delete all stale remote branch
 ```
 </p>
 
-### 4.6. test 브랜치의 commit을 master 브랜치에 반영
+<br>
+
+### 4.7. test 브랜치의 commit을 master 브랜치에 반영
 <p>test 브랜치의 head가 master 브랜치의 head로 병합됨을 의미</p>
 <p>
 
@@ -492,6 +495,7 @@ From https://github.com/DrMaemi/Catch
  * branch            splitted   -> FETCH_HEAD
 $ git push origin master
 ```
+이후 기존 저장소에서 해당 디렉토리를 삭제하면 된다.
 </p>
 
 
@@ -505,3 +509,99 @@ git log --graph --pretty=oneline --all/
 </p>
 
 <br><br>
+
+## 9. Git Submodule
+<p>
+
+큰 프로젝트를 여러 개의 프로젝트로 나누는 개념이다.
+</p>
+
+### 9.1. 시작
+<p>
+
+```bash
+git submodule add <Git URL> <원하는 이름>
+```
+예시
+```bash
+git submodule add https://github.com/chaconinc/DbConnector
+```
+기본적으로 서브모듈은 프로젝트 저장소의 이름으로 디렉토리를 만든다. 명령의 마지막에 원하는 이름을 넣어 다른 디렉토리 이름으로 서브모듈을 추가할 수 있다.
+</p>
+<p>
+
+서브모듈을 추가하고 난 후 `git status` 명령을 실행하면 몇 가지 정보를 알 수 있다.
+```bash
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   .gitmodules
+    new file:   DbConnector
+```
+우선 `.gitmodules` 파일이 만들어지는데, 이 파일은 서브디렉토리와 하위 프로젝트 URL의 매핑 정보를 담은 설정 파일이다.
+</p>
+<p>
+
+이제 하위 프로젝트를 포함한 커밋을 생성하면 아래와 같은 결과를 확인할 수 있다.
+```bash
+$ git commit -am 'added DbConnector module'
+[master fb9093c] added DbConnector module
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 DbConnector
+```
+모드 160000은 Git에 있어 일반적인 파일이나 디렉토리가 아니라 특별하다는 의미이다.
+</p>
+<p>
+끝으로, push한다.
+```
+$ git push origin master
+```
+</p>
+
+<br>
+
+### 9.2. 서브모듈을 포함한 프로젝트 Clone
+<p>
+
+서브모듈을 포함하는 프로젝트를 clone하면 기본적으로 서브모듈 디렉토리가 빈 디렉토리이다. 완전히 clone하려면 다음 두 가지 중 하나를 수행해야 한다.
+1. `git submodule init` + `git submodule update`
+2. `git clone --recurse-submodules <Git URL>`
+2를 수행하면 1을 수행하는 것과 같다.
+</p>
+
+<br>
+
+### 9.3. 서브모듈을 포함한 프로젝트 작업
+<p>
+
+우선 서브모듈 코드를 건드리지 않는 것이 정신건강에 좋다. 서브모듈을 최신으로 업데이트 하려면 서브모듈을 업데이트한 후에 프로젝트에서 커밋하는 것이 좋다.
+</p>
+<p>
+
+서브모듈 업데이트는 다음 두 가지 방식으로 수행할 수 있다.
+1. 서브모듈 디렉토리에서 `git pull`
+2. 프로젝트에서 `git submodule update --remote <원하는 서브모듈 디렉토리 이름>`
+예시
+```bash
+$ git submodule update --remote DBConnector
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   3f19983..d0354fc  master     -> origin/master
+Submodule path 'DbConnector': checked out 'd0354fc054692d3906c85c3af05ddce39a1c0644'
+```
+</p>
+<p>
+
+서브모듈 저장소의 특정 브랜치로 업데이트하고 싶다면 .gitmodules 파일을 다음과 같은 명령어로 수정할 수 있다.
+```bash
+$ git config -f .gitmodules submodule.DbConnector.branch <원하는 브랜치 이름>
+```
+</p>
