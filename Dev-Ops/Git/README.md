@@ -199,7 +199,7 @@ git checkout test
 ### 4.5. 생성한 브랜치를 원격 저장소에 push
 ```
 git checkout test
-git push
+git push --set-upstream origin test
 ```
 
 <br>
