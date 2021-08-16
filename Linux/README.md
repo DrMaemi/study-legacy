@@ -8,6 +8,8 @@
 - [초기 su 로그인 오류](#초기-su-로그인-오류)
 - [tar, gz, zip 압축·해제](#tar-gz-zip-압축·해제)
 - [screen](#screen)
+- [tree](#tree)
+- [화면 캡쳐 및 녹화](#화면-캡쳐-및-녹화)
 </p>
 
 ## 초기 su 로그인 오류
@@ -90,7 +92,7 @@ unzip <파일명.zip>
 ## screen
 <p>
 
-**설치**
+### 설치 및 .screenrc 설정
 ```
 sudo apt install screen
 ```
@@ -98,10 +100,6 @@ sudo apt install screen
 
 <br>
 
-<p>
-
-**유용한 환경설정**
-</p>
 <p>
 
 `vi ~/.screenrc` 후에 다음 내용 작성
@@ -122,10 +120,116 @@ bindkey -k k3 select 2
 
 <br>
 
+### 사용법 - 진입 및 종료
 <p>
 
-**screen 생성**
+`screen`: 일반적인 진입<br>
+`screen -S <스크린 이름>`: 원하는 이름으로 스크린 생성 및 진입<br>
+`screen -r <스크린 이름>`: 이미 실행된 Detached 스크린에 진입<br>
+`screen -x <스크린 이름>`: 이미 실행된 Attached 스크린에 진입<br>
+</p>
+<p>
+
+스크린을 종료하고 싶다면 스크린 진입 후 `exit`을 입력하면 된다.
+</p>
+
+### 스크린 진입 후 사용할 수 있는 단축키
+<p>
+
+스크린 진입 후 사용되는 단축키는 항상 `Ctrl` + `a` 입력 후 다른 키와의 조합으로 이루어진다. `Ctrl`과 `a`는 동시에 누르고, 쉬었다가 다음과 같은 추가 조합 키를 입력한다.</p>
+<p>
+
+`c`: 새 스크린 띄우기
+`a`: 바로 이전 스크린으로 이동
+`n`: 다음 스크린으로 이동
+`p`: 이전 스크린으로 이동
+`space`: 다음 스크린으로 이동
+`backspace`: 이전 스크린으로 이동
+`0`: 0번 스크린으로 이동
+`1`: 1번 스크린으로 이동
+...
+`9`: 9번 스크린으로 이동
+`d`: 스크린 탈출(해당 스크린은 계속 실행 중)
+
+</p>
+
+<br><br>
+
+## tree
+<p>tree는 폴더 하위 구조를 계층적으로 표시해주는 유틸리티로, 전체 구조를 대략적으로 파악할 때 유용하다.</p>
+
+### 사용법
+<p>
+
+depth 제한: -L 옵션
+```bash
+$ tree -L 2
 ```
-screen -S <원하는 이름>
+</p>
+<p>
+
+directory만 표시: -d 옵션
+```bash
+$ tree -L 2 -d
 ```
+</p>
+<p>
+
+no indentation + full path<br>
+depth에 따른 들여쓰기 x: -i 옵션 추가<br>
+파일 전체 경로 표시: -f 옵션 추가
+```bash
+$ tree -L 2 -d -fi
+```
+</p>
+<p>
+
+특정 폴더 이름 제외: -I 옵션 뒤 패턴 입력
+```bash
+$ tree -d -I "__pycache__.py|dataset|build"
+```
+</p>
+
+<br><br>
+
+## 화면 캡쳐 및 녹화
+
+### 화면 캡쳐
+<p>
+
+&nbsp;|전체 화면|활성화 창|선택 영역
+:-:|:-:|:-:|:-:
+그림 파일로 자동 저장|`Print Screen`|`Alt` + `Print Screen`|`Shift` + `Print Screen`
+클립 보드에 복사|`Ctrl` + `위 단축키`|`Ctrl` + `위 단축키`|`Ctrl` + `위 단축키`
+</p>
+
+<br>
+
+### 화면 녹화
+<p>
+
+녹화 시작과 종료는 동일하게 `Ctrl` + `Alt` + `Shift` + `R` 단축키를 사용한다.
+</p>
+<p>녹화를 시작하면 화면 우측 상단에 레코딩 아이콘이 표시된다.</p>
+<p>
+
+저장 위치는 `~/Video` 폴더이고, 해당 폴더가 없다면 홈 디렉토리에 저장된다.</p>
+
+<br>
+
+### 화면 녹화 시간 변경 - dconf editor
+<p>우분투를 설치하면 기본적으로 화면 녹화 시간이 30초로 제한되어 있다. 이를 변경하기 위해선 다음 과정을 수행해야 한다.</p>
+<p>
+
+1. dconf-editor 설치
+```bash
+sudo apt-get update -y
+sudo apt-get install -y dconf-editor
+```
+
+2. dconf-editor에서 설정 변경
+```bash
+$ dconf-editor
+```
+위 명령어를 실행하면 editor 창이 열리는데, `org/gnome/settings-daemon/plugins/media-keys`로 이동해서 `max-screencast-length` 설정을 기본값 사용 해제, 사용자 설정 값 0으로 세팅한다.
 </p>
