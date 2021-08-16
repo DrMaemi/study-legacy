@@ -64,7 +64,7 @@
 [9. Git Submodule](#9-git-submodule)<br>
 &nbsp; &nbsp; [9.1. 시작](#91-시작)<br>
 &nbsp; &nbsp; [9.2. 서브모듈을 포함한 프로젝트 Clone](#92-서브모듈을-포함한-프로젝트-clone)<br>
-&nbsp; &nbsp; [9.3. 서브모듈을 포함한 프로젝트 작업](#93-서브모듈을 포함한-프로젝트-작업)
+&nbsp; &nbsp; [9.3. 서브모듈을 포함한 프로젝트 작업](#93-서브모듈을-포함한-프로젝트-작업)
 </p>
 
 <br><br>
@@ -293,6 +293,7 @@ git checkout A
 ```
 git reset --hard
 ```
+자세한 설명은 밑의 6.2.에서 참조
 </p>
 
 <br>
@@ -310,6 +311,20 @@ git reset HEAD^
 가장 최근 commit 3개 취소
 ```
 git reset HEAD~3
+```
+</p>
+<p>
+
+git reset 옵션
+- `--soft` - git index 보존(add한 상태, 즉 staged), 로컬 디렉토리 파일 보존
+- `--mixed` - 기본 설정. git index 보존x(unstaged 상태), 로컬 디렉토리 파일 보존
+- `--hard` - 로컬 디렉토리도 전부 reset. **사용 시 주의 요망**
+</p>
+<p>
+
+이후 커밋을 되돌린 상태로 원격 저장소에 push하고 싶다면, `-f` 옵션을 주어야 동작한다.
+```bash
+git push -f origin master
 ```
 </p>
 
