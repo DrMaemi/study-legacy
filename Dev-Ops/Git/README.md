@@ -424,6 +424,77 @@ git subtree pull --prefix <child path> <remote name> <child branch>
 ```
 </p>
 
+<br>
+
+### 7.3. 저장소 분리, 새 저장소에 push
+<p>
+
+Catch/<br>
+ &nbsp; CatchNet/
+ &nbsp; ...
+</p>
+<p>
+
+```bash
+cd <프로젝트 경로>
+git subtree split -P <분리하려는 하위 디렉토리> -b <분리할 브랜치 이름>
+git checkout <브랜치 이름>
+git push --set-upstream origin <분리된 브랜치 이름>
+```
+</p>
+<p>
+
+결과
+```bash
+$ cd Catch
+$ git subtree split -P CatchNet -b splitted
+Created branch 'splitted'
+d0f57a39ff17385dbbde9834ccec7088ec7bfc60
+$ git checkout splitted
+Switched to branch 'splitted'
+$ git push --set-upstream origin splitted
+Username for 'https://github.com': drmaemi
+Password for 'https://drmaemi@github.com': 
+Enumerating objects: 496, done.
+Counting objects: 100% (496/496), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (401/401), done.
+Writing objects: 100% (496/496), 12.26 MiB | 3.07 MiB/s, done.
+Total 496 (delta 86), reused 465 (delta 83)
+remote: Resolving deltas: 100% (86/86), done.
+remote: 
+remote: Create a pull request for 'splitted' on GitHub by visiting:
+remote:      https://github.com/DrMaemi/Catch/pull/new/splitted
+...
+```
+</p>
+<p>
+
+깃허브 홈페이지에서 README 없이 비어있는 새 저장소를 생성한 후<br>
+```bash
+git clone <새 저장소 url>
+cd <새 저장소>
+git remote add <기존 저장소 이름> <기존 저장소 url>
+git pull <기존 저장소 이름> <분리된 브랜치 이름>
+```
+</p>
+<p>
+
+결과
+```bash
+$ git clone https://github.com/DrMaemi/CatchNet.git
+Cloning into 'CatchNet'...
+warning: You appear to have cloned an empty repository.
+$ cd CatchNet
+$ git remote add Catch https://github.com/DrMaemi/Catch.git
+$ git pull Catch splitted
+From https://github.com/DrMaemi/Catch
+ * branch            splitted   -> FETCH_HEAD
+$ git push origin master
+```
+</p>
+
+
 <br><br>
 
 ## 8. git log
