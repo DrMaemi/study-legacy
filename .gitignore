@@ -4,3 +4,4 @@ __MACOSX
 model
 my_model
 tensorflow_hub
+__pycache__
