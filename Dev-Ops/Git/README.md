@@ -64,7 +64,9 @@
 [9. Git Submodule](#9-git-submodule)<br>
 &nbsp; &nbsp; [9.1. 시작](#91-시작)<br>
 &nbsp; &nbsp; [9.2. 서브모듈을 포함한 프로젝트 Clone](#92-서브모듈을-포함한-프로젝트-clone)<br>
-&nbsp; &nbsp; [9.3. 서브모듈을 포함한 프로젝트 작업](#93-서브모듈을-포함한-프로젝트-작업)
+&nbsp; &nbsp; [9.3. 서브모듈을 포함한 프로젝트 작업](#93-서브모듈을-포함한-프로젝트-작업)<br>
+&nbsp; &nbsp; [9.4. 서브모듈 위치 변경](#94-서브모듈-위치-변경)<br>
+&nbsp; &nbsp; [9.5. 자주 보는 에러](#95-자주-보는-에러)
 </p>
 
 <br><br>
@@ -626,4 +628,35 @@ Submodule path 'DbConnector': checked out 'd0354fc054692d3906c85c3af05ddce39a1c0
 ```bash
 $ git config -f .gitmodules submodule.DbConnector.branch <원하는 브랜치 이름>
 ```
+</p>
+
+<br>
+
+### 9.4. 서브모듈 위치 변경
+<p>
+
+```bash
+git mv <서브모듈 이름> ./my-folder1/<서브모듈 이름>
+```
+결과 `.gitmodules`에서 해당 서브 모듈의 path가 변경됨을 확인할 수 있다.
+</p>
+
+<br>
+
+### 9.5. 자주 보는 에러
+<p>
+
+```
+A git directory for '<서브모듈 이름>' is found locally with remote(s):
+  origin        https://github.com/DrMaemi/<서브모듈 이름>.git
+If you want to reuse this local git directory instead of cloning again from
+  https://github.com/drmaemi/<서브모듈 이름>.git
+use the '--force' option. If the local git directory is not the correct repo
+or you are unsure what this means choose another name with the '--name' option.
+```
+위와 같은 에러를 보는 경우는, 모종의 이유로 서브 모듈을 추가했다가 `git reset` 등으로 되돌린 경우에 볼 수 있다.
+</p>
+<p>
+
+이 때 `.gitmodules`, `.git/modules` 에서 해당 서브 모듈과 관련된 코드를 지워 해결할 수 있다.
 </p>
