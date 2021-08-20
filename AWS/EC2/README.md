@@ -13,6 +13,21 @@
 
 <br><br>
 
+## SSH 접속
+<p>
+
+```bash
+ssh -i <key file .pem> <user name>@<public ip>
+```
+</p>
+<p>
+
+예시
+```bash
+ssh -i my_key.pem ubuntu@3.35.238.199
+```
+</p>
+
 ## EC2 Image Builder
 
 ## EBS(Elastic Block Store)
