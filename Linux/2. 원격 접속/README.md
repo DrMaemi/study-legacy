@@ -18,8 +18,7 @@
 <br><br>
 
 ## 1. 윈도우 - PuTTY
-### 1.1. PuTTY 설치
-
+[PuTTY 공식 홈페이지](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 <div align="center">
   <figure>
     <img src="resources/PuTTY/1. PuTTY 공식 홈페이지에서 설치 파일 다운.png" alt="1. PuTTY 공식 홈페이지에서 설치 파일 다운" width="70%">
