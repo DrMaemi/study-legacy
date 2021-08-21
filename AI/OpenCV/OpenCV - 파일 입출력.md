@@ -213,3 +213,11 @@ out.release()
 cv2.destroyAllWindows()
 ```
 </p>
+
+<br><br>
+
+## 주의할 점
+<p>
+
+`cv2.imshow()`, `cv2.waitKey()`, `cv2.destroyAllWindows()` 이 세 가지 함수는 코드 내에서 같이 사용하지 않으면 응답 없음이나 이미지가 제대로 보이지 않는 등의 문제를 일으킬 수 있다.
+</p>
