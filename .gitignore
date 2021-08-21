@@ -5,3 +5,5 @@ model
 my_model
 tensorflow_hub
 __pycache__
+*.exe
+.vscode
