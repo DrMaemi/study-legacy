@@ -176,3 +176,36 @@ sudo kubeadm join 172.31.6.154:6443 \
   </figure>
 </div>
 </p>
+
+<br><br>
+
+## 2. Hello-World 배포
+<p>
+
+구글이 만들어 놓은 `Hello World` 이미지를 이용해 배포해본다.
+```
+# Master
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+```
+</p>
+<p>
+
+다음 명령으로 배포 유무를 확인할 수 있다.
+```
+kubectl get deployments
+```
+</p>
+<p>
+
+포드 할당 확인. `10.244.X.X` 형태로 할당된다.
+```
+kubectl get pods -o wide
+```
+</p>
+<p>
+
+워커 노드에서 다음과 같이 명령을 실행하면 배포가 정상적으로 이루어졌는지 확인 가능
+```
+curl http://<할당받은 아이피>:8080
+```
+</p>
