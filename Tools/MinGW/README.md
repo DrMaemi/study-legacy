@@ -118,7 +118,15 @@ MinGW 64비트 라이브러리 압축 파일 다운로드 링크 -<br>
 
 <p>
 
-.7z 파일을 다운받았다면 압축 해제한 후 `mingw64` 폴더만을, .zip 파일을 다운받았다면 압축 해제한 후 폴더 그대로 자신이 원하는 경로에 두면 된다.</p>
+.7z 파일을 다운받았다면 압축 해제한 후 `mingw64` 폴더만을, .zip 파일을 다운받았다면 압축 해제한 후 폴더 그대로 자신이 원하는 경로에 두면 된다.
+</p>
+<div align="center">
+  <figure>
+      <img src="resources/설치/64비트/5. 환경 변수 설정.png" alt="5. 환경 변수 설정" width="70%">
+      <div align="center"><figcation>5. 환경 변수 설정</figcation></div>
+  </figure>
+</div>
+<br>
 
 <br>
 
