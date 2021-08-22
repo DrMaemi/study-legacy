@@ -152,6 +152,28 @@ MinGW가 정상적으로 설치됐다면, VS Code에 연동해야 한다.
 
 여기까지 설정했다면 `Ctrl` + `Shift` + `B`, `Ctrl` + `Shift` + `R`로 C/C++ 소스코드를 컴파일 및 실행할 수 있다.
 </p>
+<p>
+
+이 부분도 해줘야 하는지 모르겠는데, Command Pallet에 C/C++ 편집 구성에 관한 설정이 있어서 관련 자료를 올린다.
+</p>
+<div align="center">
+  <figure>
+      <img src="resources/C++ 개발환경 구축/4. Command Pallet에서 C C++ 검색.png" alt="4. Command Pallet에서 C C++ 검색" width="70%">
+      <div align="center"><figcation>4. Command Pallet에서 C/C++ 검색</figcation></div>
+  </figure>
+</div>
+<br>
+<div align="center">
+  <figure>
+      <img src="resources/C++ 개발환경 구축/5. C, C++ 편집기 구성 설정.png" alt="5. C, C++ 편집기 구성 설정" width="70%">
+      <div align="center"><figcation>5. C/C++ 편집기 구성 설정</figcation></div>
+  </figure>
+</div>
+<br>
+<p>
+
+위 설정을 끝내면 `.vscode` 폴더 내에 `c_cpp_properties.json` 파일이 생성된다.
+</p>
 
 <br>
 
