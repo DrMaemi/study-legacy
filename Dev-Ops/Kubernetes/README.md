@@ -5,20 +5,35 @@
 <p>
 
 - 동작 환경
-    - Ubuntu 16.04+
-    - Debian 9+
-    - CentOS 7
-    - Red Hat Enterprise Linux (RHEL) 7
-    - Fedora 25+
-    - HypriotOS v1.0.1+
-    - Flatcar Container Linux (tested with 2512.3.0)
+  - Ubuntu 16.04+
+  - Debian 9+
+  - CentOS 7
+  - Red Hat Enterprise Linux (RHEL) 7
+  - Fedora 25+
+  - HypriotOS v1.0.1+
+  - Flatcar Container Linux (tested with 2512.3.0)
 </p>
 <p>
 
 - 시스템
-    - RAM: 2GB 이상
-    - CPU: 2코어 이상
-    - 클러스터 간 Full Network Connectivity
+  - RAM: 2GB 이상
+  - CPU: 2코어 이상
+  - 클러스터 간 Full Network Connectivity
+</p>
+
+<p>
+
+- 보안 그룹(인바운드 규칙 오픈)
+  - 마스터 노드
+    - TCP 6783, UDP 6783/6784 (WeaveNet)
+    - TCP 2379-2380 (etcd server client API / Used By kube-apiserver, etcd)
+    - TCP 10250 (Kubelet API / Used By Self, Control plane)
+    - TCP 10251 (kube-scheduler / Used By Self)
+    - TCP 10252 (kube-controller-manager / Used By Self)
+  - 워커 노드
+    - TCP 6783, UDP 6783/6784 (WeaveNet)
+    - TCP 10250 (Kubelet API / Used By Self, Control plane)
+    - TCP 30000-32767 (NodePort Services / Used By All) 
 </p>
 
 <br>
@@ -84,6 +99,13 @@ kubeadm version
 kubelet --version
 kubectl version
 
+```
+</p>
+<p>
+
+메모리 스왑 비활성화
+```
+sudo swapoff -a && sed -i '/swap/s/^/#/' /etc/fstab
 ```
 </p>
 
@@ -176,6 +198,13 @@ sudo kubeadm join 172.31.6.154:6443 \
   </figure>
 </div>
 </p>
+
+<br>
+
+### 1.3. 삭제(검증 필요..)
+```
+sudo yum remove kubeadm kubectl kubelet kubernetes-cni kube*
+```
 
 <br><br>
 
