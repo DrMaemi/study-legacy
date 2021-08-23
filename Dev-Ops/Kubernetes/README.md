@@ -167,6 +167,14 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outfor
 kubeadm token create
 ```
 </p>
+<p>
+
+`kubectl` 명령어 자동완성 기능 사용
+```
+source /etc/bash_completion
+source <(kubectl completion bash)
+```
+</p>
 
 <br>
 
