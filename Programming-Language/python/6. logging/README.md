@@ -26,7 +26,10 @@ logger = logging.getLogger("name")
 <p>
 
 위 "name" 에는 String이 들어간다. 아무것도 입력하지 않는 경우 **root logger**가 생성된다.</p>
-<p>**root logger**는 모든 logger의 부모와 같은 존재로, 다른 모든 logger는 설정을 변화시키지 않으면 **root logger**의 자식이다. **root logger**을 바로 사용할 수 있지만, 기능과 목적에 따라 다른 logger들을 생성하는 것이 좋다.</p>
+<p>
+
+**root logger**는 모든 logger의 부모와 같은 존재로, 다른 모든 logger는 설정을 변화시키지 않으면 **root logger**의 자식이다. **root logger**을 바로 사용할 수 있지만, 기능과 목적에 따라 다른 logger들을 생성하는 것이 좋다.
+</p>
 
 <br>
 
@@ -36,10 +39,11 @@ logger = logging.getLogger("name")
 ```python
 logger.setLevel(logging.INFO)
 ```
-앞서 생성한 logger에 INFO **level**을 부여한다. 이제 이 `logger` 객체는 INFO 이상의 메세지를 출력할 수 있다.
+앞서 생성한 logger에 **INFO level**을 부여한다. 앞서 말했 듯 지금 생성된 logger는 root logger를 상속받는데, **root logger의 level은 기본적으로 `WARNING`이다**. 뒤에서 설명할 **Handler**도 level을 가지는데, **Handler의 level이 낮아도 logger의 level이 높으면 무시된다**.
 </p>
 <p>
 
+위 설정으로 인해 이제 이 `logger` 객체는 INFO 이상의 메세지를 출력할 수 있다.<br>
 **level**을 소문자로 바꾸어 메서드로 사용하면 메세지를 출력할 수 있다.
 </p>
 <p>

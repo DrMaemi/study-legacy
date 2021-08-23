@@ -1,36 +1,34 @@
-import logging
+import logging, os
 
-# logger 생성
-logger = logging.getLogger("name")
-logger.setLevel(logging.INFO)
+def MyLogger(path, save_file):
+    logger = logging.getLogger('MyLogger')
+    logger.setLevel(logging.DEBUG)
 
-logger.info("Message")
+    formatter = logging.Formatter(fmt="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
-logging.Formatter(
-    fmt = None, # 메세지 출력 형태. None일 경우 raw 메세지 출력
-    datefmt = None, # 날짜 출력 형태. None일 경우 '%Y-%m-%d %H:%M:%S'
-    style = '%' # '%', '{', '$' 중 하나. 'fmt'의 style 결정
-)
+    # stream(console) handler 객체 생성
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.DEBUG)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
 
-stream_handler = logging.StreamHandler()
-file_handler = logging.FileHandler(filename='example.log')
+    if save_file:
+        # file handler 객체 생성
+        os.makedirs(path, exist_ok=True)
+        file_handler = logging.FileHandler(filename=path+'/my.log')
+        file_handler.setLevel(logging.INFO)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
 
-# formatter 객체 생성
-formatter = logging.Formatter(fmt="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    return logger
 
-# handler에 level 설정
-stream_handler.setLevel(logging.INFO)
-file_handler.setLevel(logging.DEBUG)
+if __name__ == '__main__':
+    mylogger = MyLogger('./logs', True)
+    mylogger.debug("\nlogging-tutorial.py - main()")
 
-# handler에 format 설정
-stream_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
+    mylogger.debug('DEBUG message')
+    mylogger.info('INFO message')
+    mylogger.warning('WARNING message')
+    mylogger.error('ERROR message')
 
-logger.addHandler(stream_handler)
-logger.addHandler(file_handler)
-
-
-logger.debug('This message should go to the log file')
-logger.info('So should this')
-logger.warning('And this, too')
-logger.error('And non-ASCII stuff, too, like Øresund and Malmö')
+    mylogger.debug("Done.")
