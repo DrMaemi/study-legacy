@@ -12,6 +12,7 @@
     - [numpy](https://github.com/DrMaemi/Study/tree/master/Programming-Language/python/numpy)
     - [matplotlib](https://github.com/DrMaemi/Study/tree/master/Programming-Language/python/matplotlib)
     - [logging](https://github.com/DrMaemi/Study/tree/master/Programming-Language/python/logging)
+    - [os](https://github.com/DrMaemi/Study/tree/master/Programming-Language/python/os.md)
     
 
 
