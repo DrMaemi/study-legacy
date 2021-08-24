@@ -7,3 +7,5 @@ tensorflow_hub
 __pycache__
 *.exe
 .vscode
+logs
+*.log
