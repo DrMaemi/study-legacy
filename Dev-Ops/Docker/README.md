@@ -4,7 +4,7 @@ Go언어로 작성된 리눅스 컨테이너 기반으로하는 오픈소스 가
 <br>
 
 ## 목차
-- [설치](https://github.com/DrMaemi/tree/master/Dev-Ops/Docker/INSTALL.md)
+- [설치](https://github.com/DrMaemi/Study/blob/master/Dev-Ops/Docker/INSTALL.md)
 
 
 ### 컨테이너 실행과 종료

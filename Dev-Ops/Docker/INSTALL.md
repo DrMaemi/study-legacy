@@ -18,12 +18,13 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 
 위 문제를 해결하기 위해
 ```
-$ sudo usermod -aG docker ${USER}
-$ sudo reboot
+$ sudo usermod -aG docker ${USER} && newgrp docker
 ```
 ```
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ docker version
+...
 ```
 </p>
 
