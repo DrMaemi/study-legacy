@@ -38,10 +38,17 @@ ExecStart=(중략) --data-root=/path/to/docker
 ```
 $ sudo su
 # vi /etc/docker/daemon.json
+```
+```json
+/* daemon.json */
 {
     "data-root":"/path/to/docker"
 }
 ```
+`/path/to/docker`에서 가장 앞에 `/`를 제거해도 **자동으로 `/`를 삽입한 경로로 인식하므로 주의**
+</p>
+<p>
+
 저장 후
 ```
 sudo systemctl daemon-reload
@@ -49,8 +56,8 @@ sudo systemctl restart docker
 ```
 확인
 ```
-$ cd /path/to/docker
-$ sudo df -h --max-depth=1
-xxxMB
+$ cd /path/to/docker && ls
+buildkit    image    overlay2  runtimes  tmp    volumes
+containers  network  plugins   swarm     trust
 ```
 </p>
