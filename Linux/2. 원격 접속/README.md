@@ -3,19 +3,11 @@
 <br><br>
 
 ## 목차
-<p>
+- [1. 윈도우 - PuTTY](#1-윈도우---putty)
+- [2. WSL, Linux - SSH](#2-wsl-linux---ssh)
+- [3. VS Code SSH](#3-VS-Code-SSH)
 
-[1. 윈도우 - PuTTY](#1-윈도우---putty)
-</p>
-
-[2. WSL, Linux - SSH](#2-wsl-linux---ssh)
-</p>
-<p>
-
-[3. VS Code SSH](#3-VS-Code-SSH)
-</p>
-
-<br><br>
+<br>
 
 ## 1. 윈도우 - PuTTY
 [PuTTY 공식 홈페이지](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
@@ -121,9 +113,21 @@
 <br><br>
 
 ## 2. WSL, Linux - SSH
+<p>
+
+```
+ssh -i </path/to/.pem file> <user name>@<Public IP>
+```
+예시
+```
+ssh -i ../my_ssh_key.pem ubuntu@13.22.205.2
+```
+</p>
 
 <br><br>
 
 ## 3. VS Code SSH
+<p>
 
-<br><br>
+[VS Code SSH 원격 접속](https://github.com/drmaemi/tree/master/Tools/VS-Code/SSH_원격접속.md)
+</p>
