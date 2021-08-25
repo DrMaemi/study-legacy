@@ -1,5 +1,11 @@
-# docker-study
-how to use docker &amp; develop to do CI/CD ?
+# Docker
+Go언어로 작성된 리눅스 컨테이너 기반으로하는 오픈소스 가상화 플랫폼
+
+<br>
+
+## 목차
+- [설치](https://github.com/DrMaemi/tree/master/Dev-Ops/Docker/INSTALL.md)
+
 
 ### 컨테이너 실행과 종료
 - 컨테이너 생성: `docker container create`<br>
