@@ -26,3 +26,17 @@ sudo rm -rf /var/run/docker.sock
 ```
 도커 운영 위치를 변경했다면 `data-root`에 기입됐던 경로의 폴더를 삭제해준다.
 </p>
+<p>
+
+`snap`을 이용해 도커를 설치한 경우 다음과 같이 삭제 가능
+```
+sudo snap remove docker
+```
+</p>
+<p>
+
+마지막으로, 도커 관련 모든 파일을 삭제하는 명령
+```
+sudo find / -name "*docker*" -exec `rm -rf` {} +
+```
+</p>
