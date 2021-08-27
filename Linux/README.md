@@ -10,7 +10,10 @@
 - [screen](#screen)
 - [tree](#tree)
 - [화면 캡쳐 및 녹화](#화면-캡쳐-및-녹화)
+- [호스트명 제어](#-호스트명-제어)
 </p>
+
+<br>
 
 ## 초기 su 로그인 오류
 <p>
@@ -233,3 +236,17 @@ $ dconf-editor
 ```
 위 명령어를 실행하면 editor 창이 열리는데, `org/gnome/settings-daemon/plugins/media-keys`로 이동해서 `max-screencast-length` 설정을 기본값 사용 해제, 사용자 설정 값 0으로 세팅한다.
 </p>
+
+<br>
+
+## 호스트명 제어
+<p>
+
+터미널 창에서 볼 수 있는 `<user name>@<host name>:~$` 에서 `<host name>`과 관련된 명령들을 다음과 같이 사용할 수 있다.
+</p>
+
+<div align='center'>명령어</div> | <div align='center'>역할</div>
+:- | :-
+`hostnamectl status` | 현재 호스트명 설정 조회
+`hostnamectl set-hostname <host name>` | `<host name>`으로 호스트명 변경
+`hostnamectl set -icon-name <icon name>` | `<icon name>`으로 호스트 아이콘명 변경
