@@ -1,4 +1,5 @@
 # Docker 설치
+## 기본
 <p>
 
 도커 설치
@@ -28,7 +29,50 @@ $ docker version
 ```
 </p>
 
+<br>
 
+## NVIDIA 도커 설치
+<p>도커 컨테이너는 호스트 OS와 격리되어 동작하기 때문에 GPU를 사용하기 위해서는 특별한 도커를 설치해야 한다. 그 특별한 도커는 NVIDIA 도커이다.</p>
+<p>NVIDIA 도커는 호스트의 GPU 드라이버와 연동하는 드라이버를 제공하여 컨테이너가 동작할 수 있도록 한다.</p>
+<p>
+
+혹시 설치된 이전 버전이 있고 그것을 지우고 싶다면
+```
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+sudo apt-get purge -y nvidia-docker
+```
+</p>
+<p>
+
+설치
+```
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y
+```
+</p>
+<p>
+
+도커 재구동
+```
+nvidia-container-toolkit sudo systemctl restart docker
+```
+</p>
+<p>
+
+설치 검증
+```
+# docker version 19.03 이상
+docker run --gpus all nvidia/cuda:10.0-base nvidia-smi
+# docker version 19.03 미만
+docker run --runtime=nvidia nvidia/cuda:10.0-base nvidia-smi
+```
+</p>
+
+<br>
+
+## 도커 운영 위치 변경
 <p>
 
 Docker를 처음 설치하면 `/var/lib/docker`에 관련 파일들이 위치하게 된다.
