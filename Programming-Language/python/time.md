@@ -9,7 +9,7 @@ def logging_time(original_fn):
         start_time = time.time()
         result = original_fn(*args, **kwargs)
         end_time = time.time()
-        print("WorkingTime[{}]: {} sec".format(original_fn.__name__, end_time-start_time))
+        print("--- Working Time [{}]: {} sec ---".format(original_fn.__name__, round(end_time-start_time, 3)))
         return result
     return wrapper_fn
 
