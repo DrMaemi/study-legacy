@@ -38,3 +38,22 @@ Good bye
 I wanna go home
 WorkingTime[my_func3]: 0.0 sec
 ```
+
+<br>
+
+## localtime() - 현재 시간 저장
+```python
+import time
+
+now = time.localtime()
+
+print(f"type(now): {type(now)}")
+print(f"now: {now}")
+print("%04d-%02d-%02d %02d:%02d:%02d" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec))
+```
+결과
+```
+type(now): <class 'time.struct_time'>
+now: time.struct_time(tm_year=2021, tm_mon=8, tm_mday=30, tm_hour=18, tm_min=27, tm_sec=19, tm_wday=0, tm_yday=242, tm_isdst=0)
+2021-08-30 18:27:19
+```
