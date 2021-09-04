@@ -123,6 +123,42 @@ ssh -i </path/to/.pem file> <user name>@<Public IP>
 ssh -i ../my_ssh_key.pem ubuntu@13.22.205.2
 ```
 </p>
+<br>
+
+### 2.1. SSH 터널링 - 포트 포워딩
+<p>
+
+SSH 터널링에 포트 포워딩 기술을 더해 클라이언트가 서버의 어플리케이션에 접근할 수 있다.
+</p>
+<p>
+
+```
+ssh -CNf -L <임의의 내 로컬 포트>:127.0.0.1:<앱 동작 포트> -i <ssh 키 경로> <호스트 네임>@<공인 IP>
+```
+예시
+```
+ssh -CNf -L 3333:127.0.0.1:33533 -i my_ssh_key.pem ubuntu@3.123.123.183
+```
+백그라운드로 수행되는 것을 원하지 않으면 `f` 옵션을 제거한다.
+</p>
+<p>
+
+**minikube 실습**
+```
+# 서버(AWS 인스턴스)에서 대쉬보드 실행
+$ minikube dashboard --url
+...
+http://127.0.0.1:33533/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+```
+```
+# ssh 터널링. 내 로컬 터미널에서 다음 명령어 입력
+$ ssh -CNf -L 3333:127.0.0.1:33533 -i soma-kubernetes.pem ubuntu@3.123.123.183
+```
+```
+# 내 로컬에서 브라우저를 열고 다음 url로 접속
+http://127.0.0.1:3333/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+```
+</p>
 
 <br><br>
 
