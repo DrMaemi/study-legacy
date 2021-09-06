@@ -1,4 +1,5 @@
-# OpenCV - 파일입출력
+# opencv-python
+<p>영상 처리를 할 수 있는 컴퓨터 비전 프레임워크</p>
 
 <p>
 
@@ -7,7 +8,7 @@
 
 <br>
 
-## OpenCV 설치
+## opencv-python 설치
 <p>
 
 ```
