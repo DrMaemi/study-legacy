@@ -2,6 +2,7 @@ import socket
 import cv2, imutils
 import pickle, struct
 
+
 def send_stream(sender_socket):
     print("스트림 전송 시작")
     cap = cv2.VideoCapture('c:/dev/home/data/i-mind_cctv_test2.mp4')
@@ -17,13 +18,21 @@ def send_stream(sender_socket):
             # 메세지 길이 측정
             msg_size = struct.pack('L', len(data))
             # 데이터 전송
-            sender_socket.sendall(msg_size + data)
+            try:
+                sender_socket.sendall(msg_size + data)
+
+            except ConnectionAbortedError:
+                print("연결이 끊어졌습니다.")
+                cap.release()
+                cv2.destroyAllWindows()
+                break
 
             cv2.imshow('sending', frame)
             if cv2.waitKey(delay) & 0xFF == ord('q'):
                 cap.release()
                 cv2.destroyAllWindows()
                 break
+
 
 if __name__ == '__main__':
     host = '127.0.0.1'
