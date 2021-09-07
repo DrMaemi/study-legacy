@@ -210,16 +210,19 @@ WSL 2 설치를 끝냈다고 가정하고 설명한다. 만약 WSL 2 설치가 �
 <p>터미널</p>
 <p>
 
-```console
+```
+sudo su
+```
+```
 apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
 ```
-```console
+```
 sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
 ```
-```console
+```
 apt-get update
 ```
-```console
+```
 apt-get install -y cuda-toolkit-11-2
 ```
 </p>
@@ -230,7 +233,7 @@ apt-get install -y cuda-toolkit-11-2
 <p>예제 실행</p>
 <p>
 
-```console
+```
 cd /usr/local/cuda/samples/4_Finance/BlackScholes
 make
 ./BlackScholes
@@ -260,34 +263,34 @@ Gigaoptions per second    : 6.086897
 <p>CUDA GPU 벤치 마킹(with docker)</p>
 <p>
 
-```console
+```
 curl https://get.docker.com | sh
 ```
-```console
+```
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 ```
-```console
+```
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
 ```
-```console
+```
 curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 ```
-```console
+```
 curl -s -L https://nvidia.github.io/libnvidia-container/experimental/$distribution/libnvidia-container-experimental.list | sudo tee /etc/apt/sources.list.d/libnvidia-container-experimental.list
 ```
-```console
+```
 sudo apt-get update
 ```
-```console
+```
 sudo apt-get install -y nvidia-docker2
 ```
-```console
+```
 sudo service docker stop
 ```
-```console
+```
 sudo service docker start
 ```
-```console
+```
 docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 ```
 </p>
