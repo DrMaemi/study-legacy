@@ -374,6 +374,12 @@ chmod +x Anaconda3-2020.11-Linux-x86_64.sh
 ### 3.1. NVIDIA 드라이버 설치
 <p>
 
+```
+sudo apt update
+```
+</p>
+<p>
+
 **그래픽 카드 및 설치 가능한 드라이버 확인(안해도 됨)**
 ```bash
 ubuntu-drivers devices
@@ -386,22 +392,36 @@ ubuntu-drivers devices
 ```bash
 sudo ubuntu-drivers autoinstall
 ```
+또는
+```
+# 원하는 버전에 따라 460 대신 다른 버전 설치
+sudo apt install nvidia-driver-460
+```
 </p>
 <br>
 <p>
 
 **설치 확인**
+<p>
+
+재부팅
+```bash
+sudo reboot
+```
+</p>
+
+<p>
+
+후에 nvidia-smi 확인
 ```bash
 nvidia-smi
 ```
-</p>
-<p>
-  <div align="center">
-    <figure>
-        <img src="./resources/nvidia-smi.png" alt="nvidia-smi 결과">
-        <div align="center"><figcation>nvidia-smi 결과</figcation></div>
-    </figure>
-  </div>
+<div align="center">
+  <figure>
+      <img src="./resources/nvidia-smi.png" alt="nvidia-smi 결과">
+      <div align="center"><figcation>nvidia-smi 결과</figcation></div>
+  </figure>
+</div>
 </p>
 
 <br>
