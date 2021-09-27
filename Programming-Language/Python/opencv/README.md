@@ -189,9 +189,13 @@ cv2.destroyAllWindows()
 import cv2
 
 cap = cv2.VideoCapture(0)
+width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-out = cv2.VideoWriter('output.avi', fourcc, 25.0, (640,480))
+
+# width, height가 맞지 않으면 저장된 영상을 재생할 때 오류 발생 가능성 있음
+out = cv2.VideoWriter('output.avi', fourcc, 25.0, (width, height))
 
 while (cap.isOpend()):
     ret, frame = cap.read()
