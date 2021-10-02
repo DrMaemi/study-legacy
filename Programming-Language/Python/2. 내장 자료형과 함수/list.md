@@ -36,3 +36,21 @@ print(b)
 ```
 [0, 2, 4, 6, 8]
 ```
+
+## 3. 리스트 순회
+```python
+l = [1, 2, 3, 4, 5]
+for i in range(len(l)):
+    print(l[i])
+
+for i in l:
+    print(i)
+
+# range(start, end, step)을 이용해 거꾸로 순회
+for i in range(len(l)-1, -1, -1):
+    print(l[i])
+
+# reversed 내장 함수를 이용해 거꾸로 순회
+for i in reversed(l):
+    print(i)
+```
