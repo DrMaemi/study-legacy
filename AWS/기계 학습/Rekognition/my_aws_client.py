@@ -26,7 +26,7 @@ class AWSClient:
         self.start_face_detection_response = None
         self.get_face_detection_response = None
 
-    def download_file(self, file_key, save_name):
+    def download_file(self, file_key, file_name):
         """
         Request Syntax:
         boto3.resource.meta.client.download_file(
@@ -38,26 +38,42 @@ class AWSClient:
             Config=None
         )
         boto3.resource.Bucket.download_file(Key, ...)
+
+        ex)
+        self.s3.meta.client.download_file(
+            self.BUCKET_NAME,
+            self.FILE_KEY,
+            file_name
+        )
+        -> download as file_name
         """
         self.s3.meta.client.download_file(
             self.BUCKET_NAME,
             file_key,
-            save_name
+            file_name
         )
 
-    def upload_file(self, file_name, remote_path):
+    def upload_file(self, file_name, file_key):
         """
         Request Syntax:
         boto3.resource.meta.client.upload_file(
             Filename,
             Bucket,
-            Remotepath
+            Key
         )
+
+        ex)
+        self.s3.meta.client.upload_file(
+            self.FILE_NAME,
+            'test.i-mind101.com',
+            self.FILE_KEY
+        )
+        -> upload to FILE_KEY(remote path)
         """
         self.s3.meta.client.upload_file(
             file_name,
             'test.i-mind101.com',
-            remote_path
+            file_key
         )
 
     def start_face_detection(self):
