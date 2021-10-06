@@ -72,7 +72,7 @@ class AWSClient:
         """
         self.s3.meta.client.upload_file(
             file_name,
-            'test.i-mind101.com',
+            self.BUCKET_NAME,
             file_key
         )
 
