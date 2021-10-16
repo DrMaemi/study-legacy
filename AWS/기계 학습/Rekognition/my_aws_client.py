@@ -1,13 +1,14 @@
 import boto3
+import cv2
 
 # AWS Rekognition
 class AWSClient:
-    def __init__(self):
+    def __init__(self, bucket_name):
         self.S3_ACCESS_KEY_ID = '...'
         self.S3_SECRET_ACCESS_KEY = '...'
-        self.BUCKET_NAME = 'test.i-mind101.com'
+        self.BUCKET_NAME = bucket_name
         self.PREFIX = 'public/test/'
-        self.FILE_NAME = '2021-10-05-test.mp4'
+        self.FILE_NAME = 'double_single.mp4'
         self.FILE_KEY = self.PREFIX+self.FILE_NAME
 
         print('Creating AWS S3, Rekognition')
@@ -16,15 +17,25 @@ class AWSClient:
             aws_access_key_id=self.S3_ACCESS_KEY_ID,
             aws_secret_access_key=self.S3_SECRET_ACCESS_KEY
         )
+        self.s3_client = boto3.client(
+            's3',
+            aws_access_key_id=self.S3_ACCESS_KEY_ID,
+            aws_secret_access_key=self.S3_SECRET_ACCESS_KEY,
+            region_name='ap-northeast-2'
+        )
         self.bucket = self.s3.Bucket(name=self.BUCKET_NAME)
         self.rekog = boto3.client(
             'rekognition',
             aws_access_key_id=self.S3_ACCESS_KEY_ID,
-            aws_secret_access_key=self.S3_SECRET_ACCESS_KEY
+            aws_secret_access_key=self.S3_SECRET_ACCESS_KEY,
+            region_name='ap-northeast-2'
         )
 
         self.start_face_detection_response = None
         self.get_face_detection_response = None
+
+    def get_obj_list(self, prefix):
+        return self.s3_client.list_objects(Bucket=self.BUCKET_NAME, Prefix=prefix)
 
     def download_file(self, file_key, file_name):
         """
@@ -45,7 +56,6 @@ class AWSClient:
             self.FILE_KEY,
             file_name
         )
-        -> download as file_name
         """
         self.s3.meta.client.download_file(
             self.BUCKET_NAME,
@@ -59,16 +69,15 @@ class AWSClient:
         boto3.resource.meta.client.upload_file(
             Filename,
             Bucket,
-            Key
+            Remotepath
         )
 
         ex)
         self.s3.meta.client.upload_file(
-            self.FILE_NAME,
+            'processed.mp4',
             'test.i-mind101.com',
-            self.FILE_KEY
+            'public/test/processed.mp4'
         )
-        -> upload to FILE_KEY(remote path)
         """
         self.s3.meta.client.upload_file(
             file_name,
@@ -76,23 +85,35 @@ class AWSClient:
             file_key
         )
 
-    def start_face_detection(self):
-        self.start_face_detection_response = self.rekog.start_face_detection(
-            Video={
-                'S3Object': {
-                    'Bucket': self.BUCKET_NAME,
-                    'Name': self.FILE_KEY
-                }
-            },
-            ClientRequestToken='2',
-            FaceAttributes = 'ALL'
-        )
+    def start_face_detection(self, file_key):
+        success = False
+        request_token = 1
+        while not success:
+            try:
+                self.start_face_detection_response = self.rekog.start_face_detection(
+                    Video={
+                        'S3Object': {
+                            'Bucket': self.BUCKET_NAME,
+                            'Name': file_key
+                        }
+                    },
+                    ClientRequestToken=str(request_token),
+                    FaceAttributes = 'ALL'
+                )
+                print(f'start face detection with request token: {request_token}')
+                success = True
+
+            except:
+                request_token += 1
+
+        print(f'start_face_detection_response: {self.start_face_detection_response}')
 
     def get_face_detection(self):
         self.get_face_detection_response = self.rekog.get_face_detection(
             JobId=self.start_face_detection_response['JobId'],
             MaxResults=123
         )
+        print(f'get_face_detection_response: {self.get_face_detection_response}')
 
     def get_next(self):
         if 'NextToken' in self.get_face_detection_response:
@@ -101,6 +122,66 @@ class AWSClient:
                 MaxResults=123,
                 NextToken=self.get_face_detection_response['NextToken']
             )
+            return True
+
+        return False
+
+    def video_capture(self, file_key):
+        url = self.s3_client.generate_presigned_url(ClientMethod='get_object', Params={'Bucket': self.BUCKET_NAME, 'Key': file_key})
+        cap = cv2.VideoCapture(url)
+
+        return cap
+
+    def get_all_rekog_results(self):
+        all_rekog_results = []
+
+        self.get_face_detection_response = self.rekog.get_face_detection(
+            JobId=self.start_face_detection_response['JobId'],
+            MaxResults=123
+        )
+
+        all_rekog_results.append(self.get_face_detection_response)
+        self.width = self.get_face_detection_response['VideoMetadata']['FrameWidth']
+        self.height = self.get_face_detection_response['VideoMetadata']['FrameHeight']
+
+        while 'NextToken' in self.get_face_detection_response:
+            self.get_face_detection_response = self.rekog.get_face_detection(
+                JobId=self.start_face_detection_response['JobId'],
+                MaxResults=123,
+                NextToken=self.get_face_detection_response['NextToken']
+            )
+            all_rekog_results.append(self.get_face_detection_response)
+
+        return all_rekog_results
+
+    def get_face_boxes_and_emotions(self, all_rekog_results):
+        face_boxes_and_emotions_by_timestamp = {}
+
+        for rekog_result in all_rekog_results:
+            for detection in rekog_result['Faces']:
+                timestamp = detection['Timestamp']
+
+                if timestamp not in face_boxes_and_emotions_by_timestamp:
+                    face_boxes_and_emotions_by_timestamp[timestamp] = []
+
+                box_set = detection['Face']['BoundingBox']
+
+                l = int(self.width * box_set['Left'])
+                t = int(self.height * box_set['Top'])
+                r = int((self.width * box_set['Width']) + l)
+                b = int((self.height * box_set['Height']) + t)
+
+                face_boxes_and_emotions_by_timestamp[timestamp].append(
+                    {
+                        'pos': (l, t, r, b),
+                        'emotions': detection['Face']['Emotions']
+                    }
+                )
+
+        return face_boxes_and_emotions_by_timestamp
+
+
+
 
 """
 탐지 가능한 표정 종류:
