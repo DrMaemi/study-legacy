@@ -5,8 +5,17 @@
 
 ## 폴더와 경로
 ### 지정 경로에 폴더 확인 및 생성
+- `isdir(path)` - path 존재 유무 확인
+- `mkdir(path)`
+- `makedirs(path)`
+
 ```python
 import os
+
+# 경로(디렉토리) 존재 유무 확인
+path = 'c:/dev'
+if os.path.isdir(path):
+    print(f'디렉토리가 존재합니다.')
 
 # 폴더 생성
 os.mkdir('./a/if_not_exist_a_exception')
