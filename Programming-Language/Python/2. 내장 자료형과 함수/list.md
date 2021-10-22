@@ -54,3 +54,21 @@ for i in range(len(l)-1, -1, -1):
 for i in reversed(l):
     print(i)
 ```
+
+## 4. 리스트의 모든 요소들에 대해 참, 거짓 확인
+<p>
+
+- `all()` - 리스트 혹은 튜플의 **모든 요소가 참일 때**에만 `True`를 반환
+- `any()` - 리스트 혹은 튜플의 요소 중 **단 하나의 요소**만 참이면 `True`를 반환
+```python
+>>> lst = ['1', '2', 'a', 1, 0.1]
+>>> all(lst)
+True
+>>> lst = [[], (), {}, 0, None]
+>>> any(lst)
+False
+>>> lst = [[], (), {}, 0, None, 1]
+>>> any(lst)
+True
+```
+</p>
