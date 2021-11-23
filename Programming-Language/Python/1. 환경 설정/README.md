@@ -6,9 +6,11 @@
 <p>
 
 [1. 아나콘다](#1-아나콘다)<br>
-&nbsp; &nbsp; [1.1. 가상환경 생성](#11-가상환경-생성)<br>
-&nbsp; &nbsp; [1.2. 패키지 설치](#12-패키지-설치)<br>
-&nbsp; &nbsp; [1.3. 설치된 패키지 삭제](#13-설치된-패키지-삭제)
+&nbsp; &nbsp; [1.1. 설치](#11-설치)<br>
+&nbsp; &nbsp; [1.2. 가상환경 생성](#12-가상환경-생성)<br>
+&nbsp; &nbsp; [1.3. 패키지 설치](#13-패키지-설치)<br>
+&nbsp; &nbsp; [1.4. 설치된 패키지 삭제](#14-설치된-패키지-삭제)<br>
+&nbsp; &nbsp; [1.5. 가상환경 복제](#15-가상환경-복제)
 </p>
 <p>
 
@@ -22,7 +24,11 @@
 <br><br>
 
 ## 1. 아나콘다
-### 1.1. 가상환경 생성
+### 1.1. 설치
+[https://www.anaconda.com/products/individual](https://www.anaconda.com/products/individual) - 공식 배포 버전<br>
+[https://repo.anaconda.com/archive/](https://repo.anaconda.com/archive/) - 버전 별 다운, 쉘 명령어 `wget` 혹은 `curl`로 다운 가능
+
+### 1.2. 가상환경 생성
 다음과 같이 가상환경을 생성할 수 있다.
 ```
 conda create --name(-n) [가상환경명] [설치할패키지]
@@ -44,7 +50,7 @@ conda remove --name [가상환경명] --all
 
 <br><br>
 
-### 1.2. 패키지 설치
+### 1.3. 패키지 설치
 ```
 conda activate [가상환경 명]
 conda install [패키지 명]
@@ -61,14 +67,14 @@ pip install numpy==1.19.4
 
 <br><br>
 
-### 1.3. 설치된 패키지 삭제
+### 1.4. 설치된 패키지 삭제
 ```
 conda uninstall [패키지 명]
 ```
 
 <br><br>
 
-### 1.4. 가상환경 복제
+### 1.5. 가상환경 복제
 기존에 세팅해둔 가상환경에서 약간의 변경 후 사용하고 싶을 때 사용한다.
 ```
 conda create --name [새로운 가상환경 명] --clone [기존 가상환경 명]
