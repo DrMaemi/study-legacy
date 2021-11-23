@@ -27,6 +27,20 @@
 ### 1.1. 설치
 [https://www.anaconda.com/products/individual](https://www.anaconda.com/products/individual) - 공식 배포 버전<br>
 [https://repo.anaconda.com/archive/](https://repo.anaconda.com/archive/) - 버전 별 다운, 쉘 명령어 `wget` 혹은 `curl`로 다운 가능
+<p>
+i386 은 Intel 의 80386 CPU 계열의 CPU
+i586 은 Intel 의 80586 CPU 계열의 Pentium CPU
+i686 은 Intel 의 80686 CPU 계열의 Pentium Pro 이상의 CPU
+</p>
+<p>
+x86  - 위에 언급한 CPU들을 의미
+</p>
+리눅스의 여러 패키지를 다운 받을 때 i386, i586, i686, x86, x86_64 등 여러가지가 표시되어 있는데, 이것들의 의미는 해당 코드가 타겟 CPU에 적합하게 컴파일되어 있다는 것을 의미
+<p>
+그러므로 x86 은 i386, i586, i686 의 모든 플랫폼에서 동작할 수 있고, x86_64 는 i386, i586, i686 의 64bit 환경에서 동작하는 것을 의미
+</p>
+
+<br>
 
 ### 1.2. 가상환경 생성
 다음과 같이 가상환경을 생성할 수 있다.
@@ -48,7 +62,7 @@ conda activate root
 conda remove --name [가상환경명] --all
 ```
 
-<br><br>
+<br>
 
 ### 1.3. 패키지 설치
 ```
@@ -65,14 +79,14 @@ pip install numpy==1.19.4
 ```
 </p>
 
-<br><br>
+<br>
 
 ### 1.4. 설치된 패키지 삭제
 ```
 conda uninstall [패키지 명]
 ```
 
-<br><br>
+<br>
 
 ### 1.5. 가상환경 복제
 기존에 세팅해둔 가상환경에서 약간의 변경 후 사용하고 싶을 때 사용한다.
