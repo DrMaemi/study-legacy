@@ -140,6 +140,12 @@ MinGW가 정상적으로 설치됐다면, VS Code에 연동해야 한다.
 ```json
 // keybindings.json
 [
+    // 컴파일
+    {
+        "key": "ctrl+alt+c",
+        "command": "workbench.action.tasks.build"
+        // 변경 전 - CTRL + ALT + B
+    },
     // 실행
     {
         "key": "ctrl+shift+r",
