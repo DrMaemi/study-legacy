@@ -63,3 +63,18 @@ docker run -it --name [원하는 프로세스 이름] [실행시키고자 하는
 ```
 docker run -it --name c2 test/vol /bin/bash
 ```
+
+### 구동 중인 도커 이미지 저장
+```bash
+# terminal 1
+docker run -it <image name>
+
+# update docker image state
+apt-get update
+apt-get install vim-tiny
+```
+```bash
+# terminal 2
+docker ps
+docker commit <docker img id> <name to save>
+```
