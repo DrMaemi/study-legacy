@@ -30,78 +30,32 @@ $ sudo passwd user1
 ```
 </p>
 
-<br><br>
+<br>
 
 ## tar, gz, zip 압축·해제
+압축하고자 하는 파일들이 특정 폴더에 들어있을 때,
+
 <p>
 
-- tar
-</p>
-<p>
+확장자 | 압축 | 해제
+----- | ----- | -----
+.tar | `tar -cvf <파일명.tar> <폴더명>` | `tar -xvf <파일명.tar>`
+.tar.gz | `tar -zcvf <파일명.tar.gz> <폴더명>` | `tar -zxvf <파일명.tar.gz>`
+zip | `zip <파일명.tar> <폴더명>` | `unzip <파일명.zip>`
 
-압축
-```
-tar -cvf <파일명.tar> <폴더명>
-```
 </p>
-<p>
 
-해제
-```
-tar -xvf <파일명.tar>
-```
-</p>
 <br>
-<p>
-
-- tar.gz
-</p>
-<p>
-
-압축
-```
-tar -zcvf <파일명.tar.gz> <폴더명>
-```
-</p>
-<p>
-
-해제
-```
-tar -zxvf <파일명.tar.gz>
-```
-</p>
-<br>
-<p>
-
-- zip
-</p>
-<p>
-
-압축
-```
-zip <파일명.tar> <폴더명>
-```
-</p>
-<p>
-
-해제
-```
-unzip <파일명.zip>
-```
-</p>
-
-<br><br>
 
 ## screen
-<p>
+터미널 환경에서 개발할 때 도움을 주는 Terminal multiplexer 종류의 소프트웨어
+
+<br>
 
 ### 설치 및 .screenrc 설정
 ```
 sudo apt install screen
 ```
-</p>
-
-<br>
 
 <p>
 
@@ -136,6 +90,8 @@ bindkey -k k3 select 2
 스크린을 종료하고 싶다면 스크린 진입 후 `exit`을 입력하면 된다.
 </p>
 
+<br>
+
 ### 스크린 진입 후 사용할 수 있는 단축키
 <p>
 
@@ -156,7 +112,56 @@ bindkey -k k3 select 2
 
 </p>
 
-<br><br>
+<br>
+
+## tmux
+터미널 환경에서 개발할 때 도움을 주는 Terminal multiplexer 종류의 소프트웨어
+
+<br>
+
+### 설치
+```bash
+sudo apt install tmux
+```
+
+<br>
+
+### 실행
+```
+tmux
+```
+
+<br>
+
+### tmux 용어집
+
+용어 | 설명
+-- | --
+세션(session) | - tmux가 관리하는 가장 큰 실행 단위.<br>- tmux는 세션에 attach/detach 할 수 있다.<br>- tmux가 detach한 세션은 종료되지 않고 백그라운드에서 실행된다.
+윈도우(window) | - 사용자가 보는 터미널 화면.<br>- 한 세션에는 여러 개의 윈도우가 탭처럼 존재.
+팬(pane) | -하나의 윈도우엔 여러 개의 팬이 존재할 수 있다.<br>- 가로 혹은 세로로 화면을 분할하여 팬 생성 가능.
+
+<br>
+
+### 세션 명령어
+
+명령 | 명령어 | 설명
+-- | -- | --
+생성 | `tmux new -s <세션 이름>` | 
+이름 수정 | `Ctrl`+`b`+`$` | 
+detach | `Ctrl`+`b`+`d` | 
+attach | `tmux attach -t <세션 id 또는 세션 이름>` | 
+세션 리스트 보기 | `tmux ls` | 
+세션 종료 1 | `exit` | 해당 세션의 마지막 윈도우의 마지막 팬에서 실행
+세션 종료 2 | `tmux kill-session -t <세션 이름>` | 해당 세션 밖에서 실행 가능
+
+<br>
+
+### 참조
+[간략하게 보는 tmux 설치와 명령어 사용법, 경자 연구소, 2019년 1월 17일 수정, 2021년 11월 28일 접속, https://soft.plusblog.co.kr/19](https://soft.plusblog.co.kr/19)
+
+
+<br>
 
 ## tree
 <p>tree는 폴더 하위 구조를 계층적으로 표시해주는 유틸리티로, 전체 구조를 대략적으로 파악할 때 유용하다.</p>
@@ -193,10 +198,9 @@ $ tree -d -I "__pycache__.py|dataset|build"
 ```
 </p>
 
-<br><br>
+<br>
 
 ## 화면 캡쳐 및 녹화
-
 ### 화면 캡쳐
 <p>
 
@@ -245,8 +249,8 @@ $ dconf-editor
 터미널 창에서 볼 수 있는 `<user name>@<host name>:~$` 에서 `<host name>`과 관련된 명령들을 다음과 같이 사용할 수 있다.
 </p>
 
-<div align='center'>명령어</div> | <div align='center'>역할</div>
-:- | :-
+명령어 | 역할
+-- | --
 `hostnamectl status` | 현재 호스트명 설정 조회
 `hostnamectl set-hostname <host name>` | `<host name>`으로 호스트명 변경
 `hostnamectl set -icon-name <icon name>` | `<icon name>`으로 호스트 아이콘명 변경
