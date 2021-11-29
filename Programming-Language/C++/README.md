@@ -3,6 +3,7 @@
 <p>
 
 - [1. 환경 설정](https://github.com/DrMaemi/Study/tree/master/Programming-Language/C++/1.%20환경%20설정.md)
+- [2. 입출력](https://github.com/DrMaemi/Study/tree/master/Programming-Language/C++/2.%20입출력.md)
 </p>
 
 <br>
